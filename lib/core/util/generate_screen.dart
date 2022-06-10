@@ -1,3 +1,6 @@
+import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
+import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
+import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class GenerateScreen {
@@ -5,6 +8,24 @@ class GenerateScreen {
     String name = value.name ?? '';
     debugPrint("the name is $name");
     switch (name) {
+      case NameScreen.splashScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const SplashPage(),
+          );
+        }
+      case NameScreen.authScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const AuthPage(),
+          );
+        }
+      case NameScreen.homeScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const HomePage(),
+          );
+        }
       default:
         return _errorRoute();
     }
@@ -27,4 +48,7 @@ class GenerateScreen {
 }
 
 class NameScreen {
+  static const String splashScreen = "/";
+  static const String authScreen = "/auth";
+  static const String homeScreen = "/home";
 }

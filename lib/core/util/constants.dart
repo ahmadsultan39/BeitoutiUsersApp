@@ -7,6 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
   static const BASE_URL = "";
+  static const nearestChefs = "/filter-nearest-chefs";
+  static const topRatedChefs = "/filter-top-rated-chefs";
+  static const topOrderedChefs = "r/filter-top-ordered-chefs";
+  static const mostRecentChefs = "/filter-newest-chefs";
+
 }
 
 class SharedPreferencesKeys {

@@ -1,7 +1,13 @@
 import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
+import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
 import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
+import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
+import 'package:beitouti_users/features/meals/presentation/pages/all_offered_meals_page.dart';
 import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
+import 'package:beitouti_users/features/subscription/presentation/pages/subscription_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../features/meals/presentation/pages/all_subscriptions_page.dart';
 
 class GenerateScreen {
   static Route<dynamic> onGenerate(RouteSettings value) {
@@ -24,6 +30,40 @@ class GenerateScreen {
         {
           return MaterialPageRoute(
             builder: (_) => const HomePage(),
+          );
+        }
+      case NameScreen.allOfferedMealsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const AllOfferedMealsPage(),
+          );
+        }
+      case NameScreen.allSubscriptionsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const AllSubscriptionsPage(),
+          );
+        }
+      case NameScreen.mealScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => MealPage(
+              mealId: value.arguments as int,
+            ),
+          );
+        }
+      case NameScreen.subscriptionScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => SubscriptionPage(
+              subscriptionId: value.arguments as int,
+            ),
+          );
+        }
+      case NameScreen.cartScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const CartPage(),
           );
         }
       default:
@@ -51,4 +91,9 @@ class NameScreen {
   static const String splashScreen = "/";
   static const String authScreen = "/auth";
   static const String homeScreen = "/home";
+  static const String allOfferedMealsScreen = "/all-offered-meals";
+  static const String allSubscriptionsScreen = "/all-subscriptions";
+  static const String mealScreen = "/meal";
+  static const String cartScreen = "/cart";
+  static const String subscriptionScreen = "/subscription";
 }

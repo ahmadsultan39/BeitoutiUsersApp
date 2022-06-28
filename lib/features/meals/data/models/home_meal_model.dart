@@ -8,6 +8,8 @@ part 'home_meal_model.g.dart';
 class HomeMealModel extends HomeMeal {
 
   static const String className = 'HomeMealModel';
+  static const String paginateName = 'PaginateResponseModel<HomeMealModel>';
+
 
   @JsonKey(name: 'rates_count')
   final int ratesCount;

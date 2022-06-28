@@ -301,6 +301,172 @@ class GetTopSubscriptionsBuilder
   }
 }
 
+class _$GetAllSubscriptions extends GetAllSubscriptions {
+  @override
+  final int page;
+
+  factory _$GetAllSubscriptions(
+          [void Function(GetAllSubscriptionsBuilder)? updates]) =>
+      (new GetAllSubscriptionsBuilder()..update(updates))._build();
+
+  _$GetAllSubscriptions._({required this.page}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(page, 'GetAllSubscriptions', 'page');
+  }
+
+  @override
+  GetAllSubscriptions rebuild(
+          void Function(GetAllSubscriptionsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetAllSubscriptionsBuilder toBuilder() =>
+      new GetAllSubscriptionsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetAllSubscriptions && page == other.page;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, page.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GetAllSubscriptions')
+          ..add('page', page))
+        .toString();
+  }
+}
+
+class GetAllSubscriptionsBuilder
+    implements Builder<GetAllSubscriptions, GetAllSubscriptionsBuilder> {
+  _$GetAllSubscriptions? _$v;
+
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
+
+  GetAllSubscriptionsBuilder();
+
+  GetAllSubscriptionsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _page = $v.page;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetAllSubscriptions other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetAllSubscriptions;
+  }
+
+  @override
+  void update(void Function(GetAllSubscriptionsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetAllSubscriptions build() => _build();
+
+  _$GetAllSubscriptions _build() {
+    final _$result = _$v ??
+        new _$GetAllSubscriptions._(
+            page: BuiltValueNullFieldError.checkNotNull(
+                page, 'GetAllSubscriptions', 'page'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetAllOfferedMeals extends GetAllOfferedMeals {
+  @override
+  final int page;
+
+  factory _$GetAllOfferedMeals(
+          [void Function(GetAllOfferedMealsBuilder)? updates]) =>
+      (new GetAllOfferedMealsBuilder()..update(updates))._build();
+
+  _$GetAllOfferedMeals._({required this.page}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(page, 'GetAllOfferedMeals', 'page');
+  }
+
+  @override
+  GetAllOfferedMeals rebuild(
+          void Function(GetAllOfferedMealsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetAllOfferedMealsBuilder toBuilder() =>
+      new GetAllOfferedMealsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetAllOfferedMeals && page == other.page;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, page.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GetAllOfferedMeals')
+          ..add('page', page))
+        .toString();
+  }
+}
+
+class GetAllOfferedMealsBuilder
+    implements Builder<GetAllOfferedMeals, GetAllOfferedMealsBuilder> {
+  _$GetAllOfferedMeals? _$v;
+
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
+
+  GetAllOfferedMealsBuilder();
+
+  GetAllOfferedMealsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _page = $v.page;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetAllOfferedMeals other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetAllOfferedMeals;
+  }
+
+  @override
+  void update(void Function(GetAllOfferedMealsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetAllOfferedMeals build() => _build();
+
+  _$GetAllOfferedMeals _build() {
+    final _$result = _$v ??
+        new _$GetAllOfferedMeals._(
+            page: BuiltValueNullFieldError.checkNotNull(
+                page, 'GetAllOfferedMeals', 'page'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

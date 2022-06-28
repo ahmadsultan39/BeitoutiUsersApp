@@ -1,8 +1,10 @@
+import 'package:beitouti_users/core/util/generate_screen.dart';
 import 'package:beitouti_users/features/meals/presentation/pages/meals_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -47,7 +49,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("بيتوتي"),
         actions: [
-          Icon(Icons.shopping_cart),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, NameScreen.cartScreen);
+            },
+            child: Icon(Icons.shopping_cart),
+          ),
           Icon(Icons.search),
         ],
       ),
@@ -62,7 +69,7 @@ class _HomePageState extends State<HomePage> {
           tabBackgroundColor: Theme.of(context).colorScheme.tertiary,
           tabs: [
             GButton(
-              icon: Icons.cookie,
+              icon: MdiIcons.food,
               text: 'الوجبات',
               padding: EdgeInsets.symmetric(
                 horizontal: 20.w,
@@ -73,7 +80,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GButton(
-              icon: Icons.cookie,
+              icon: MdiIcons.chefHat,
               text: 'الطهاة',
               padding: EdgeInsets.symmetric(
                 horizontal: 20.w,
@@ -84,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GButton(
-              icon: Icons.delivery_dining_rounded,
+              icon: Icons.playlist_add_check,
               text: 'الطلبات',
               padding: EdgeInsets.symmetric(
                 horizontal: 20.w,

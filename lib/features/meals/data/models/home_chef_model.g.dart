@@ -17,5 +17,5 @@ Map<String, dynamic> _$HomeChefModelToJson(HomeChefModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image': instance.profilePicture,
+      'profile_picture': instance.profilePicture,
     };

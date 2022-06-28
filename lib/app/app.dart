@@ -1,3 +1,5 @@
+import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
+import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
 import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

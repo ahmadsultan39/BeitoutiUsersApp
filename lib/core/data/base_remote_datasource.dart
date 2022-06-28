@@ -26,7 +26,6 @@ abstract class BaseRemoteDataSource {
   Future<T> performGetRequest<T>(
     String endpoint,
     String token,
-    String language,
   );
 }
 
@@ -151,43 +150,74 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
 // }
 
   @override
-  Future<T> performGetRequest<T>(
-      String endpoint, String token, String language) async {
+  Future<T> performGetRequest<T>(String endpoint, String token) async {
+    debugPrint("PerformGetRequest");
     try {
       final response = await dio.get(
         endpoint,
         options: GetOptions.getOptionsWithToken(token),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(json.decode(response.data));
         if (finalResponse.data != null) {
-          print('data is not null');
+          debugPrint("Data is not null");
           return finalResponse.data!;
         } else {
-          print('e is error');
-          throw ServerException();
+          debugPrint("Data is null");
+          throw NullDataException(error: ErrorMessage.nullData);
         }
-      } else if (response.statusCode == 401) {
-        throw ServerException(error: ErrorMessage.error401);
       } else {
-        print('e is error');
-        throw ServerException();
+        throw ServerException(error: ErrorMessage.someThingWentWrong);
       }
-    } catch (e) {
-      print('e is $e');
-      if (e is DioError) {
-        print('response code is ${e.response!.statusCode}');
-        if (e.response!.statusCode == 401) {
-          print('response code is ${e.response!.statusCode}');
-          throw ServerException(error: ErrorMessage.error401);
+    } on DioError catch (e) {
+      // TODO fix if response null
+      final String? errorMessage = BaseResponseModel<Null>.fromJson(
+        json.decode(
+          e.response!.data,
+        ),
+      ).errors;
+      if (e.response != null) {
+        if (e.response!.statusCode == 400) {
+          throw BadRequestException(
+            error: errorMessage ?? ErrorMessage.error400,
+          );
+        } else if (e.response!.statusCode == 401) {
+          throw UnauthorizedException(
+            error: errorMessage ?? ErrorMessage.error401,
+          );
+        } else if (e.response!.statusCode == 403) {
+          throw ForbiddenException(
+            error: errorMessage ?? ErrorMessage.error403,
+          );
+        } else if (e.response!.statusCode == 404) {
+          throw NotFoundException(
+            error: errorMessage ?? ErrorMessage.error404,
+          );
+        } else if (e.response!.statusCode == 422 ||
+                e.response!.statusCode == 412 // TODO fix this habad
+            ) {
+          throw UnprocessableEntityException(
+            error: errorMessage ?? ErrorMessage.error422,
+          );
+        } else if (e.response!.statusCode == 500) {
+          throw InternalServerErrorException(
+            error: errorMessage ?? ErrorMessage.error500,
+          );
+        } else if (e.response!.statusCode == 503) {
+          throw ServiceUnavailableException(
+            error: errorMessage ?? ErrorMessage.error503,
+          );
         } else {
-          throw ServerException();
+          throw ServerException(
+            error: ErrorMessage.someThingWentWrong,
+          );
         }
-      } else if (e is ServerException) {
-        throw ServerException();
+      } else {
+        throw ServerException(
+          error: ErrorMessage.someThingWentWrong,
+        );
       }
-      throw ServerException();
     }
   }
 }

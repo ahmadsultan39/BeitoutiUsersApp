@@ -22,7 +22,11 @@ class _$MealsState extends MealsState {
   @override
   final BuiltList<HomeMeal> topOrderedMeals;
   @override
+  final BuiltList<HomeMeal> allOfferedMeals;
+  @override
   final BuiltList<HomeSubscribe> topSubscriptions;
+  @override
+  final BuiltList<HomeSubscribe> allSubscriptions;
   @override
   final bool isOfferedMealsLoading;
   @override
@@ -33,6 +37,22 @@ class _$MealsState extends MealsState {
   final bool isTopOrderedMealsLoading;
   @override
   final bool isTopSubscriptionsLoading;
+  @override
+  final bool isAllOfferedMealsLoading;
+  @override
+  final bool isAllOfferedMealsPaginateLoading;
+  @override
+  final bool isAllOfferedMealsFinished;
+  @override
+  final int allOfferedMealsPage;
+  @override
+  final bool isAllSubscriptionsLoading;
+  @override
+  final bool isAllSubscriptionsPaginateLoading;
+  @override
+  final bool isAllSubscriptionsFinished;
+  @override
+  final int allSubscriptionsPage;
 
   factory _$MealsState([void Function(MealsStateBuilder)? updates]) =>
       (new MealsStateBuilder()..update(updates))._build();
@@ -45,12 +65,22 @@ class _$MealsState extends MealsState {
       required this.topRatedMeals,
       required this.recentMeals,
       required this.topOrderedMeals,
+      required this.allOfferedMeals,
       required this.topSubscriptions,
+      required this.allSubscriptions,
       required this.isOfferedMealsLoading,
       required this.isTopRatedMealsLoading,
       required this.isRecentMealsLoading,
       required this.isTopOrderedMealsLoading,
-      required this.isTopSubscriptionsLoading})
+      required this.isTopSubscriptionsLoading,
+      required this.isAllOfferedMealsLoading,
+      required this.isAllOfferedMealsPaginateLoading,
+      required this.isAllOfferedMealsFinished,
+      required this.allOfferedMealsPage,
+      required this.isAllSubscriptionsLoading,
+      required this.isAllSubscriptionsPaginateLoading,
+      required this.isAllSubscriptionsFinished,
+      required this.allSubscriptionsPage})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, 'MealsState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, 'MealsState', 'message');
@@ -64,7 +94,11 @@ class _$MealsState extends MealsState {
     BuiltValueNullFieldError.checkNotNull(
         topOrderedMeals, 'MealsState', 'topOrderedMeals');
     BuiltValueNullFieldError.checkNotNull(
+        allOfferedMeals, 'MealsState', 'allOfferedMeals');
+    BuiltValueNullFieldError.checkNotNull(
         topSubscriptions, 'MealsState', 'topSubscriptions');
+    BuiltValueNullFieldError.checkNotNull(
+        allSubscriptions, 'MealsState', 'allSubscriptions');
     BuiltValueNullFieldError.checkNotNull(
         isOfferedMealsLoading, 'MealsState', 'isOfferedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
@@ -75,6 +109,22 @@ class _$MealsState extends MealsState {
         isTopOrderedMealsLoading, 'MealsState', 'isTopOrderedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
         isTopSubscriptionsLoading, 'MealsState', 'isTopSubscriptionsLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        isAllOfferedMealsLoading, 'MealsState', 'isAllOfferedMealsLoading');
+    BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsPaginateLoading,
+        'MealsState', 'isAllOfferedMealsPaginateLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        isAllOfferedMealsFinished, 'MealsState', 'isAllOfferedMealsFinished');
+    BuiltValueNullFieldError.checkNotNull(
+        allOfferedMealsPage, 'MealsState', 'allOfferedMealsPage');
+    BuiltValueNullFieldError.checkNotNull(
+        isAllSubscriptionsLoading, 'MealsState', 'isAllSubscriptionsLoading');
+    BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsPaginateLoading,
+        'MealsState', 'isAllSubscriptionsPaginateLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        isAllSubscriptionsFinished, 'MealsState', 'isAllSubscriptionsFinished');
+    BuiltValueNullFieldError.checkNotNull(
+        allSubscriptionsPage, 'MealsState', 'allSubscriptionsPage');
   }
 
   @override
@@ -95,12 +145,24 @@ class _$MealsState extends MealsState {
         topRatedMeals == other.topRatedMeals &&
         recentMeals == other.recentMeals &&
         topOrderedMeals == other.topOrderedMeals &&
+        allOfferedMeals == other.allOfferedMeals &&
         topSubscriptions == other.topSubscriptions &&
+        allSubscriptions == other.allSubscriptions &&
         isOfferedMealsLoading == other.isOfferedMealsLoading &&
         isTopRatedMealsLoading == other.isTopRatedMealsLoading &&
         isRecentMealsLoading == other.isRecentMealsLoading &&
         isTopOrderedMealsLoading == other.isTopOrderedMealsLoading &&
-        isTopSubscriptionsLoading == other.isTopSubscriptionsLoading;
+        isTopSubscriptionsLoading == other.isTopSubscriptionsLoading &&
+        isAllOfferedMealsLoading == other.isAllOfferedMealsLoading &&
+        isAllOfferedMealsPaginateLoading ==
+            other.isAllOfferedMealsPaginateLoading &&
+        isAllOfferedMealsFinished == other.isAllOfferedMealsFinished &&
+        allOfferedMealsPage == other.allOfferedMealsPage &&
+        isAllSubscriptionsLoading == other.isAllSubscriptionsLoading &&
+        isAllSubscriptionsPaginateLoading ==
+            other.isAllSubscriptionsPaginateLoading &&
+        isAllSubscriptionsFinished == other.isAllSubscriptionsFinished &&
+        allSubscriptionsPage == other.allSubscriptionsPage;
   }
 
   @override
@@ -116,19 +178,33 @@ class _$MealsState extends MealsState {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, isLoading.hashCode),
-                                                    message.hashCode),
-                                                error.hashCode),
-                                            offeredMeals.hashCode),
-                                        topRatedMeals.hashCode),
-                                    recentMeals.hashCode),
-                                topOrderedMeals.hashCode),
-                            topSubscriptions.hashCode),
-                        isOfferedMealsLoading.hashCode),
-                    isTopRatedMealsLoading.hashCode),
-                isRecentMealsLoading.hashCode),
-            isTopOrderedMealsLoading.hashCode),
-        isTopSubscriptionsLoading.hashCode));
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                $jc(
+                                                                    $jc(
+                                                                        $jc(
+                                                                            $jc($jc($jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode), offeredMeals.hashCode),
+                                                                                topRatedMeals.hashCode),
+                                                                            recentMeals.hashCode),
+                                                                        topOrderedMeals.hashCode),
+                                                                    allOfferedMeals.hashCode),
+                                                                topSubscriptions.hashCode),
+                                                            allSubscriptions.hashCode),
+                                                        isOfferedMealsLoading.hashCode),
+                                                    isTopRatedMealsLoading.hashCode),
+                                                isRecentMealsLoading.hashCode),
+                                            isTopOrderedMealsLoading.hashCode),
+                                        isTopSubscriptionsLoading.hashCode),
+                                    isAllOfferedMealsLoading.hashCode),
+                                isAllOfferedMealsPaginateLoading.hashCode),
+                            isAllOfferedMealsFinished.hashCode),
+                        allOfferedMealsPage.hashCode),
+                    isAllSubscriptionsLoading.hashCode),
+                isAllSubscriptionsPaginateLoading.hashCode),
+            isAllSubscriptionsFinished.hashCode),
+        allSubscriptionsPage.hashCode));
   }
 
   @override
@@ -141,12 +217,24 @@ class _$MealsState extends MealsState {
           ..add('topRatedMeals', topRatedMeals)
           ..add('recentMeals', recentMeals)
           ..add('topOrderedMeals', topOrderedMeals)
+          ..add('allOfferedMeals', allOfferedMeals)
           ..add('topSubscriptions', topSubscriptions)
+          ..add('allSubscriptions', allSubscriptions)
           ..add('isOfferedMealsLoading', isOfferedMealsLoading)
           ..add('isTopRatedMealsLoading', isTopRatedMealsLoading)
           ..add('isRecentMealsLoading', isRecentMealsLoading)
           ..add('isTopOrderedMealsLoading', isTopOrderedMealsLoading)
-          ..add('isTopSubscriptionsLoading', isTopSubscriptionsLoading))
+          ..add('isTopSubscriptionsLoading', isTopSubscriptionsLoading)
+          ..add('isAllOfferedMealsLoading', isAllOfferedMealsLoading)
+          ..add('isAllOfferedMealsPaginateLoading',
+              isAllOfferedMealsPaginateLoading)
+          ..add('isAllOfferedMealsFinished', isAllOfferedMealsFinished)
+          ..add('allOfferedMealsPage', allOfferedMealsPage)
+          ..add('isAllSubscriptionsLoading', isAllSubscriptionsLoading)
+          ..add('isAllSubscriptionsPaginateLoading',
+              isAllSubscriptionsPaginateLoading)
+          ..add('isAllSubscriptionsFinished', isAllSubscriptionsFinished)
+          ..add('allSubscriptionsPage', allSubscriptionsPage))
         .toString();
   }
 }
@@ -190,11 +278,23 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
   set topOrderedMeals(ListBuilder<HomeMeal>? topOrderedMeals) =>
       _$this._topOrderedMeals = topOrderedMeals;
 
+  ListBuilder<HomeMeal>? _allOfferedMeals;
+  ListBuilder<HomeMeal> get allOfferedMeals =>
+      _$this._allOfferedMeals ??= new ListBuilder<HomeMeal>();
+  set allOfferedMeals(ListBuilder<HomeMeal>? allOfferedMeals) =>
+      _$this._allOfferedMeals = allOfferedMeals;
+
   ListBuilder<HomeSubscribe>? _topSubscriptions;
   ListBuilder<HomeSubscribe> get topSubscriptions =>
       _$this._topSubscriptions ??= new ListBuilder<HomeSubscribe>();
   set topSubscriptions(ListBuilder<HomeSubscribe>? topSubscriptions) =>
       _$this._topSubscriptions = topSubscriptions;
+
+  ListBuilder<HomeSubscribe>? _allSubscriptions;
+  ListBuilder<HomeSubscribe> get allSubscriptions =>
+      _$this._allSubscriptions ??= new ListBuilder<HomeSubscribe>();
+  set allSubscriptions(ListBuilder<HomeSubscribe>? allSubscriptions) =>
+      _$this._allSubscriptions = allSubscriptions;
 
   bool? _isOfferedMealsLoading;
   bool? get isOfferedMealsLoading => _$this._isOfferedMealsLoading;
@@ -221,6 +321,52 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
   set isTopSubscriptionsLoading(bool? isTopSubscriptionsLoading) =>
       _$this._isTopSubscriptionsLoading = isTopSubscriptionsLoading;
 
+  bool? _isAllOfferedMealsLoading;
+  bool? get isAllOfferedMealsLoading => _$this._isAllOfferedMealsLoading;
+  set isAllOfferedMealsLoading(bool? isAllOfferedMealsLoading) =>
+      _$this._isAllOfferedMealsLoading = isAllOfferedMealsLoading;
+
+  bool? _isAllOfferedMealsPaginateLoading;
+  bool? get isAllOfferedMealsPaginateLoading =>
+      _$this._isAllOfferedMealsPaginateLoading;
+  set isAllOfferedMealsPaginateLoading(
+          bool? isAllOfferedMealsPaginateLoading) =>
+      _$this._isAllOfferedMealsPaginateLoading =
+          isAllOfferedMealsPaginateLoading;
+
+  bool? _isAllOfferedMealsFinished;
+  bool? get isAllOfferedMealsFinished => _$this._isAllOfferedMealsFinished;
+  set isAllOfferedMealsFinished(bool? isAllOfferedMealsFinished) =>
+      _$this._isAllOfferedMealsFinished = isAllOfferedMealsFinished;
+
+  int? _allOfferedMealsPage;
+  int? get allOfferedMealsPage => _$this._allOfferedMealsPage;
+  set allOfferedMealsPage(int? allOfferedMealsPage) =>
+      _$this._allOfferedMealsPage = allOfferedMealsPage;
+
+  bool? _isAllSubscriptionsLoading;
+  bool? get isAllSubscriptionsLoading => _$this._isAllSubscriptionsLoading;
+  set isAllSubscriptionsLoading(bool? isAllSubscriptionsLoading) =>
+      _$this._isAllSubscriptionsLoading = isAllSubscriptionsLoading;
+
+  bool? _isAllSubscriptionsPaginateLoading;
+  bool? get isAllSubscriptionsPaginateLoading =>
+      _$this._isAllSubscriptionsPaginateLoading;
+  set isAllSubscriptionsPaginateLoading(
+          bool? isAllSubscriptionsPaginateLoading) =>
+      _$this._isAllSubscriptionsPaginateLoading =
+          isAllSubscriptionsPaginateLoading;
+
+  bool? _isAllSubscriptionsFinished;
+  bool? get isAllSubscriptionsFinished => _$this._isAllSubscriptionsFinished;
+  set isAllSubscriptionsFinished(bool? isAllSubscriptionsFinished) =>
+      _$this._isAllSubscriptionsFinished = isAllSubscriptionsFinished;
+
+  int? _allSubscriptionsPage;
+  int? get allSubscriptionsPage => _$this._allSubscriptionsPage;
+  set allSubscriptionsPage(int? allSubscriptionsPage) =>
+      _$this._allSubscriptionsPage = allSubscriptionsPage;
+
   MealsStateBuilder();
 
   MealsStateBuilder get _$this {
@@ -233,12 +379,22 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
       _topRatedMeals = $v.topRatedMeals.toBuilder();
       _recentMeals = $v.recentMeals.toBuilder();
       _topOrderedMeals = $v.topOrderedMeals.toBuilder();
+      _allOfferedMeals = $v.allOfferedMeals.toBuilder();
       _topSubscriptions = $v.topSubscriptions.toBuilder();
+      _allSubscriptions = $v.allSubscriptions.toBuilder();
       _isOfferedMealsLoading = $v.isOfferedMealsLoading;
       _isTopRatedMealsLoading = $v.isTopRatedMealsLoading;
       _isRecentMealsLoading = $v.isRecentMealsLoading;
       _isTopOrderedMealsLoading = $v.isTopOrderedMealsLoading;
       _isTopSubscriptionsLoading = $v.isTopSubscriptionsLoading;
+      _isAllOfferedMealsLoading = $v.isAllOfferedMealsLoading;
+      _isAllOfferedMealsPaginateLoading = $v.isAllOfferedMealsPaginateLoading;
+      _isAllOfferedMealsFinished = $v.isAllOfferedMealsFinished;
+      _allOfferedMealsPage = $v.allOfferedMealsPage;
+      _isAllSubscriptionsLoading = $v.isAllSubscriptionsLoading;
+      _isAllSubscriptionsPaginateLoading = $v.isAllSubscriptionsPaginateLoading;
+      _isAllSubscriptionsFinished = $v.isAllSubscriptionsFinished;
+      _allSubscriptionsPage = $v.allSubscriptionsPage;
       _$v = null;
     }
     return this;
@@ -273,7 +429,9 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
               topRatedMeals: topRatedMeals.build(),
               recentMeals: recentMeals.build(),
               topOrderedMeals: topOrderedMeals.build(),
+              allOfferedMeals: allOfferedMeals.build(),
               topSubscriptions: topSubscriptions.build(),
+              allSubscriptions: allSubscriptions.build(),
               isOfferedMealsLoading: BuiltValueNullFieldError.checkNotNull(
                   isOfferedMealsLoading, 'MealsState', 'isOfferedMealsLoading'),
               isTopRatedMealsLoading: BuiltValueNullFieldError.checkNotNull(
@@ -283,9 +441,15 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
               isTopOrderedMealsLoading: BuiltValueNullFieldError.checkNotNull(
                   isTopOrderedMealsLoading, 'MealsState', 'isTopOrderedMealsLoading'),
               isTopSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isTopSubscriptionsLoading,
-                  'MealsState',
-                  'isTopSubscriptionsLoading'));
+                  isTopSubscriptionsLoading, 'MealsState', 'isTopSubscriptionsLoading'),
+              isAllOfferedMealsLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsLoading, 'MealsState', 'isAllOfferedMealsLoading'),
+              isAllOfferedMealsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsPaginateLoading, 'MealsState', 'isAllOfferedMealsPaginateLoading'),
+              isAllOfferedMealsFinished: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsFinished, 'MealsState', 'isAllOfferedMealsFinished'),
+              allOfferedMealsPage: BuiltValueNullFieldError.checkNotNull(allOfferedMealsPage, 'MealsState', 'allOfferedMealsPage'),
+              isAllSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsLoading, 'MealsState', 'isAllSubscriptionsLoading'),
+              isAllSubscriptionsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsPaginateLoading, 'MealsState', 'isAllSubscriptionsPaginateLoading'),
+              isAllSubscriptionsFinished: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsFinished, 'MealsState', 'isAllSubscriptionsFinished'),
+              allSubscriptionsPage: BuiltValueNullFieldError.checkNotNull(allSubscriptionsPage, 'MealsState', 'allSubscriptionsPage'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -297,8 +461,12 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
         recentMeals.build();
         _$failedField = 'topOrderedMeals';
         topOrderedMeals.build();
+        _$failedField = 'allOfferedMeals';
+        allOfferedMeals.build();
         _$failedField = 'topSubscriptions';
         topSubscriptions.build();
+        _$failedField = 'allSubscriptions';
+        allSubscriptions.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'MealsState', _$failedField, e.toString());

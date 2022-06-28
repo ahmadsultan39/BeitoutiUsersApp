@@ -1,4 +1,4 @@
-import 'package:beitouti_users/core/data/base_local_datasource.dart';
+import 'package:beitouti_users/core/data/base_local_data_source.dart';
 import 'package:beitouti_users/core/util/constants.dart';
 import 'package:beitouti_users/features/auth/data/models/user_model.dart';
 import 'package:injectable/injectable.dart';

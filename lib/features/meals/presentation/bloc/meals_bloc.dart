@@ -1,6 +1,7 @@
-import 'dart:async';
-
+import 'package:beitouti_users/core/network/params/paginate_list_params.dart';
 import 'package:beitouti_users/core/usecase/usecase.dart';
+import 'package:beitouti_users/features/meals/domain/use_cases/get_all_offered_meals_use_case.dart';
+import 'package:beitouti_users/features/meals/domain/use_cases/get_all_subscriptions_use_case.dart';
 import 'package:beitouti_users/features/meals/domain/use_cases/get_offered_meals_use_case.dart';
 import 'package:beitouti_users/features/meals/domain/use_cases/get_recent_meals_use_case.dart';
 import 'package:beitouti_users/features/meals/domain/use_cases/get_top_ordered_meals_use_case.dart';
@@ -17,6 +18,8 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetTopSubscriptionsUseCase _getTopSubscriptionsUseCase;
   final GetTopOrderedMealsUseCase _getTopOrderedMealsUseCase;
   final GetTopRatedMealsUseCase _getTopRatedMealsUseCase;
+  final GetAllOfferedMealsUseCase _getAllOfferedMealsUseCase;
+  final GetAllSubscriptionsUseCase _getAllSubscriptionsUseCase;
 
   void addGetOfferedMealsEvent() {
     add(GetOfferedMeals());
@@ -34,8 +37,16 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     add(GetTopOrderedMeals());
   }
 
+  void addGetAllSubscriptionsEvent() {
+    add(GetAllSubscriptions((b) => b..page = state.allOfferedMealsPage));
+  }
+
   void addGetTopSubscriptionsEvent() {
     add(GetTopSubscriptions());
+  }
+
+  void addGetAllOfferedMealsEvent() {
+    add(GetAllOfferedMeals((b) => b..page = state.allOfferedMealsPage));
   }
 
   void clearMessage() {
@@ -49,6 +60,8 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     this._getTopSubscriptionsUseCase,
     this._getTopOrderedMealsUseCase,
     this._getTopRatedMealsUseCase,
+    this._getAllOfferedMealsUseCase,
+    this._getAllSubscriptionsUseCase,
   ) : super(MealsState.initial()) {
     on<MealsEvent>(
       (event, emit) async {
@@ -196,6 +209,83 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               ),
             ),
           );
+        }
+
+        /*** Get All Offered Meals ***/
+        if (event is GetAllOfferedMeals) {
+          if (!state.isAllOfferedMealsFinished) {
+            if (state.allOfferedMealsPage == 1) {
+              emit(state.rebuild((b) => b..isAllOfferedMealsLoading = true));
+            } else {
+              emit(state
+                  .rebuild((b) => b..isAllOfferedMealsPaginateLoading = true));
+            }
+            final result = await _getAllOfferedMealsUseCase(
+                PaginateListParams(event.page));
+            result.fold(
+              (failure) {
+                emit(
+                  state.rebuild(
+                    (b) => b
+                      ..isAllOfferedMealsLoading = false
+                      ..isAllOfferedMealsPaginateLoading = false
+                      ..message = failure.error,
+                  ),
+                );
+              },
+              (offeredMeals) => {
+                emit(
+                  state.rebuild((b) => b
+                    ..allOfferedMeals.addAll(offeredMeals.data)
+                    ..isAllOfferedMealsFinished =
+                        b.allOfferedMealsPage! == offeredMeals.pages
+                    ..allOfferedMealsPage = b.allOfferedMealsPage! + 1
+                    ..isAllOfferedMealsPaginateLoading = false
+                    ..isAllOfferedMealsLoading = false),
+                )
+              },
+            );
+          }
+        }
+
+        /*** Get All Subscriptions ***/
+        if (event is GetAllSubscriptions) {
+          if (!state.isAllSubscriptionsFinished) {
+            if (state.allSubscriptionsPage == 1) {
+              emit(state.rebuild((b) => b..isAllSubscriptionsLoading = true));
+            } else {
+              emit(state
+                  .rebuild((b) => b..isAllSubscriptionsPaginateLoading = true));
+            }
+            final result = await _getAllSubscriptionsUseCase(
+              PaginateListParams(event.page),
+            );
+            result.fold(
+              (failure) {
+                emit(
+                  state.rebuild(
+                    (b) => b
+                      ..isAllSubscriptionsLoading = false
+                      ..isAllSubscriptionsPaginateLoading = false
+                      ..message = failure.error,
+                  ),
+                );
+              },
+              (subscriptions) => {
+                emit(
+                  state.rebuild(
+                    (b) => b
+                      ..allSubscriptions.addAll(subscriptions.data)
+                      ..isAllSubscriptionsFinished =
+                          b.allSubscriptionsPage! == subscriptions.pages
+                      ..allSubscriptionsPage = b.allOfferedMealsPage! + 1
+                      ..isAllSubscriptionsPaginateLoading = false
+                      ..isAllSubscriptionsLoading = false,
+                  ),
+                )
+              },
+            );
+          }
         }
       },
     );

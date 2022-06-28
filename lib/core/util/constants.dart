@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const baseUrl = "https://5639-46-213-189-21.ngrok.io/api/user";
-  static const imageUrl = "https://5639-46-213-189-21.ngrok.io";
+  static const baseUrl = "https://5188-188-133-25-71.ngrok.io/api/user";
+  static const imageUrl = "https://5188-188-133-25-71.ngrok.io";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
@@ -15,6 +15,28 @@ class Endpoints {
   static const recentMeals = "/get-recent-meals";
   static const topOrderedMeals = "/get-top-ordered-meals";
   static const topSubscriptions = "/get-top-subscriptions";
+  static const makeOrder = "/make-order";
+
+  static String showMeal(int mealId) => "/show-meal/$mealId";
+
+  static String showSubscription(int subscriptionId) =>
+      "/show-subscription/$subscriptionId";
+
+  static String showSubscriptionMeals(int subscriptionId) =>
+      "/show-subscription-meals/$subscriptionId";
+
+  static String subscribe(int subscriptionId) =>
+      "/subscriptions/$subscriptionId/subscribe";
+
+  static String removeFromFavourite(int mealId) =>
+      "/delete-meal-from-favorite/$mealId";
+
+  static String addToFavourite(int mealId) => "/add-meal-to-favorite/$mealId";
+
+  static String allOfferedMeals(int page) => "/get-all-meal-offers?page=$page";
+
+  static String allSubscriptions(int page) =>
+      "/get-all-subscriptions?page=$page";
 }
 
 class SharedPreferencesKeys {
@@ -67,6 +89,15 @@ class RequestBody {
     return FormData.fromMap({
       'phone_number': phoneNumber,
       'code': code,
+    });
+  }
+
+  // Subscribe
+  static FormData subscribe({
+    required String notes,
+  }) {
+    return FormData.fromMap({
+      'notes': notes,
     });
   }
 

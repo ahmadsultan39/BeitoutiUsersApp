@@ -1,4 +1,4 @@
-import 'package:beitouti_users/core/data/base_local_datasource.dart';
+import 'package:beitouti_users/core/data/base_local_data_source.dart';
 import '../../models/user_model.dart';
 
 abstract class AuthLocalDataSource extends BaseLocalDataSource {

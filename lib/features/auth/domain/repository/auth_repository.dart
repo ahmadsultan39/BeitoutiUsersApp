@@ -1,4 +1,3 @@
-//TODO extend base repository
 
 import 'package:beitouti_users/features/auth/domain/entities/accessibility_status.dart';
 import 'package:beitouti_users/features/auth/domain/entities/register_request.dart';

@@ -1,5 +1,6 @@
 library paginate_response_model;
 
+import 'package:beitouti_users/core/models/order_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,9 @@ class _Converter<T> implements JsonConverter<T, Object?> {
     if (json is Map<String, dynamic> &&
         T.toString() == HomeSubscribeModel.className) {
       return HomeSubscribeModel.fromJson(json) as T;
+    }
+    if (json is Map<String, dynamic> && T.toString() == OrderModel.className) {
+      return OrderModel.fromJson(json) as T;
     }
     return json as T;
   }

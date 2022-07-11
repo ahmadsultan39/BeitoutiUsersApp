@@ -5,22 +5,22 @@ import 'package:beitouti_users/features/chefs/domain/repositories/chefs_reposito
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/util/constants.dart';
+
 @LazySingleton(as: ChefsRepository)
-class ChefsRepositoryImp extends BaseRepositoryImpl
+class ChefsRepositoryImp
 implements ChefsRepository {
   final ChefsRemoteDataSource _http;
   final ChefsLocalDataSource _local;
 
-  ChefsRepositoryImp(this._http,
-      this._local, {
-        required NetworkInfo networkInfo,
-      }) : super(
-    baseLocalDataSource: _local,
-    networkInfo: networkInfo,
-  );
+  ChefsRepositoryImp(this._http, this._local);
+
+
 
   @override
-  Future<Either<dynamic, List<Chef>>> getMostRecent() async {
+  Future<Either<Failure, List<Chef>>> getMostRecent() async {
     try {
       final token = await _local.token;
       final result = await _http.getMostRecent(
@@ -32,12 +32,12 @@ implements ChefsRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.ERROR401));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
   @override
-  Future<Either<dynamic, List<Chef>>> getNearest() async {
+  Future<Either<Failure, List<Chef>>> getNearest() async {
     try {
       final token = await _local.token;
       final result = await _http.getNearest(
@@ -49,12 +49,12 @@ implements ChefsRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.ERROR401));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
   @override
-  Future<Either<dynamic, List<Chef>>> getTopOrders() async {
+  Future<Either<Failure, List<Chef>>> getTopOrders() async {
     try {
       final token = await _local.token;
       final result = await _http.getTopOrdered(
@@ -66,12 +66,12 @@ implements ChefsRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.ERROR401));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
   @override
-  Future<Either<dynamic, List<Chef>>> getTopRated() async {
+  Future<Either<Failure, List<Chef>>> getTopRated() async {
     try {
       final token = await _local.token;
       final result = await _http.getTopRated(
@@ -83,7 +83,7 @@ implements ChefsRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.ERROR401));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 

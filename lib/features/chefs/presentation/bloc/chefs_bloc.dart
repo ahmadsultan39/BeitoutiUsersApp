@@ -5,6 +5,7 @@ import 'package:beitouti_users/features/chefs/domain/use_cases/get_top_rated.dar
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/usecase/usecase.dart';
 import 'chefs.dart';
 
 @injectable
@@ -41,13 +42,13 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
     on<ChefsEvent>((event, emit) async {
       /***** Get Nearest Chefs *****/
       if (event is GetNearestChefsEvent) {
-        emit(state.rebuild((b) => b..isLoading = true));
+        emit(state.rebuild((b) => b..isNearestLoading = true));
         final result = await getNearestChefsUseCase(NoParams());
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..isLoading = false
+              ..isNearestLoading = false
               ..error = true
               ..message = failure.error,
           ));
@@ -55,7 +56,7 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
           emit(
             state.rebuild(
               (b) => b
-                ..isLoading = false
+                ..isNearestLoading = false
                 ..nearest = chefs,
             ),
           );
@@ -63,14 +64,14 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
       }
 
       /***** Get Top Rated Chefs *****/
-      if (event is GetNearestChefsEvent) {
-        emit(state.rebuild((b) => b..isLoading = true));
+      if (event is GetTopRatedChefsEvent) {
+        emit(state.rebuild((b) => b..isTopRatedLoading = true));
         final result = await getTopRatedChefsUseCase(NoParams());
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..isLoading = false
+              ..isTopRatedLoading = false
               ..error = true
               ..message = failure.error,
           ));
@@ -78,7 +79,7 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
           emit(
             state.rebuild(
               (b) => b
-                ..isLoading = false
+                ..isTopRatedLoading = false
                 ..topRated = chefs,
             ),
           );
@@ -86,14 +87,14 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
       }
 
       /***** Get Top Ordered Chefs *****/
-      if (event is GetNearestChefsEvent) {
-        emit(state.rebuild((b) => b..isLoading = true));
+      if (event is GetTopOrderedChefsEvent) {
+        emit(state.rebuild((b) => b..isTopOrderedLoading = true));
         final result = await getTopOrdersChefsUseCase(NoParams());
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..isLoading = false
+              ..isTopOrderedLoading = false
               ..error = true
               ..message = failure.error,
           ));
@@ -101,7 +102,7 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
           emit(
             state.rebuild(
               (b) => b
-                ..isLoading = false
+                ..isTopOrderedLoading = false
                 ..topOrdered = chefs,
             ),
           );
@@ -109,14 +110,14 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
       }
 
       /***** Get Most Recent Chefs *****/
-      if (event is GetNearestChefsEvent) {
-        emit(state.rebuild((b) => b..isLoading = true));
+      if (event is GetMostRecentChefsEvent) {
+        emit(state.rebuild((b) => b..isMostRecentLoading = true));
         final result = await getMostRecentChefsUseCase(NoParams());
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..isLoading = false
+              ..isMostRecentLoading = false
               ..error = true
               ..message = failure.error,
           ));
@@ -124,7 +125,7 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
           emit(
             state.rebuild(
               (b) => b
-                ..isLoading = false
+                ..isMostRecentLoading = false
                 ..mostRecent = chefs,
             ),
           );

@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/error/failures.dart';
 import '../entities/chef.dart';
 
-abstract class ChefsRepository extends BaseRepository {
+abstract class ChefsRepository{
 
   Future<Either<Failure,List<Chef> >> getNearest();
   Future<Either<Failure,List<Chef> >> getTopRated();

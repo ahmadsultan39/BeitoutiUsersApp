@@ -1,0 +1,3 @@
+class PaginateList<T> {
+
+}

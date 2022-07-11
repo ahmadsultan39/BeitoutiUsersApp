@@ -13,6 +13,8 @@ abstract class RegisterModule {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
+  @lazySingleton
+  Dio get dio => getDio();
 }
 
 @InjectableInit(
@@ -25,7 +27,7 @@ Future<void> configureDependencies() async => $initGetIt(sl);
 Dio getDio() {
   Dio dio = Dio(
     BaseOptions(
-      baseUrl: Endpoints.BASE_URL,
+      baseUrl: Endpoints.baseUrl,
       headers: {
         "Accept": "application/json",
       },

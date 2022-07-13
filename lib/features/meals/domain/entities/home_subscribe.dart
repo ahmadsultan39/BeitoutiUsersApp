@@ -6,7 +6,6 @@ class HomeSubscribe extends Equatable {
   final int chefId;
   final int totalCost;
   final int daysNumber;
-  final int mealsCount;
   final String name;
   final String startsAt;
   final bool isAvailable;
@@ -20,7 +19,6 @@ class HomeSubscribe extends Equatable {
     required this.isAvailable,
     required this.startsAt,
     required this.totalCost,
-    required this.mealsCount,
     required this.chef,
   });
 

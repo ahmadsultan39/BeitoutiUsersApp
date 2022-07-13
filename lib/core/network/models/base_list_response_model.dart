@@ -6,6 +6,7 @@ import 'package:beitouti_users/features/chefs/data/models/chef_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_chef_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
+import 'package:beitouti_users/features/subscription/data/models/subscription_meal_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -42,8 +43,7 @@ class _Converter<T> implements JsonConverter<T, Object> {
         T.toString() == HomeSubscribeModel.className) {
       return HomeSubscribeModel.fromJson(json) as T;
     }
-    if (json is Map<String, dynamic> &&
-        T.toString() == ChefModel.className) {
+    if (json is Map<String, dynamic> && T.toString() == ChefModel.className) {
       return ChefModel.fromJson(json) as T;
     }
     if (json is Map<String, dynamic> &&
@@ -62,6 +62,10 @@ class _Converter<T> implements JsonConverter<T, Object> {
     if (json is Map<String, dynamic> &&
         T.toString() == ChefMealModel.className) {
       return ChefMealModel.fromJson(json) as T;
+    }
+    if (json is Map<String, dynamic> &&
+        T.toString() == SubscriptionsMealModel.className) {
+      return SubscriptionsMealModel.fromJson(json) as T;
     }
 
     debugPrint('Parse Error');

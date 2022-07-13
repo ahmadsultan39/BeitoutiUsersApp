@@ -1,11 +1,17 @@
 library base_response_model;
 
+import 'package:beitouti_users/core/network/models/paginate_response_model.dart';
 import 'package:beitouti_users/features/auth/data/models/user_model.dart';
+import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
+import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../features/auth/data/models/accessibility_status_model.dart';
 import '../../../features/chef_menu/data/models/chef_info_model.dart';
+import '../../../features/meal/data/models/meal_model.dart';
+import '../../../features/subscription/data/models/subscription_meal_model.dart';
+import '../../../features/subscription/data/models/subscription_model.dart';
 
 part 'base_response_model.g.dart';
 
@@ -27,16 +33,29 @@ class BaseResponseModel<T> {
 
 T? _dataFromJson<T>(Object data) {
   debugPrint("T is: ${T.toString()}");
-  if (data is List<dynamic>) {
+  if (data is List<dynamic> && data.isEmpty) {
     return null;
-  }
-  else if (T.toString() == AccessibilityStatusModel.className) {
+  } else if (T.toString() == AccessibilityStatusModel.className) {
     return AccessibilityStatusModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == UserModel.className) {
     return UserModel.fromJson(data as Map<String, dynamic>) as T;
   }
   else if (T.toString() == ChefInfoModel.className) {
     return ChefInfoModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == MealModel.className) {
+    return MealModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == SubscriptionsMealModel.className) {
+    return SubscriptionsMealModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == SubscriptionModel.className) {
+    return SubscriptionModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == HomeMealModel.paginateName) {
+    return PaginateResponseModel<HomeMealModel>.fromJson(
+      data as Map<String, dynamic>,
+    ) as T;
+  } else if (T.toString() == HomeSubscribeModel.paginateName) {
+    return PaginateResponseModel<HomeSubscribeModel>.fromJson(
+      data as Map<String, dynamic>,
+    ) as T;
   } else if (T.toString() == 'Null') {
     debugPrint('Null Data');
     return null;

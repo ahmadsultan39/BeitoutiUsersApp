@@ -79,6 +79,7 @@ class _MealsListState extends State<MealsList> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 widget.bloc.state.isLoading
                     ? const Loader()
                     : GridView.builder(

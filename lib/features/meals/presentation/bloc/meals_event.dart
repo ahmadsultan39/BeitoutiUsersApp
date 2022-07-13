@@ -74,6 +74,39 @@ abstract class GetTopSubscriptions extends MealsEvent
   }
 }
 
+abstract class GetAllSubscriptions extends MealsEvent
+    implements Built<GetAllSubscriptions, GetAllSubscriptionsBuilder> {
+  //getter fields
+
+  int get page;
+
+  GetAllSubscriptions._();
+
+  factory GetAllSubscriptions([Function(GetAllSubscriptionsBuilder b) updates]) =
+      _$GetAllSubscriptions;
+
+  factory GetAllSubscriptions.initial() {
+    return GetAllSubscriptions((b) => b);
+  }
+}
+
+abstract class GetAllOfferedMeals extends MealsEvent
+    implements Built<GetAllOfferedMeals, GetAllOfferedMealsBuilder> {
+  //getter fields
+
+  int get page;
+
+  GetAllOfferedMeals._();
+
+  factory GetAllOfferedMeals([Function(GetAllOfferedMealsBuilder b) updates]) =
+  _$GetAllOfferedMeals;
+
+  factory GetAllOfferedMeals.initial() {
+    return GetAllOfferedMeals((b) => b);
+  }
+}
+
+
 abstract class ClearMessage extends MealsEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields
@@ -81,9 +114,10 @@ abstract class ClearMessage extends MealsEvent
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-      _$ClearMessage;
+  _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);
   }
 }
+

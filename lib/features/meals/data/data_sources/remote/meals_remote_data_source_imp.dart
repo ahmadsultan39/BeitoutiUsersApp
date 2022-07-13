@@ -1,4 +1,5 @@
 import 'package:beitouti_users/core/data/base_remote_datasource.dart';
+import 'package:beitouti_users/core/network/models/paginate_response_model.dart';
 import 'package:beitouti_users/core/util/constants.dart';
 import 'package:beitouti_users/features/meals/data/data_sources/remote/meals_remote_data_source.dart';
 import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
@@ -12,23 +13,67 @@ class MealsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   MealsRemoteDataSourceImp({required Dio dio}) : super(dio: dio);
 
   @override
-  Future<List<HomeMealModel>> getOfferedMeals({required String token}) =>
-      performGetListRequest(endpoint: Endpoints.offeredMeals, token: token);
+  Future<List<HomeMealModel>> getOfferedMeals({
+    required String token,
+  }) async =>
+      await performGetListRequest(
+        endpoint: Endpoints.offeredMeals,
+        token: token,
+      );
 
   @override
-  Future<List<HomeMealModel>> getRecentMeals({required String token}) =>
-      performGetListRequest(endpoint: Endpoints.recentMeals, token: token);
+  Future<List<HomeMealModel>> getRecentMeals({
+    required String token,
+  }) async =>
+      await performGetListRequest(
+        endpoint: Endpoints.recentMeals,
+        token: token,
+      );
 
   @override
-  Future<List<HomeMealModel>> getTopOrderedMeals({required String token}) =>
-      performGetListRequest(endpoint: Endpoints.topOrderedMeals, token: token);
+  Future<List<HomeMealModel>> getTopOrderedMeals({
+    required String token,
+  }) async =>
+      await performGetListRequest(
+        endpoint: Endpoints.topOrderedMeals,
+        token: token,
+      );
 
   @override
-  Future<List<HomeMealModel>> getTopRatedMeals({required String token}) =>
-      performGetListRequest(endpoint: Endpoints.topRatedMeals, token: token);
+  Future<List<HomeMealModel>> getTopRatedMeals({
+    required String token,
+  }) async =>
+      await performGetListRequest(
+        endpoint: Endpoints.topRatedMeals,
+        token: token,
+      );
 
   @override
-  Future<List<HomeSubscribeModel>> getTopSubscriptions(
-          {required String token}) =>
-      performGetListRequest(endpoint: Endpoints.topSubscriptions, token: token);
+  Future<List<HomeSubscribeModel>> getTopSubscriptions({
+    required String token,
+  }) async =>
+      await performGetListRequest(
+        endpoint: Endpoints.topSubscriptions,
+        token: token,
+      );
+
+  @override
+  Future<PaginateResponseModel<HomeMealModel>> getAllOfferedMeals({
+    required String token,
+    required int page,
+  }) async =>
+      await performGetRequest<PaginateResponseModel<HomeMealModel>>(
+        Endpoints.allOfferedMeals(page),
+        token,
+      );
+
+  @override
+  Future<PaginateResponseModel<HomeSubscribeModel>> getAllSubscriptions({
+    required String token,
+    required int page,
+  }) async =>
+      await performGetRequest<PaginateResponseModel<HomeSubscribeModel>>(
+        Endpoints.allSubscriptions(page),
+        token,
+      );
 }

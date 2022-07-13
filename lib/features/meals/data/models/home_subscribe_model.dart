@@ -8,15 +8,14 @@ part 'home_subscribe_model.g.dart';
 class HomeSubscribeModel extends HomeSubscribe {
 
   static const String className = 'HomeSubscribeModel';
+  static const String paginateName = 'PaginateResponseModel<HomeSubscribeModel>';
+
 
   @JsonKey(name: 'chef_id')
   final int chefId;
 
   @JsonKey(name: 'days_number')
   final int daysNumber;
-
-  @JsonKey(name: 'meals_count')
-  final int mealsCount;
 
   @JsonKey(name: 'total_cost')
   final int totalCost;
@@ -37,7 +36,6 @@ class HomeSubscribeModel extends HomeSubscribe {
     required this.chef,
     required this.chefId,
     required this.daysNumber,
-    required this.mealsCount,
     required this.totalCost,
     required this.startsAt,
   }) : super(
@@ -48,7 +46,6 @@ class HomeSubscribeModel extends HomeSubscribe {
           isAvailable: isAvailable,
           startsAt: startsAt,
           totalCost: totalCost,
-          mealsCount: mealsCount,
           chef: chef,
         );
 

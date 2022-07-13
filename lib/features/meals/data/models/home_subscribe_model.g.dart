@@ -14,7 +14,6 @@ HomeSubscribeModel _$HomeSubscribeModelFromJson(Map<String, dynamic> json) =>
       chef: HomeChefModel.fromJson(json['chef'] as Map<String, dynamic>),
       chefId: json['chef_id'] as int,
       daysNumber: json['days_number'] as int,
-      mealsCount: json['meals_count'] as int,
       totalCost: json['total_cost'] as int,
       startsAt: json['starts_at'] as String,
     );
@@ -25,7 +24,6 @@ Map<String, dynamic> _$HomeSubscribeModelToJson(HomeSubscribeModel instance) =>
       'name': instance.name,
       'chef_id': instance.chefId,
       'days_number': instance.daysNumber,
-      'meals_count': instance.mealsCount,
       'total_cost': instance.totalCost,
       'is_available': instance.isAvailable,
       'starts_at': instance.startsAt,

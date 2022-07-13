@@ -21,7 +21,11 @@ abstract class MealsState implements Built<MealsState, MealsStateBuilder> {
 
   BuiltList<HomeMeal> get topOrderedMeals;
 
+  BuiltList<HomeMeal> get allOfferedMeals;
+
   BuiltList<HomeSubscribe> get topSubscriptions;
+
+  BuiltList<HomeSubscribe> get allSubscriptions;
 
   bool get isOfferedMealsLoading;
 
@@ -32,6 +36,22 @@ abstract class MealsState implements Built<MealsState, MealsStateBuilder> {
   bool get isTopOrderedMealsLoading;
 
   bool get isTopSubscriptionsLoading;
+
+  bool get isAllOfferedMealsLoading;
+
+  bool get isAllOfferedMealsPaginateLoading;
+
+  bool get isAllOfferedMealsFinished;
+
+  int get allOfferedMealsPage;
+
+  bool get isAllSubscriptionsLoading;
+
+  bool get isAllSubscriptionsPaginateLoading;
+
+  bool get isAllSubscriptionsFinished;
+
+  int get allSubscriptionsPage;
 
   MealsState._();
 
@@ -48,11 +68,22 @@ abstract class MealsState implements Built<MealsState, MealsStateBuilder> {
         ..isTopOrderedMealsLoading = false
         ..isOfferedMealsLoading = false
         ..isTopSubscriptionsLoading = false
+        ..isOfferedMealsLoading = false
+        ..isAllOfferedMealsFinished = false
+        ..isAllOfferedMealsLoading = false
+        ..isAllOfferedMealsPaginateLoading = false
+        ..isAllSubscriptionsFinished = false
+        ..isAllSubscriptionsLoading = false
+        ..isAllSubscriptionsPaginateLoading = false
+        ..allOfferedMealsPage = 1
+        ..allSubscriptionsPage = 1
         ..topSubscriptions.replace([])
         ..offeredMeals.replace([])
+        ..allOfferedMeals.replace([])
         ..topOrderedMeals.replace([])
         ..topRatedMeals.replace([])
-        ..recentMeals.replace([]),
+        ..recentMeals.replace([])
+        ..allSubscriptions.replace([]),
     );
   }
 }

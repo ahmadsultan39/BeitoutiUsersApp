@@ -1,7 +1,10 @@
+import 'package:beitouti_users/core/entities/paginate_list.dart';
 import 'package:beitouti_users/core/error/exceptions.dart';
 import 'package:beitouti_users/core/error/failures.dart';
 import 'package:beitouti_users/features/meals/data/data_sources/local/meals_local_data_source.dart';
 import 'package:beitouti_users/features/meals/data/data_sources/remote/meals_remote_data_source.dart';
+import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
+import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_meal.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_subscribe.dart';
 import 'package:beitouti_users/features/meals/domain/repositories/meals_repository.dart';
@@ -23,7 +26,7 @@ class MealsRepositoryImp implements MealsRepository {
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -36,7 +39,7 @@ class MealsRepositoryImp implements MealsRepository {
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -49,7 +52,7 @@ class MealsRepositoryImp implements MealsRepository {
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -62,7 +65,7 @@ class MealsRepositoryImp implements MealsRepository {
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -75,7 +78,85 @@ class MealsRepositoryImp implements MealsRepository {
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
+      return Left(ServerFailure(error: e.error));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PaginateList<HomeMeal>>> getAllOfferedMeals(
+    int page,
+  ) async {
+    try {
+      final _token = await _local.token;
+      final result = await _remote.getAllOfferedMeals(
+        token: _token,
+        page: page,
+      );
+
+      final List<HomeMeal> list = [];
+      for (HomeMealModel homeMealModel in result.data) {
+        list.add(
+          HomeMeal(
+            id: homeMealModel.id,
+            image: homeMealModel.image,
+            name: homeMealModel.name,
+            price: homeMealModel.price,
+            isAvailable: homeMealModel.isAvailable,
+            discountPercentage: homeMealModel.discountPercentage,
+            rating: homeMealModel.rating,
+            ratesCount: homeMealModel.ratesCount,
+            chef: homeMealModel.chef,
+          ),
+        );
+      }
+
+      return Right(
+        PaginateList(
+          total: result.total,
+          pages: result.numPages,
+          data: list,
+        ),
+      );
+    } on HandledException catch (e) {
+      return Left(ServerFailure(error: e.error));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PaginateList<HomeSubscribe>>> getAllSubscriptions(
+      int page) async {
+    try {
+      final _token = await _local.token;
+      final result = await _remote.getAllSubscriptions(
+        token: _token,
+        page: page,
+      );
+
+      final List<HomeSubscribe> list = [];
+      for (HomeSubscribeModel homeSubscribeModel in result.data) {
+        list.add(
+          HomeSubscribe(
+            name: homeSubscribeModel.name,
+            id: homeSubscribeModel.id,
+            chef: homeSubscribeModel.chef,
+            chefId: homeSubscribeModel.chefId,
+            daysNumber: homeSubscribeModel.daysNumber,
+            isAvailable: homeSubscribeModel.isAvailable,
+            startsAt: homeSubscribeModel.startsAt,
+            totalCost: homeSubscribeModel.totalCost,
+          ),
+        );
+      }
+
+      return Right(
+        PaginateList(
+          total: result.total,
+          pages: result.numPages,
+          data: list,
+        ),
+      );
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }

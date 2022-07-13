@@ -4,7 +4,7 @@ import 'package:beitouti_users/features/search/domain/entities/search_subscripti
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/data/paginate_list.dart';
+import '../../../../core/entities/paginate_list.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/repositories/search_repository.dart';
@@ -31,8 +31,8 @@ class SearchRepoImp extends SearchRepo {
 
       return Right(PaginateList(
         data: result.data,
-        page: result.numPages,
-        count: result.count,
+        pages: result.numPages,
+        total: result.count,
       ));
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
@@ -53,8 +53,8 @@ class SearchRepoImp extends SearchRepo {
 
       return Right(PaginateList(
         data: result.data,
-        page: result.numPages,
-        count: result.count,
+        pages: result.numPages,
+        total: result.count,
       ));
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
@@ -75,8 +75,8 @@ class SearchRepoImp extends SearchRepo {
 
       return Right(PaginateList(
         data: result.data,
-        page: result.numPages,
-        count: result.count,
+        pages: result.numPages,
+        total: result.count,
       ));
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));

@@ -63,6 +63,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
           children: [
             FormEntity(
               textInputAction: TextInputAction.done,
+              textInputType: TextInputType.number,
               upperLabel: "أدخل رمز التأكيد المُرسل إلى رقمك:",
               child: SizedBox(
                 width: 250.w,

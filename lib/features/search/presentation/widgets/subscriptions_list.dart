@@ -85,15 +85,10 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
               children: [
                 widget.bloc.state.isLoading
                     ? const Loader()
-                    : GridView.builder(
+                    : ListView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(0),
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                    ),
                     itemCount: widget.bloc.state.subscriptions.length,
                     itemBuilder: (ctx, index) {
                       return GestureDetector(

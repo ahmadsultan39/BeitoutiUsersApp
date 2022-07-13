@@ -23,9 +23,10 @@ class Endpoints {
 
   static String getChefInfo(int id) => "/show-chef/$id";
 
- /// static String searchMeals(String query,int page) => "/search/meals?search=$query";
-///  static String searchSubscriptions(String query,int page) => "/search/subscriptions?search=$query";
-  /// static String searchChefs(String query,int page) => "/search/chefs?search=$query";
+ /// Todo add params
+ static String searchMeals(String query,int page) => "/search/meals?search=$query";
+  static String searchSubscriptions(String query,int page) => "/search/subscriptions?search=$query";
+   static String searchChefs(String query,int page) => "/search/chefs?search=$query";
 
   static String getChefCategories(int id) => "/show-chef/$id/categories";
 
@@ -35,6 +36,28 @@ class Endpoints {
 
   static String getChefCategoryMeals(int chefId, int categoryId) =>
       "/show-chef/$chefId/categories/$categoryId";
+  static const makeOrder = "/make-order";
+
+  static String showMeal(int mealId) => "/show-meal/$mealId";
+
+  static String showSubscription(int subscriptionId) =>
+      "/show-subscription/$subscriptionId";
+
+  static String showSubscriptionMeals(int subscriptionId) =>
+      "/show-subscription-meals/$subscriptionId";
+
+  static String subscribe(int subscriptionId) =>
+      "/subscriptions/$subscriptionId/subscribe";
+
+  static String removeFromFavourite(int mealId) =>
+      "/delete-meal-from-favorite/$mealId";
+
+  static String addToFavourite(int mealId) => "/add-meal-to-favorite/$mealId";
+
+  static String allOfferedMeals(int page) => "/get-all-meal-offers?page=$page";
+
+  static String allSubscriptions(int page) =>
+      "/get-all-subscriptions?page=$page";
 }
 
 class SharedPreferencesKeys {
@@ -87,6 +110,15 @@ class RequestBody {
     return FormData.fromMap({
       'phone_number': phoneNumber,
       'code': code,
+    });
+  }
+
+  // Subscribe
+  static FormData subscribe({
+    required String notes,
+  }) {
+    return FormData.fromMap({
+      'notes': notes,
     });
   }
 

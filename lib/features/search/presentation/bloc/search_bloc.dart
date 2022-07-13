@@ -77,9 +77,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                     ..isLoading = false
                     ..isMealsLoading = false
                     ..meals.addAll(meals.data)
-                    ..totalMeals = meals.count
+                    ..totalMeals = meals.total
                     ..mealsPage = b.mealsPage! + 1
-                    ..isMealsFinished = b.mealsPage! == meals.page,
+                    ..isMealsFinished = b.mealsPage! == meals.pages,
                 ),
               )
             },
@@ -117,9 +117,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                     ..isLoading = false
                     ..isSubscriptionsLoading = false
                     ..subscriptions.addAll(subscriptions.data)
-                    ..totalSubscriptions = subscriptions.count
+                    ..totalSubscriptions = subscriptions.total
                     ..subscriptionsPage = b.subscriptionsPage! + 1
-                    ..isSubscriptionsFinished = b.subscriptionsPage! == subscriptions.page,
+                    ..isSubscriptionsFinished = b.subscriptionsPage! == subscriptions.pages,
                 ),
               )
             },
@@ -157,9 +157,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                     ..isLoading = false
                     ..isChefsLoading = false
                     ..chefs.addAll(chefs.data)
-                    ..totalChefs = chefs.count
+                    ..totalChefs = chefs.total
                     ..chefsPage = b.chefsPage! + 1
-                    ..isChefsFinished = b.chefsPage! == chefs.page,
+                    ..isChefsFinished = b.chefsPage! == chefs.pages,
                 ),
               )
             },

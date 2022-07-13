@@ -4,7 +4,7 @@ import 'package:beitouti_users/features/search/domain/entities/search_meal.dart'
 import 'package:beitouti_users/features/search/domain/entities/search_subscription.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/data/paginate_list.dart';
+import '../../../../core/entities/paginate_list.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class SearchRepo {

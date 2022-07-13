@@ -30,3 +30,4 @@ class OrderMealModel extends OrderMeal {
   Map<String, dynamic> toJson({OrderMealModel? instance}) =>
       _$OrderMealModelToJson(instance ?? this);
 }
+

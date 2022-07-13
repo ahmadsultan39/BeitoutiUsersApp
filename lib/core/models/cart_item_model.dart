@@ -17,7 +17,6 @@ class CartItemModel {
   int mealQuantity;
   final int mealCost;
 
-
   CartItemModel({
     required this.id,
     required this.chefId,

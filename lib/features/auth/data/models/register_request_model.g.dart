@@ -28,8 +28,8 @@ Map<String, dynamic> _$RegisterRequestModelToJson(
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
-      'location': _$StudentLocationEnumMap[instance.location],
-      'gender': _$GenderEnumMap[instance.gender],
+      'location': _$StudentLocationEnumMap[instance.location]!,
+      'gender': _$GenderEnumMap[instance.gender]!,
       'phone_number': instance.phoneNumber,
       'study_speciality': instance.studySpeciality,
       'national_id': instance.nationalId,

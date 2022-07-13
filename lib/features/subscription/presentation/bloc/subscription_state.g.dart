@@ -30,12 +30,12 @@ class _$SubscriptionState extends SubscriptionState {
       this.subscription})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'SubscriptionState', 'isLoading');
+        isLoading, r'SubscriptionState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
-        message, 'SubscriptionState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'SubscriptionState', 'error');
+        message, r'SubscriptionState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'SubscriptionState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        subscriptionMeals, 'SubscriptionState', 'subscriptionMeals');
+        subscriptionMeals, r'SubscriptionState', 'subscriptionMeals');
   }
 
   @override
@@ -69,7 +69,7 @@ class _$SubscriptionState extends SubscriptionState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('SubscriptionState')
+    return (newBuiltValueToStringHelper(r'SubscriptionState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -141,11 +141,11 @@ class SubscriptionStateBuilder
       _$result = _$v ??
           new _$SubscriptionState._(
               isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, 'SubscriptionState', 'isLoading'),
+                  isLoading, r'SubscriptionState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'SubscriptionState', 'message'),
+                  message, r'SubscriptionState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
-                  error, 'SubscriptionState', 'error'),
+                  error, r'SubscriptionState', 'error'),
               subscriptionMeals: subscriptionMeals.build(),
               subscription: subscription);
     } catch (_) {
@@ -155,7 +155,7 @@ class SubscriptionStateBuilder
         subscriptionMeals.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'SubscriptionState', _$failedField, e.toString());
+            r'SubscriptionState', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -164,4 +164,4 @@ class SubscriptionStateBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

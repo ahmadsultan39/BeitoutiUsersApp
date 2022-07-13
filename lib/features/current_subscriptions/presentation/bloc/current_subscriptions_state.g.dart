@@ -30,15 +30,15 @@ class _$CurrentSubscriptionsState extends CurrentSubscriptionsState {
       required this.subscriptionOrders})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'CurrentSubscriptionsState', 'isLoading');
+        isLoading, r'CurrentSubscriptionsState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
-        message, 'CurrentSubscriptionsState', 'message');
+        message, r'CurrentSubscriptionsState', 'message');
     BuiltValueNullFieldError.checkNotNull(
-        error, 'CurrentSubscriptionsState', 'error');
+        error, r'CurrentSubscriptionsState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        subscriptions, 'CurrentSubscriptionsState', 'subscriptions');
+        subscriptions, r'CurrentSubscriptionsState', 'subscriptions');
     BuiltValueNullFieldError.checkNotNull(
-        subscriptionOrders, 'CurrentSubscriptionsState', 'subscriptionOrders');
+        subscriptionOrders, r'CurrentSubscriptionsState', 'subscriptionOrders');
   }
 
   @override
@@ -73,7 +73,7 @@ class _$CurrentSubscriptionsState extends CurrentSubscriptionsState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CurrentSubscriptionsState')
+    return (newBuiltValueToStringHelper(r'CurrentSubscriptionsState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -149,11 +149,11 @@ class CurrentSubscriptionsStateBuilder
       _$result = _$v ??
           new _$CurrentSubscriptionsState._(
               isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, 'CurrentSubscriptionsState', 'isLoading'),
+                  isLoading, r'CurrentSubscriptionsState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'CurrentSubscriptionsState', 'message'),
+                  message, r'CurrentSubscriptionsState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
-                  error, 'CurrentSubscriptionsState', 'error'),
+                  error, r'CurrentSubscriptionsState', 'error'),
               subscriptions: subscriptions.build(),
               subscriptionOrders: subscriptionOrders.build());
     } catch (_) {
@@ -165,7 +165,7 @@ class CurrentSubscriptionsStateBuilder
         subscriptionOrders.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'CurrentSubscriptionsState', _$failedField, e.toString());
+            r'CurrentSubscriptionsState', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -174,4 +174,4 @@ class CurrentSubscriptionsStateBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

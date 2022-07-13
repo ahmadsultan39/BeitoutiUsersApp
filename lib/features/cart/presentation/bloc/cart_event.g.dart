@@ -32,7 +32,7 @@ class _$GetCartItems extends GetCartItems {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetCartItems').toString();
+    return newBuiltValueToStringHelper(r'GetCartItems').toString();
   }
 }
 
@@ -76,9 +76,9 @@ class _$IncreaseQuantity extends IncreaseQuantity {
   _$IncreaseQuantity._({required this.cartItemIndex, required this.cartItemId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        cartItemIndex, 'IncreaseQuantity', 'cartItemIndex');
+        cartItemIndex, r'IncreaseQuantity', 'cartItemIndex');
     BuiltValueNullFieldError.checkNotNull(
-        cartItemId, 'IncreaseQuantity', 'cartItemId');
+        cartItemId, r'IncreaseQuantity', 'cartItemId');
   }
 
   @override
@@ -104,7 +104,7 @@ class _$IncreaseQuantity extends IncreaseQuantity {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('IncreaseQuantity')
+    return (newBuiltValueToStringHelper(r'IncreaseQuantity')
           ..add('cartItemIndex', cartItemIndex)
           ..add('cartItemId', cartItemId))
         .toString();
@@ -154,9 +154,9 @@ class IncreaseQuantityBuilder
     final _$result = _$v ??
         new _$IncreaseQuantity._(
             cartItemIndex: BuiltValueNullFieldError.checkNotNull(
-                cartItemIndex, 'IncreaseQuantity', 'cartItemIndex'),
+                cartItemIndex, r'IncreaseQuantity', 'cartItemIndex'),
             cartItemId: BuiltValueNullFieldError.checkNotNull(
-                cartItemId, 'IncreaseQuantity', 'cartItemId'));
+                cartItemId, r'IncreaseQuantity', 'cartItemId'));
     replace(_$result);
     return _$result;
   }
@@ -170,7 +170,7 @@ class _$OrderCart extends OrderCart {
       (new OrderCartBuilder()..update(updates))._build();
 
   _$OrderCart._({required this.cart}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(cart, 'OrderCart', 'cart');
+    BuiltValueNullFieldError.checkNotNull(cart, r'OrderCart', 'cart');
   }
 
   @override
@@ -193,7 +193,7 @@ class _$OrderCart extends OrderCart {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('OrderCart')..add('cart', cart))
+    return (newBuiltValueToStringHelper(r'OrderCart')..add('cart', cart))
         .toString();
   }
 }
@@ -234,7 +234,7 @@ class OrderCartBuilder implements Builder<OrderCart, OrderCartBuilder> {
     final _$result = _$v ??
         new _$OrderCart._(
             cart: BuiltValueNullFieldError.checkNotNull(
-                cart, 'OrderCart', 'cart'));
+                cart, r'OrderCart', 'cart'));
     replace(_$result);
     return _$result;
   }
@@ -253,9 +253,9 @@ class _$DecreaseQuantity extends DecreaseQuantity {
   _$DecreaseQuantity._({required this.cartItemIndex, required this.cartItemId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        cartItemIndex, 'DecreaseQuantity', 'cartItemIndex');
+        cartItemIndex, r'DecreaseQuantity', 'cartItemIndex');
     BuiltValueNullFieldError.checkNotNull(
-        cartItemId, 'DecreaseQuantity', 'cartItemId');
+        cartItemId, r'DecreaseQuantity', 'cartItemId');
   }
 
   @override
@@ -281,7 +281,7 @@ class _$DecreaseQuantity extends DecreaseQuantity {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DecreaseQuantity')
+    return (newBuiltValueToStringHelper(r'DecreaseQuantity')
           ..add('cartItemIndex', cartItemIndex)
           ..add('cartItemId', cartItemId))
         .toString();
@@ -331,9 +331,9 @@ class DecreaseQuantityBuilder
     final _$result = _$v ??
         new _$DecreaseQuantity._(
             cartItemIndex: BuiltValueNullFieldError.checkNotNull(
-                cartItemIndex, 'DecreaseQuantity', 'cartItemIndex'),
+                cartItemIndex, r'DecreaseQuantity', 'cartItemIndex'),
             cartItemId: BuiltValueNullFieldError.checkNotNull(
-                cartItemId, 'DecreaseQuantity', 'cartItemId'));
+                cartItemId, r'DecreaseQuantity', 'cartItemId'));
     replace(_$result);
     return _$result;
   }
@@ -349,7 +349,7 @@ class _$GetCartMealQuantity extends GetCartMealQuantity {
 
   _$GetCartMealQuantity._({required this.mealId}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealId, 'GetCartMealQuantity', 'mealId');
+        mealId, r'GetCartMealQuantity', 'mealId');
   }
 
   @override
@@ -374,7 +374,7 @@ class _$GetCartMealQuantity extends GetCartMealQuantity {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetCartMealQuantity')
+    return (newBuiltValueToStringHelper(r'GetCartMealQuantity')
           ..add('mealId', mealId))
         .toString();
   }
@@ -417,7 +417,7 @@ class GetCartMealQuantityBuilder
     final _$result = _$v ??
         new _$GetCartMealQuantity._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'GetCartMealQuantity', 'mealId'));
+                mealId, r'GetCartMealQuantity', 'mealId'));
     replace(_$result);
     return _$result;
   }
@@ -431,7 +431,7 @@ class _$DeleteCartItem extends DeleteCartItem {
       (new DeleteCartItemBuilder()..update(updates))._build();
 
   _$DeleteCartItem._({required this.id}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'DeleteCartItem', 'id');
+    BuiltValueNullFieldError.checkNotNull(id, r'DeleteCartItem', 'id');
   }
 
   @override
@@ -455,7 +455,7 @@ class _$DeleteCartItem extends DeleteCartItem {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DeleteCartItem')..add('id', id))
+    return (newBuiltValueToStringHelper(r'DeleteCartItem')..add('id', id))
         .toString();
   }
 }
@@ -497,7 +497,7 @@ class DeleteCartItemBuilder
     final _$result = _$v ??
         new _$DeleteCartItem._(
             id: BuiltValueNullFieldError.checkNotNull(
-                id, 'DeleteCartItem', 'id'));
+                id, r'DeleteCartItem', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -532,7 +532,7 @@ class _$GetCartAllMealsQuantity extends GetCartAllMealsQuantity {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetCartAllMealsQuantity').toString();
+    return newBuiltValueToStringHelper(r'GetCartAllMealsQuantity').toString();
   }
 }
 
@@ -590,7 +590,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -621,4 +621,4 @@ class ClearMessageBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

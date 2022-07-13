@@ -15,8 +15,35 @@ class Endpoints {
   static const recentMeals = "/get-recent-meals";
   static const topOrderedMeals = "/get-top-ordered-meals";
   static const topSubscriptions = "/get-top-subscriptions";
-  static const makeOrder = "/make-order";
+  static const nearestChefs = "/filter-nearest-chefs";
+  static const topRatedChefs = "/filter-top-rated-chefs";
+  static const topOrderedChefs = "/filter-top-ordered-chefs";
+  static const mostRecentChefs = "/filter-newest-chefs";
   static const currentOrders = "/current-orders";
+
+  static String getChefInfo(int id) => "/show-chef/$id";
+
+  /// Todo add params
+  static String searchMeals(String query, int page) =>
+      "/search/meals?search=$query";
+
+  static String searchSubscriptions(String query, int page) =>
+      "/search/subscriptions?search=$query";
+
+  static String searchChefs(String query, int page) =>
+      "/search/chefs?search=$query";
+
+  static String getChefCategories(int id) => "/show-chef/$id/categories";
+
+  static String getChefSubscriptions(int id) => "/show-chef/$id/subscriptions";
+
+  static String getSubscriptionMeals(int id) => "/show-subscription-meals/$id";
+
+  static String getChefCategoryMeals(int chefId, int categoryId) =>
+      "/show-chef/$chefId/categories/$categoryId";
+
+  static const makeOrder = "/make-order";
+
   static const currentSubscriptions = "/current-subscriptions";
 
   static String subscriptionOrders(int subscriptionId) =>

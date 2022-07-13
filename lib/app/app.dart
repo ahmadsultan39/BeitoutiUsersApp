@@ -1,5 +1,3 @@
-import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
-import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
 import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/util/app_localizations.dart';
 import '../core/util/generate_screen.dart';
-import '../features/home/presentation/pages/home_page.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -28,7 +25,7 @@ class _AppState extends State<App> {
 
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      builder: (_) {
+      builder: (context, _) {
         return MaterialApp(
           title: 'Beitouti',
           debugShowCheckedModeBanner: false,

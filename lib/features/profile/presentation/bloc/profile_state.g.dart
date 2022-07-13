@@ -21,9 +21,9 @@ class _$ProfileState extends ProfileState {
       {required this.isLoading, required this.message, required this.error})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'ProfileState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'ProfileState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'ProfileState', 'error');
+        isLoading, r'ProfileState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'ProfileState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'ProfileState', 'error');
   }
 
   @override
@@ -50,7 +50,7 @@ class _$ProfileState extends ProfileState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ProfileState')
+    return (newBuiltValueToStringHelper(r'ProfileState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error))
@@ -105,14 +105,14 @@ class ProfileStateBuilder
     final _$result = _$v ??
         new _$ProfileState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'ProfileState', 'isLoading'),
+                isLoading, r'ProfileState', 'isLoading'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'ProfileState', 'message'),
+                message, r'ProfileState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'ProfileState', 'error'));
+                error, r'ProfileState', 'error'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

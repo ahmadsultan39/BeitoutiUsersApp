@@ -33,7 +33,7 @@ class _$GetOfferedMeals extends GetOfferedMeals {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetOfferedMeals').toString();
+    return newBuiltValueToStringHelper(r'GetOfferedMeals').toString();
   }
 }
 
@@ -92,7 +92,7 @@ class _$GetTopRatedMeals extends GetTopRatedMeals {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetTopRatedMeals').toString();
+    return newBuiltValueToStringHelper(r'GetTopRatedMeals').toString();
   }
 }
 
@@ -152,7 +152,7 @@ class _$GetTopOrderedMeals extends GetTopOrderedMeals {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetTopOrderedMeals').toString();
+    return newBuiltValueToStringHelper(r'GetTopOrderedMeals').toString();
   }
 }
 
@@ -210,7 +210,7 @@ class _$GetRecentMeals extends GetRecentMeals {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetRecentMeals').toString();
+    return newBuiltValueToStringHelper(r'GetRecentMeals').toString();
   }
 }
 
@@ -270,7 +270,7 @@ class _$GetTopSubscriptions extends GetTopSubscriptions {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetTopSubscriptions').toString();
+    return newBuiltValueToStringHelper(r'GetTopSubscriptions').toString();
   }
 }
 
@@ -310,7 +310,7 @@ class _$GetAllSubscriptions extends GetAllSubscriptions {
       (new GetAllSubscriptionsBuilder()..update(updates))._build();
 
   _$GetAllSubscriptions._({required this.page}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(page, 'GetAllSubscriptions', 'page');
+    BuiltValueNullFieldError.checkNotNull(page, r'GetAllSubscriptions', 'page');
   }
 
   @override
@@ -335,7 +335,7 @@ class _$GetAllSubscriptions extends GetAllSubscriptions {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetAllSubscriptions')
+    return (newBuiltValueToStringHelper(r'GetAllSubscriptions')
           ..add('page', page))
         .toString();
   }
@@ -378,7 +378,7 @@ class GetAllSubscriptionsBuilder
     final _$result = _$v ??
         new _$GetAllSubscriptions._(
             page: BuiltValueNullFieldError.checkNotNull(
-                page, 'GetAllSubscriptions', 'page'));
+                page, r'GetAllSubscriptions', 'page'));
     replace(_$result);
     return _$result;
   }
@@ -393,7 +393,7 @@ class _$GetAllOfferedMeals extends GetAllOfferedMeals {
       (new GetAllOfferedMealsBuilder()..update(updates))._build();
 
   _$GetAllOfferedMeals._({required this.page}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(page, 'GetAllOfferedMeals', 'page');
+    BuiltValueNullFieldError.checkNotNull(page, r'GetAllOfferedMeals', 'page');
   }
 
   @override
@@ -418,7 +418,7 @@ class _$GetAllOfferedMeals extends GetAllOfferedMeals {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetAllOfferedMeals')
+    return (newBuiltValueToStringHelper(r'GetAllOfferedMeals')
           ..add('page', page))
         .toString();
   }
@@ -461,7 +461,7 @@ class GetAllOfferedMealsBuilder
     final _$result = _$v ??
         new _$GetAllOfferedMeals._(
             page: BuiltValueNullFieldError.checkNotNull(
-                page, 'GetAllOfferedMeals', 'page'));
+                page, r'GetAllOfferedMeals', 'page'));
     replace(_$result);
     return _$result;
   }
@@ -493,7 +493,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -524,4 +524,4 @@ class ClearMessageBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

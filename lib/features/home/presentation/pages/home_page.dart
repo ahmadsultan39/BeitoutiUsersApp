@@ -1,3 +1,4 @@
+import 'package:beitouti_users/features/chefs/presentation/pages/chefs_page.dart';
 import 'package:beitouti_users/core/util/generate_screen.dart';
 import 'package:beitouti_users/features/meals/presentation/pages/meals_page.dart';
 import 'package:beitouti_users/features/orders/presentation/pages/orders_page.dart';
@@ -15,13 +16,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [
-    const MealsPage(),
-    const Center(
-      child: Text("Chefs page"),
-    ),
-    const OrdersPage(),
-    const ProfilePage(),
+  final List<Widget> _pages = const [
+    MealsPage(),
+    ChefsPage(),
+    OrdersPage(),
+    ProfilePage(),
   ];
 
   int _selectedPage = 0;

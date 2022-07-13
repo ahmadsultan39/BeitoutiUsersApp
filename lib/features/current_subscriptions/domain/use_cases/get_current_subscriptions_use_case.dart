@@ -18,3 +18,4 @@ class GetCurrentSubscriptionsUseCase
     return await _repository.getCurrentSubscriptions();
   }
 }
+

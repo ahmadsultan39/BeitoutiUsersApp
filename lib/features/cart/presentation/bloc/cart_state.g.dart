@@ -25,10 +25,10 @@ class _$CartState extends CartState {
       required this.error,
       required this.cartItems})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, 'CartState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'CartState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'CartState', 'error');
-    BuiltValueNullFieldError.checkNotNull(cartItems, 'CartState', 'cartItems');
+    BuiltValueNullFieldError.checkNotNull(isLoading, r'CartState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'CartState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'CartState', 'error');
+    BuiltValueNullFieldError.checkNotNull(cartItems, r'CartState', 'cartItems');
   }
 
   @override
@@ -57,7 +57,7 @@ class _$CartState extends CartState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CartState')
+    return (newBuiltValueToStringHelper(r'CartState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -121,11 +121,11 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
       _$result = _$v ??
           new _$CartState._(
               isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, 'CartState', 'isLoading'),
+                  isLoading, r'CartState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'CartState', 'message'),
+                  message, r'CartState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
-                  error, 'CartState', 'error'),
+                  error, r'CartState', 'error'),
               cartItems: cartItems.build());
     } catch (_) {
       late String _$failedField;
@@ -134,7 +134,7 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
         cartItems.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'CartState', _$failedField, e.toString());
+            r'CartState', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -143,4 +143,4 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

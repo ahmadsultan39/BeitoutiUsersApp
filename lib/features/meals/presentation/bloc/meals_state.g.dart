@@ -82,49 +82,50 @@ class _$MealsState extends MealsState {
       required this.isAllSubscriptionsFinished,
       required this.allSubscriptionsPage})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, 'MealsState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'MealsState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'MealsState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        offeredMeals, 'MealsState', 'offeredMeals');
+        isLoading, r'MealsState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'MealsState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'MealsState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        topRatedMeals, 'MealsState', 'topRatedMeals');
+        offeredMeals, r'MealsState', 'offeredMeals');
     BuiltValueNullFieldError.checkNotNull(
-        recentMeals, 'MealsState', 'recentMeals');
+        topRatedMeals, r'MealsState', 'topRatedMeals');
     BuiltValueNullFieldError.checkNotNull(
-        topOrderedMeals, 'MealsState', 'topOrderedMeals');
+        recentMeals, r'MealsState', 'recentMeals');
     BuiltValueNullFieldError.checkNotNull(
-        allOfferedMeals, 'MealsState', 'allOfferedMeals');
+        topOrderedMeals, r'MealsState', 'topOrderedMeals');
     BuiltValueNullFieldError.checkNotNull(
-        topSubscriptions, 'MealsState', 'topSubscriptions');
+        allOfferedMeals, r'MealsState', 'allOfferedMeals');
     BuiltValueNullFieldError.checkNotNull(
-        allSubscriptions, 'MealsState', 'allSubscriptions');
+        topSubscriptions, r'MealsState', 'topSubscriptions');
     BuiltValueNullFieldError.checkNotNull(
-        isOfferedMealsLoading, 'MealsState', 'isOfferedMealsLoading');
+        allSubscriptions, r'MealsState', 'allSubscriptions');
     BuiltValueNullFieldError.checkNotNull(
-        isTopRatedMealsLoading, 'MealsState', 'isTopRatedMealsLoading');
+        isOfferedMealsLoading, r'MealsState', 'isOfferedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isRecentMealsLoading, 'MealsState', 'isRecentMealsLoading');
+        isTopRatedMealsLoading, r'MealsState', 'isTopRatedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isTopOrderedMealsLoading, 'MealsState', 'isTopOrderedMealsLoading');
+        isRecentMealsLoading, r'MealsState', 'isRecentMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isTopSubscriptionsLoading, 'MealsState', 'isTopSubscriptionsLoading');
+        isTopOrderedMealsLoading, r'MealsState', 'isTopOrderedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isAllOfferedMealsLoading, 'MealsState', 'isAllOfferedMealsLoading');
+        isTopSubscriptionsLoading, r'MealsState', 'isTopSubscriptionsLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        isAllOfferedMealsLoading, r'MealsState', 'isAllOfferedMealsLoading');
     BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsPaginateLoading,
-        'MealsState', 'isAllOfferedMealsPaginateLoading');
+        r'MealsState', 'isAllOfferedMealsPaginateLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isAllOfferedMealsFinished, 'MealsState', 'isAllOfferedMealsFinished');
+        isAllOfferedMealsFinished, r'MealsState', 'isAllOfferedMealsFinished');
     BuiltValueNullFieldError.checkNotNull(
-        allOfferedMealsPage, 'MealsState', 'allOfferedMealsPage');
+        allOfferedMealsPage, r'MealsState', 'allOfferedMealsPage');
     BuiltValueNullFieldError.checkNotNull(
-        isAllSubscriptionsLoading, 'MealsState', 'isAllSubscriptionsLoading');
+        isAllSubscriptionsLoading, r'MealsState', 'isAllSubscriptionsLoading');
     BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsPaginateLoading,
-        'MealsState', 'isAllSubscriptionsPaginateLoading');
+        r'MealsState', 'isAllSubscriptionsPaginateLoading');
+    BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsFinished,
+        r'MealsState', 'isAllSubscriptionsFinished');
     BuiltValueNullFieldError.checkNotNull(
-        isAllSubscriptionsFinished, 'MealsState', 'isAllSubscriptionsFinished');
-    BuiltValueNullFieldError.checkNotNull(
-        allSubscriptionsPage, 'MealsState', 'allSubscriptionsPage');
+        allSubscriptionsPage, r'MealsState', 'allSubscriptionsPage');
   }
 
   @override
@@ -209,7 +210,7 @@ class _$MealsState extends MealsState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MealsState')
+    return (newBuiltValueToStringHelper(r'MealsState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -420,11 +421,11 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
       _$result = _$v ??
           new _$MealsState._(
               isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, 'MealsState', 'isLoading'),
+                  isLoading, r'MealsState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'MealsState', 'message'),
+                  message, r'MealsState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
-                  error, 'MealsState', 'error'),
+                  error, r'MealsState', 'error'),
               offeredMeals: offeredMeals.build(),
               topRatedMeals: topRatedMeals.build(),
               recentMeals: recentMeals.build(),
@@ -433,23 +434,23 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
               topSubscriptions: topSubscriptions.build(),
               allSubscriptions: allSubscriptions.build(),
               isOfferedMealsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isOfferedMealsLoading, 'MealsState', 'isOfferedMealsLoading'),
+                  isOfferedMealsLoading, r'MealsState', 'isOfferedMealsLoading'),
               isTopRatedMealsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isTopRatedMealsLoading, 'MealsState', 'isTopRatedMealsLoading'),
+                  isTopRatedMealsLoading, r'MealsState', 'isTopRatedMealsLoading'),
               isRecentMealsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isRecentMealsLoading, 'MealsState', 'isRecentMealsLoading'),
+                  isRecentMealsLoading, r'MealsState', 'isRecentMealsLoading'),
               isTopOrderedMealsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isTopOrderedMealsLoading, 'MealsState', 'isTopOrderedMealsLoading'),
+                  isTopOrderedMealsLoading, r'MealsState', 'isTopOrderedMealsLoading'),
               isTopSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(
-                  isTopSubscriptionsLoading, 'MealsState', 'isTopSubscriptionsLoading'),
-              isAllOfferedMealsLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsLoading, 'MealsState', 'isAllOfferedMealsLoading'),
-              isAllOfferedMealsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsPaginateLoading, 'MealsState', 'isAllOfferedMealsPaginateLoading'),
-              isAllOfferedMealsFinished: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsFinished, 'MealsState', 'isAllOfferedMealsFinished'),
-              allOfferedMealsPage: BuiltValueNullFieldError.checkNotNull(allOfferedMealsPage, 'MealsState', 'allOfferedMealsPage'),
-              isAllSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsLoading, 'MealsState', 'isAllSubscriptionsLoading'),
-              isAllSubscriptionsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsPaginateLoading, 'MealsState', 'isAllSubscriptionsPaginateLoading'),
-              isAllSubscriptionsFinished: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsFinished, 'MealsState', 'isAllSubscriptionsFinished'),
-              allSubscriptionsPage: BuiltValueNullFieldError.checkNotNull(allSubscriptionsPage, 'MealsState', 'allSubscriptionsPage'));
+                  isTopSubscriptionsLoading, r'MealsState', 'isTopSubscriptionsLoading'),
+              isAllOfferedMealsLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsLoading, r'MealsState', 'isAllOfferedMealsLoading'),
+              isAllOfferedMealsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsPaginateLoading, r'MealsState', 'isAllOfferedMealsPaginateLoading'),
+              isAllOfferedMealsFinished: BuiltValueNullFieldError.checkNotNull(isAllOfferedMealsFinished, r'MealsState', 'isAllOfferedMealsFinished'),
+              allOfferedMealsPage: BuiltValueNullFieldError.checkNotNull(allOfferedMealsPage, r'MealsState', 'allOfferedMealsPage'),
+              isAllSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsLoading, r'MealsState', 'isAllSubscriptionsLoading'),
+              isAllSubscriptionsPaginateLoading: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsPaginateLoading, r'MealsState', 'isAllSubscriptionsPaginateLoading'),
+              isAllSubscriptionsFinished: BuiltValueNullFieldError.checkNotNull(isAllSubscriptionsFinished, r'MealsState', 'isAllSubscriptionsFinished'),
+              allSubscriptionsPage: BuiltValueNullFieldError.checkNotNull(allSubscriptionsPage, r'MealsState', 'allSubscriptionsPage'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -469,7 +470,7 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
         allSubscriptions.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'MealsState', _$failedField, e.toString());
+            r'MealsState', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -478,4 +479,4 @@ class MealsStateBuilder implements Builder<MealsState, MealsStateBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

@@ -14,7 +14,7 @@ class _$GetMeal extends GetMeal {
       (new GetMealBuilder()..update(updates))._build();
 
   _$GetMeal._({required this.mealId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(mealId, 'GetMeal', 'mealId');
+    BuiltValueNullFieldError.checkNotNull(mealId, r'GetMeal', 'mealId');
   }
 
   @override
@@ -37,7 +37,7 @@ class _$GetMeal extends GetMeal {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetMeal')..add('mealId', mealId))
+    return (newBuiltValueToStringHelper(r'GetMeal')..add('mealId', mealId))
         .toString();
   }
 }
@@ -78,7 +78,7 @@ class GetMealBuilder implements Builder<GetMeal, GetMealBuilder> {
     final _$result = _$v ??
         new _$GetMeal._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'GetMeal', 'mealId'));
+                mealId, r'GetMeal', 'mealId'));
     replace(_$result);
     return _$result;
   }
@@ -92,7 +92,7 @@ class _$AddToFavourite extends AddToFavourite {
       (new AddToFavouriteBuilder()..update(updates))._build();
 
   _$AddToFavourite._({required this.mealId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(mealId, 'AddToFavourite', 'mealId');
+    BuiltValueNullFieldError.checkNotNull(mealId, r'AddToFavourite', 'mealId');
   }
 
   @override
@@ -116,7 +116,7 @@ class _$AddToFavourite extends AddToFavourite {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AddToFavourite')
+    return (newBuiltValueToStringHelper(r'AddToFavourite')
           ..add('mealId', mealId))
         .toString();
   }
@@ -159,7 +159,7 @@ class AddToFavouriteBuilder
     final _$result = _$v ??
         new _$AddToFavourite._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'AddToFavourite', 'mealId'));
+                mealId, r'AddToFavourite', 'mealId'));
     replace(_$result);
     return _$result;
   }
@@ -179,10 +179,10 @@ class _$AddMealToCart extends AddMealToCart {
   _$AddMealToCart._(
       {required this.meal, required this.notes, required this.quantity})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(meal, 'AddMealToCart', 'meal');
-    BuiltValueNullFieldError.checkNotNull(notes, 'AddMealToCart', 'notes');
+    BuiltValueNullFieldError.checkNotNull(meal, r'AddMealToCart', 'meal');
+    BuiltValueNullFieldError.checkNotNull(notes, r'AddMealToCart', 'notes');
     BuiltValueNullFieldError.checkNotNull(
-        quantity, 'AddMealToCart', 'quantity');
+        quantity, r'AddMealToCart', 'quantity');
   }
 
   @override
@@ -209,7 +209,7 @@ class _$AddMealToCart extends AddMealToCart {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AddMealToCart')
+    return (newBuiltValueToStringHelper(r'AddMealToCart')
           ..add('meal', meal)
           ..add('notes', notes)
           ..add('quantity', quantity))
@@ -264,11 +264,11 @@ class AddMealToCartBuilder
     final _$result = _$v ??
         new _$AddMealToCart._(
             meal: BuiltValueNullFieldError.checkNotNull(
-                meal, 'AddMealToCart', 'meal'),
+                meal, r'AddMealToCart', 'meal'),
             notes: BuiltValueNullFieldError.checkNotNull(
-                notes, 'AddMealToCart', 'notes'),
+                notes, r'AddMealToCart', 'notes'),
             quantity: BuiltValueNullFieldError.checkNotNull(
-                quantity, 'AddMealToCart', 'quantity'));
+                quantity, r'AddMealToCart', 'quantity'));
     replace(_$result);
     return _$result;
   }
@@ -284,7 +284,7 @@ class _$RemoveFromFavourite extends RemoveFromFavourite {
 
   _$RemoveFromFavourite._({required this.mealId}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealId, 'RemoveFromFavourite', 'mealId');
+        mealId, r'RemoveFromFavourite', 'mealId');
   }
 
   @override
@@ -309,7 +309,7 @@ class _$RemoveFromFavourite extends RemoveFromFavourite {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('RemoveFromFavourite')
+    return (newBuiltValueToStringHelper(r'RemoveFromFavourite')
           ..add('mealId', mealId))
         .toString();
   }
@@ -352,7 +352,7 @@ class RemoveFromFavouriteBuilder
     final _$result = _$v ??
         new _$RemoveFromFavourite._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'RemoveFromFavourite', 'mealId'));
+                mealId, r'RemoveFromFavourite', 'mealId'));
     replace(_$result);
     return _$result;
   }
@@ -384,7 +384,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -415,4 +415,4 @@ class ClearMessageBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

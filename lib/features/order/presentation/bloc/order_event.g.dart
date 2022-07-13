@@ -25,10 +25,10 @@ class _$RateOrder extends RateOrder {
       required this.rate,
       required this.notes})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(orderId, 'RateOrder', 'orderId');
-    BuiltValueNullFieldError.checkNotNull(mealId, 'RateOrder', 'mealId');
-    BuiltValueNullFieldError.checkNotNull(rate, 'RateOrder', 'rate');
-    BuiltValueNullFieldError.checkNotNull(notes, 'RateOrder', 'notes');
+    BuiltValueNullFieldError.checkNotNull(orderId, r'RateOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(mealId, r'RateOrder', 'mealId');
+    BuiltValueNullFieldError.checkNotNull(rate, r'RateOrder', 'rate');
+    BuiltValueNullFieldError.checkNotNull(notes, r'RateOrder', 'notes');
   }
 
   @override
@@ -57,7 +57,7 @@ class _$RateOrder extends RateOrder {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('RateOrder')
+    return (newBuiltValueToStringHelper(r'RateOrder')
           ..add('orderId', orderId)
           ..add('mealId', mealId)
           ..add('rate', rate)
@@ -117,13 +117,13 @@ class RateOrderBuilder implements Builder<RateOrder, RateOrderBuilder> {
     final _$result = _$v ??
         new _$RateOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
-                orderId, 'RateOrder', 'orderId'),
+                orderId, r'RateOrder', 'orderId'),
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'RateOrder', 'mealId'),
+                mealId, r'RateOrder', 'mealId'),
             rate: BuiltValueNullFieldError.checkNotNull(
-                rate, 'RateOrder', 'rate'),
+                rate, r'RateOrder', 'rate'),
             notes: BuiltValueNullFieldError.checkNotNull(
-                notes, 'RateOrder', 'notes'));
+                notes, r'RateOrder', 'notes'));
     replace(_$result);
     return _$result;
   }
@@ -143,10 +143,10 @@ class _$ReportOrder extends ReportOrder {
   _$ReportOrder._(
       {required this.orderId, required this.reason, required this.reportedOn})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(orderId, 'ReportOrder', 'orderId');
-    BuiltValueNullFieldError.checkNotNull(reason, 'ReportOrder', 'reason');
+    BuiltValueNullFieldError.checkNotNull(orderId, r'ReportOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(reason, r'ReportOrder', 'reason');
     BuiltValueNullFieldError.checkNotNull(
-        reportedOn, 'ReportOrder', 'reportedOn');
+        reportedOn, r'ReportOrder', 'reportedOn');
   }
 
   @override
@@ -173,7 +173,7 @@ class _$ReportOrder extends ReportOrder {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ReportOrder')
+    return (newBuiltValueToStringHelper(r'ReportOrder')
           ..add('orderId', orderId)
           ..add('reason', reason)
           ..add('reportedOn', reportedOn))
@@ -227,11 +227,11 @@ class ReportOrderBuilder implements Builder<ReportOrder, ReportOrderBuilder> {
     final _$result = _$v ??
         new _$ReportOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
-                orderId, 'ReportOrder', 'orderId'),
+                orderId, r'ReportOrder', 'orderId'),
             reason: BuiltValueNullFieldError.checkNotNull(
-                reason, 'ReportOrder', 'reason'),
+                reason, r'ReportOrder', 'reason'),
             reportedOn: BuiltValueNullFieldError.checkNotNull(
-                reportedOn, 'ReportOrder', 'reportedOn'));
+                reportedOn, r'ReportOrder', 'reportedOn'));
     replace(_$result);
     return _$result;
   }
@@ -245,7 +245,7 @@ class _$GetOrder extends GetOrder {
       (new GetOrderBuilder()..update(updates))._build();
 
   _$GetOrder._({required this.orderId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(orderId, 'GetOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(orderId, r'GetOrder', 'orderId');
   }
 
   @override
@@ -268,7 +268,7 @@ class _$GetOrder extends GetOrder {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetOrder')..add('orderId', orderId))
+    return (newBuiltValueToStringHelper(r'GetOrder')..add('orderId', orderId))
         .toString();
   }
 }
@@ -309,7 +309,7 @@ class GetOrderBuilder implements Builder<GetOrder, GetOrderBuilder> {
     final _$result = _$v ??
         new _$GetOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
-                orderId, 'GetOrder', 'orderId'));
+                orderId, r'GetOrder', 'orderId'));
     replace(_$result);
     return _$result;
   }
@@ -323,7 +323,7 @@ class _$CancelOrder extends CancelOrder {
       (new CancelOrderBuilder()..update(updates))._build();
 
   _$CancelOrder._({required this.orderId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(orderId, 'CancelOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(orderId, r'CancelOrder', 'orderId');
   }
 
   @override
@@ -346,7 +346,8 @@ class _$CancelOrder extends CancelOrder {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CancelOrder')..add('orderId', orderId))
+    return (newBuiltValueToStringHelper(r'CancelOrder')
+          ..add('orderId', orderId))
         .toString();
   }
 }
@@ -387,7 +388,7 @@ class CancelOrderBuilder implements Builder<CancelOrder, CancelOrderBuilder> {
     final _$result = _$v ??
         new _$CancelOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
-                orderId, 'CancelOrder', 'orderId'));
+                orderId, r'CancelOrder', 'orderId'));
     replace(_$result);
     return _$result;
   }
@@ -419,7 +420,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -450,4 +451,4 @@ class ClearMessageBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

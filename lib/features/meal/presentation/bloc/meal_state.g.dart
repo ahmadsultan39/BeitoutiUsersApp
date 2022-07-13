@@ -25,9 +25,9 @@ class _$MealState extends MealState {
       required this.error,
       this.meal})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, 'MealState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'MealState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'MealState', 'error');
+    BuiltValueNullFieldError.checkNotNull(isLoading, r'MealState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'MealState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'MealState', 'error');
   }
 
   @override
@@ -56,7 +56,7 @@ class _$MealState extends MealState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MealState')
+    return (newBuiltValueToStringHelper(r'MealState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -116,15 +116,15 @@ class MealStateBuilder implements Builder<MealState, MealStateBuilder> {
     final _$result = _$v ??
         new _$MealState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'MealState', 'isLoading'),
+                isLoading, r'MealState', 'isLoading'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'MealState', 'message'),
+                message, r'MealState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'MealState', 'error'),
+                error, r'MealState', 'error'),
             meal: meal);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

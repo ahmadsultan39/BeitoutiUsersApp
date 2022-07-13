@@ -9,6 +9,7 @@ import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.d
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../../features/auth/data/models/accessibility_status_model.dart';
+import '../../../features/chef_menu/data/models/chef_info_model.dart';
 import '../../../features/meal/data/models/meal_model.dart';
 import '../../../features/subscription/data/models/subscription_meal_model.dart';
 import '../../../features/subscription/data/models/subscription_model.dart';
@@ -39,6 +40,9 @@ T? _dataFromJson<T>(Object data) {
     return AccessibilityStatusModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == UserModel.className) {
     return UserModel.fromJson(data as Map<String, dynamic>) as T;
+  }
+  else if (T.toString() == ChefInfoModel.className) {
+    return ChefInfoModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == MealModel.className) {
     return MealModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == OrderMealModel.className) {

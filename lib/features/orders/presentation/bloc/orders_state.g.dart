@@ -41,21 +41,21 @@ class _$OrdersState extends OrdersState {
       required this.previousOrdersPage})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'OrdersState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'OrdersState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'OrdersState', 'error');
+        isLoading, r'OrdersState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'OrdersState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'OrdersState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        currentOrders, 'OrdersState', 'currentOrders');
+        currentOrders, r'OrdersState', 'currentOrders');
     BuiltValueNullFieldError.checkNotNull(
-        previousOrders, 'OrdersState', 'previousOrders');
+        previousOrders, r'OrdersState', 'previousOrders');
     BuiltValueNullFieldError.checkNotNull(
-        isPreviousOrdersLoading, 'OrdersState', 'isPreviousOrdersLoading');
+        isPreviousOrdersLoading, r'OrdersState', 'isPreviousOrdersLoading');
     BuiltValueNullFieldError.checkNotNull(isPreviousOrdersPaginateLoading,
-        'OrdersState', 'isPreviousOrdersPaginateLoading');
+        r'OrdersState', 'isPreviousOrdersPaginateLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isPreviousOrdersFinished, 'OrdersState', 'isPreviousOrdersFinished');
+        isPreviousOrdersFinished, r'OrdersState', 'isPreviousOrdersFinished');
     BuiltValueNullFieldError.checkNotNull(
-        previousOrdersPage, 'OrdersState', 'previousOrdersPage');
+        previousOrdersPage, r'OrdersState', 'previousOrdersPage');
   }
 
   @override
@@ -103,7 +103,7 @@ class _$OrdersState extends OrdersState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('OrdersState')
+    return (newBuiltValueToStringHelper(r'OrdersState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -205,25 +205,25 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
       _$result = _$v ??
           new _$OrdersState._(
               isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, 'OrdersState', 'isLoading'),
+                  isLoading, r'OrdersState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'OrdersState', 'message'),
+                  message, r'OrdersState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
-                  error, 'OrdersState', 'error'),
+                  error, r'OrdersState', 'error'),
               currentOrders: currentOrders.build(),
               previousOrders: previousOrders.build(),
               isPreviousOrdersLoading: BuiltValueNullFieldError.checkNotNull(
-                  isPreviousOrdersLoading, 'OrdersState', 'isPreviousOrdersLoading'),
+                  isPreviousOrdersLoading, r'OrdersState', 'isPreviousOrdersLoading'),
               isPreviousOrdersPaginateLoading: BuiltValueNullFieldError.checkNotNull(
                   isPreviousOrdersPaginateLoading,
-                  'OrdersState',
+                  r'OrdersState',
                   'isPreviousOrdersPaginateLoading'),
               isPreviousOrdersFinished: BuiltValueNullFieldError.checkNotNull(
                   isPreviousOrdersFinished,
-                  'OrdersState',
+                  r'OrdersState',
                   'isPreviousOrdersFinished'),
               previousOrdersPage: BuiltValueNullFieldError.checkNotNull(
-                  previousOrdersPage, 'OrdersState', 'previousOrdersPage'));
+                  previousOrdersPage, r'OrdersState', 'previousOrdersPage'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -233,7 +233,7 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
         previousOrders.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'OrdersState', _$failedField, e.toString());
+            r'OrdersState', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -242,4 +242,4 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

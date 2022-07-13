@@ -70,3 +70,4 @@ class OrderEntity extends Equatable {
         meals,
       ];
 }
+

@@ -48,3 +48,4 @@ class OrderModel extends OrderEntity {
   Map<String, dynamic> toJson({OrderModel? instance}) =>
       _$OrderModelToJson(instance ?? this);
 }
+

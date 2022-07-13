@@ -1,4 +1,9 @@
 import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
+
+import 'package:beitouti_users/features/chef_menu/presentation/pages/chef_menu_page.dart';
+import 'package:beitouti_users/features/chefs/presentation/pages/chefs_page.dart';
+import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
+import 'package:beitouti_users/features/meals/domain/entities/home_chef.dart';
 import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
 import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscription_order_page.dart';
 import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscriptions_page.dart';
@@ -37,6 +42,16 @@ class GenerateScreen {
             builder: (_) => const HomePage(),
           );
         }
+      case NameScreen.chefsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const ChefsPage(),
+          );
+        }
+      case NameScreen.chefScreen:
+        {
+          return MaterialPageRoute(
+            builder: (context) =>  ChefMenuPage(chef: value.arguments as HomeChef));}
       case NameScreen.allOfferedMealsScreen:
         {
           return MaterialPageRoute(
@@ -128,6 +143,8 @@ class NameScreen {
   static const String splashScreen = "/";
   static const String authScreen = "/auth";
   static const String homeScreen = "/home";
+  static const String chefsScreen = "/chefs";
+  static const String chefScreen = "/chef";
   static const String allOfferedMealsScreen = "/all-offered-meals";
   static const String allSubscriptionsScreen = "/all-subscriptions";
   static const String mealScreen = "/meal";

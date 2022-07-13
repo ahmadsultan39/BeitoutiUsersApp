@@ -28,7 +28,7 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'notes': instance.notes,
-      'status': _$OrderStatusEnumMap[instance.status],
+      'status': _$OrderStatusEnumMap[instance.status]!,
       'subscription_id': instance.subscriptionId,
       'can_be_canceled': instance.canBeCanceled,
       'can_be_evaluated': instance.canBeEvaluated,

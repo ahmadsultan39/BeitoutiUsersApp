@@ -74,7 +74,7 @@ class MealRepositoryImp extends BaseRepositoryImpl implements MealRepository {
         mealImage: meal.image,
         mealQuantity: quantity,
         deliveryCost: meal.deliveryFee.round(),
-        mealCost: meal.price,
+        mealCost: meal.priceAfterDiscount ?? meal.price,
         maxMealsPerDay: meal.maxMealsPerDay,
         maxChefMealsPerDay: meal.remainingAvailableMealCount,
         deliveryStartsAt: meal.chef.deliveryStartsAt,

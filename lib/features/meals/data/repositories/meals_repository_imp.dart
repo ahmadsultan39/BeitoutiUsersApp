@@ -107,6 +107,7 @@ class MealsRepositoryImp implements MealsRepository {
             rating: homeMealModel.rating,
             ratesCount: homeMealModel.ratesCount,
             chef: homeMealModel.chef,
+            priceAfterDiscount: homeMealModel.priceAfterDiscount,
           ),
         );
       }

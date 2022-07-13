@@ -16,6 +16,7 @@ HomeMealModel _$HomeMealModelFromJson(Map<String, dynamic> json) =>
       chef: HomeChefModel.fromJson(json['chef'] as Map<String, dynamic>),
       isAvailable: json['is_available'] as bool,
       discountPercentage: json['discount_percentage'] as int?,
+      priceAfterDiscount: json['price_after_discount'] as int?,
       ratesCount: json['rates_count'] as int,
     );
 
@@ -28,6 +29,7 @@ Map<String, dynamic> _$HomeMealModelToJson(HomeMealModel instance) =>
       'image': instance.image,
       'rates_count': instance.ratesCount,
       'discount_percentage': instance.discountPercentage,
+      'price_after_discount': instance.priceAfterDiscount,
       'is_available': instance.isAvailable,
       'chef': instance.chef,
     };

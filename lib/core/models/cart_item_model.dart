@@ -6,9 +6,7 @@ part 'cart_item_model.g.dart';
 class CartItemModel {
   final int id;
   final int chefId;
-  final int mealQuantity;
   final int deliveryCost;
-  final int mealCost;
   final int maxMealsPerDay;
   final int maxChefMealsPerDay;
   final String notes;
@@ -16,8 +14,11 @@ class CartItemModel {
   final String chefName;
   final String mealImage;
   final String deliveryStartsAt;
+  int mealQuantity;
+  final int mealCost;
 
-  const CartItemModel({
+
+  CartItemModel({
     required this.id,
     required this.chefId,
     required this.mealName,

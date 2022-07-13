@@ -121,8 +121,8 @@ class _MealPageState extends State<MealPage> {
                                   name: state.meal!.name,
                                   chefName: state.meal!.chef.name,
                                   price: state.meal!.price,
-                                  discountPercentage:
-                                      state.meal!.discountPercentage,
+                                  priceAfterDiscount:
+                                      state.meal!.priceAfterDiscount,
                                 ),
                                 const SizedBox(
                                   height: 10,

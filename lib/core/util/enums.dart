@@ -18,3 +18,15 @@ enum StudentLocation {
   hamak,
   barzeh,
 }
+
+enum OrderStatus {
+  pending,
+  approved,
+  notApproved,
+  prepared,
+  failedAssigning,
+  picked,
+  delivered,
+  notDelivered,
+  canceled,
+}

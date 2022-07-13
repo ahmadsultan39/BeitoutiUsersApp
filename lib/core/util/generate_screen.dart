@@ -1,8 +1,13 @@
 import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
 import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
+import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscription_order_page.dart';
+import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscriptions_page.dart';
 import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
 import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
 import 'package:beitouti_users/features/meals/presentation/pages/all_offered_meals_page.dart';
+import 'package:beitouti_users/features/order/presentation/pages/order_page.dart';
+import 'package:beitouti_users/features/orders/presentation/pages/orders_page.dart';
+import 'package:beitouti_users/features/profile/presentation/pages/profile_page.dart';
 import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
 import 'package:beitouti_users/features/subscription/presentation/pages/subscription_page.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +71,38 @@ class GenerateScreen {
             builder: (_) => const CartPage(),
           );
         }
+      case NameScreen.orderScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => OrderPage(orderId: value.arguments as int),
+          );
+        }
+      case NameScreen.ordersScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const OrdersPage(),
+          );
+        }
+      case NameScreen.currentSubscriptionsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const CurrentSubscriptionsPage(),
+          );
+        }
+      case NameScreen.subscriptionOrdersScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => CurrentSubscriptionOrderPage(
+              subscriptionId: value.arguments as int,
+            ),
+          );
+        }
+      case NameScreen.profileScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const ProfilePage(),
+          );
+        }
       default:
         return _errorRoute();
     }
@@ -96,4 +133,9 @@ class NameScreen {
   static const String mealScreen = "/meal";
   static const String cartScreen = "/cart";
   static const String subscriptionScreen = "/subscription";
+  static const String ordersScreen = "/orders";
+  static const String orderScreen = "/order";
+  static const String currentSubscriptionsScreen = "/current-subscriptions";
+  static const String subscriptionOrdersScreen = "/subscription-orders";
+  static const String profileScreen = "/profile";
 }

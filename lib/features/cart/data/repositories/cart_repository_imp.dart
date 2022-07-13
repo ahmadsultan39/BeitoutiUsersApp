@@ -44,4 +44,14 @@ class CartRepositoryImp extends BaseRepositoryImpl implements CartRepository {
       return Left(ServerFailure(error: e.error));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteCartItem(int id) async {
+    try {
+      await _local.removeCartItem(id);
+      return const Right(null);
+    } on CacheException catch (e) {
+      return const Left(CacheFailure());
+    }
+  }
 }

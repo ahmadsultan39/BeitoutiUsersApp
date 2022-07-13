@@ -1,31 +1,33 @@
-import 'package:beitouti_users/features/subscription/domain/repositories/subscription_repository.dart';
+import 'package:beitouti_users/features/current_subscriptions/domain/repositories/current_subscriptions_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entities/subscription.dart';
+import '../entities/current_subscription_order.dart';
 
 @lazySingleton
-class GetSubscriptionUseCase
-    implements UseCase<Subscription, ParamsGetSubscriptionUseCase> {
-  final SubscriptionRepository _repository;
+class GetSubscriptionOrdersUseCase
+    implements
+        UseCase<List<CurrentSubscriptionOrder>,
+            ParamsGetSubscriptionOrdersUseCase> {
+  final CurrentSubscriptionsRepository _repository;
 
-  GetSubscriptionUseCase(this._repository);
+  GetSubscriptionOrdersUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Subscription>> call(
-      ParamsGetSubscriptionUseCase params) async {
-    return await _repository.getSubscription(
+  Future<Either<Failure, List<CurrentSubscriptionOrder>>> call(
+      ParamsGetSubscriptionOrdersUseCase params) async {
+    return _repository.getSubscriptionOrders(
       params.subscriptionId,
     );
   }
 }
 
-class ParamsGetSubscriptionUseCase extends Equatable {
+class ParamsGetSubscriptionOrdersUseCase extends Equatable {
   final int subscriptionId;
 
-  const ParamsGetSubscriptionUseCase({
+  const ParamsGetSubscriptionOrdersUseCase({
     required this.subscriptionId,
   });
 

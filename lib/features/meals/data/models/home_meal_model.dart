@@ -6,10 +6,8 @@ part 'home_meal_model.g.dart';
 
 @JsonSerializable()
 class HomeMealModel extends HomeMeal {
-
   static const String className = 'HomeMealModel';
   static const String paginateName = 'PaginateResponseModel<HomeMealModel>';
-
 
   @JsonKey(name: 'rates_count')
   final int ratesCount;
@@ -17,11 +15,13 @@ class HomeMealModel extends HomeMeal {
   @JsonKey(name: 'discount_percentage')
   final int? discountPercentage;
 
+  @JsonKey(name: 'price_after_discount')
+  final int? priceAfterDiscount;
+
   @JsonKey(name: 'is_available')
   final bool isAvailable;
 
   final HomeChefModel chef;
-
 
   const HomeMealModel({
     required int id,
@@ -32,8 +32,10 @@ class HomeMealModel extends HomeMeal {
     required this.chef,
     required this.isAvailable,
     required this.discountPercentage,
+    required this.priceAfterDiscount,
     required this.ratesCount,
   }) : super(
+          priceAfterDiscount: priceAfterDiscount,
           image: image,
           id: id,
           name: name,

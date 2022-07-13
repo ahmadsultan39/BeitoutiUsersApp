@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const baseUrl = "https://5188-188-133-25-71.ngrok.io/api/user";
-  static const imageUrl = "https://5188-188-133-25-71.ngrok.io";
+  static const baseUrl = "https://78f8-31-9-140-112.ngrok.io/api/user";
+  static const imageUrl = "https://78f8-31-9-140-112.ngrok.io";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
@@ -16,8 +16,23 @@ class Endpoints {
   static const topOrderedMeals = "/get-top-ordered-meals";
   static const topSubscriptions = "/get-top-subscriptions";
   static const makeOrder = "/make-order";
+  static const currentOrders = "/current-orders";
+  static const currentSubscriptions = "/current-subscriptions";
+
+  static String subscriptionOrders(int subscriptionId) =>
+      "/current-subscriptions/$subscriptionId/orders";
+
+  static String previousOrders(int page) => "/previous-orders?page=$page";
 
   static String showMeal(int mealId) => "/show-meal/$mealId";
+
+  static String cancelOrder(int orderId) => "/orders/$orderId/cancel";
+
+  static String showOrder(int orderId) => "/orders/$orderId/show";
+
+  static String rateOrder(int orderId) => "/orders/$orderId/rate";
+
+  static String reportOrder(int orderId) => "/orders/$orderId/report";
 
   static String showSubscription(int subscriptionId) =>
       "/show-subscription/$subscriptionId";
@@ -78,6 +93,33 @@ class RequestBody {
   static FormData sendCode({required String phoneNumber}) {
     return FormData.fromMap({
       'phone_number': phoneNumber,
+    });
+  }
+
+  static Object rateOrder({
+    required int rate,
+    required int mealId,
+    required String notes,
+  }) {
+    return {
+      "meals": [
+        {
+          "id": mealId,
+          "rate": rate,
+          "notes": notes,
+        },
+      ],
+    };
+  }
+
+  // Report Order
+  static FormData reportOrder({
+    required String reportedOn,
+    required String reason,
+  }) {
+    return FormData.fromMap({
+      'reported_on': reportedOn,
+      'reason': reason,
     });
   }
 

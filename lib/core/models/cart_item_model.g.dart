@@ -26,9 +26,7 @@ Map<String, dynamic> _$CartItemModelToJson(CartItemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'chefId': instance.chefId,
-      'mealQuantity': instance.mealQuantity,
       'deliveryCost': instance.deliveryCost,
-      'mealCost': instance.mealCost,
       'maxMealsPerDay': instance.maxMealsPerDay,
       'maxChefMealsPerDay': instance.maxChefMealsPerDay,
       'notes': instance.notes,
@@ -36,4 +34,6 @@ Map<String, dynamic> _$CartItemModelToJson(CartItemModel instance) =>
       'chefName': instance.chefName,
       'mealImage': instance.mealImage,
       'deliveryStartsAt': instance.deliveryStartsAt,
+      'mealQuantity': instance.mealQuantity,
+      'mealCost': instance.mealCost,
     };

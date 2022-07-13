@@ -1,6 +1,28 @@
-part of 'order_bloc.dart';
+import 'package:beitouti_users/core/entities/order.dart';
+import 'package:built_value/built_value.dart';
 
-@immutable
-abstract class OrderState {}
+part 'order_state.g.dart';
 
-class OrderInitial extends OrderState {}
+abstract class OrderState implements Built<OrderState, OrderStateBuilder> {
+  bool get isLoading;
+
+  String get message;
+
+  bool get error;
+
+  OrderEntity? get order;
+
+  OrderState._();
+
+  factory OrderState([Function(OrderStateBuilder b) updates]) = _$OrderState;
+
+  factory OrderState.initial() {
+    return OrderState(
+      (b) => b
+        ..isLoading = false
+        ..message = ""
+        ..order = null
+        ..error = false,
+    );
+  }
+}

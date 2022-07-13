@@ -75,4 +75,36 @@ class CartDataBaseManager {
     var dbClient = await database;
     dbClient.delete("CART", where: "id = $id");
   }
+
+  Future<int> getMealQuantity(int mealId) async {
+    var dbClient = await database;
+    var queryResult = await dbClient.rawQuery(
+      'SELECT * FROM CART WHERE id=$mealId',
+    );
+    if (queryResult.isEmpty) {
+      return 0;
+    }
+    print('************************\n');
+    print(queryResult);
+    print('\n************************');
+    return 0;
+  }
+
+  Future<int> getAllMealsQuantity(int mealId) async {
+    int mealsQuantity = 0;
+    var dbClient = await database;
+    var queryResult = await dbClient.rawQuery(
+      'SELECT * FROM CART WHERE id=$mealId',
+    );
+    if (queryResult.isEmpty) {
+      return 0;
+    }
+    print('************************\n');
+    print(queryResult);
+    print('\n************************');
+    for (var cartItem in queryResult) {
+      mealsQuantity += cartItem["mealsQuantity"] as int;
+    }
+    return mealsQuantity;
+  }
 }

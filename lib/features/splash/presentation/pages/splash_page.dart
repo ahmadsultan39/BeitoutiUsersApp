@@ -1,9 +1,5 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:beitouti_users/core/util/constants.dart';
 import 'package:beitouti_users/core/util/generate_screen.dart';
-import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
-import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
-import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
 import 'package:beitouti_users/features/splash/presentation/bloc/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

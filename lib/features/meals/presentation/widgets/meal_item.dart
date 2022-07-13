@@ -142,11 +142,7 @@ class MealItem extends StatelessWidget {
                       ),
                       if (meal.discountPercentage != null)
                         Text(
-                          (meal.price -
-                                      countDiscountPrice(
-                                          meal.discountPercentage!, meal.price))
-                                  .toString() +
-                              ' ل.س',
+                          (meal.priceAfterDiscount).toString() + ' ل.س',
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),

@@ -5,21 +5,21 @@ class NameAndPrice extends StatelessWidget {
   final String name;
   final String chefName;
   final int price;
-  final int? discountPercentage;
+  final int? priceAfterDiscount;
 
   const NameAndPrice({
     Key? key,
     required this.name,
     required this.chefName,
     required this.price,
-    required this.discountPercentage,
+    required this.priceAfterDiscount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -58,14 +58,14 @@ class NameAndPrice extends StatelessWidget {
                   price.toString(),
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
-                    fontSize: discountPercentage != 0 ? 20.sp : 22.sp,
+                    fontSize: priceAfterDiscount != 0 ? 20.sp : 22.sp,
                     fontWeight: FontWeight.bold,
-                    decoration: discountPercentage != 0
+                    decoration: priceAfterDiscount != null
                         ? TextDecoration.lineThrough
                         : null,
                   ),
                 ),
-                if (discountPercentage == 0)
+                if (priceAfterDiscount == null)
                   Text(
                     " ل.س",
                     style: TextStyle(
@@ -79,15 +79,13 @@ class NameAndPrice extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-            if (discountPercentage != null)
+            if (priceAfterDiscount != null)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    (price - (price * discountPercentage! * 0.01))
-                        .round()
-                        .toString(),
+                    (priceAfterDiscount).toString(),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontSize: 22.sp,

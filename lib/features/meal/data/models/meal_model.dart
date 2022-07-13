@@ -23,6 +23,9 @@ class MealModel extends Meal {
   @JsonKey(name: 'discount_percentage')
   final int? discountPercentage;
 
+  @JsonKey(name: 'price_after_discount')
+  final int? priceAfterDiscount;
+
   @JsonKey(name: 'remaining_available_meal_count')
   final int remainingAvailableMealCount;
 
@@ -51,6 +54,7 @@ class MealModel extends Meal {
     required String ingredients,
     required bool approved,
     required this.chef,
+    required this.priceAfterDiscount,
     required this.isSaved,
     required this.category,
     required this.categoryId,
@@ -62,6 +66,7 @@ class MealModel extends Meal {
     required this.ratesCount,
     required this.isAvailable,
   }) : super(
+          priceAfterDiscount: priceAfterDiscount,
           id: id,
           price: price,
           categoryId: categoryId,

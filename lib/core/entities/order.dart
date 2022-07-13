@@ -1,14 +1,14 @@
-import 'package:beitouti_users/features/orders/domain/entities/order_meal.dart';
+import 'package:beitouti_users/core/entities/order_meal.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../core/util/enums.dart';
+import '../util/enums.dart';
 
 class OrderEntity extends Equatable {
   final int id;
   final String? notes;
   final OrderStatus status;
-  final List<OrderMeal> meals;
+  final List<OrderMeal>? meals;
 
   @JsonKey(name: 'subscription_id')
   final int? subscriptionId;
@@ -37,7 +37,7 @@ class OrderEntity extends Equatable {
   @JsonKey(name: 'delivery_fee')
   final dynamic deliveryFee;
 
-  const OrderEntity(this.meals, {
+  const OrderEntity({
     required this.id,
     required this.notes,
     required this.status,
@@ -50,6 +50,7 @@ class OrderEntity extends Equatable {
     required this.createdAt,
     required this.totalCost,
     required this.deliveryFee,
+    required this.meals,
   });
 
   @override
@@ -66,5 +67,6 @@ class OrderEntity extends Equatable {
         createdAt,
         totalCost,
         deliveryFee,
+        meals,
       ];
 }

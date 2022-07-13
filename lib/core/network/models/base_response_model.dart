@@ -1,12 +1,13 @@
 library base_response_model;
 
+import 'package:beitouti_users/core/models/order_meal_model.dart';
+import 'package:beitouti_users/core/models/order_model.dart';
 import 'package:beitouti_users/core/network/models/paginate_response_model.dart';
 import 'package:beitouti_users/features/auth/data/models/user_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../features/auth/data/models/accessibility_status_model.dart';
 import '../../../features/meal/data/models/meal_model.dart';
 import '../../../features/subscription/data/models/subscription_meal_model.dart';
@@ -40,12 +41,20 @@ T? _dataFromJson<T>(Object data) {
     return UserModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == MealModel.className) {
     return MealModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == OrderMealModel.className) {
+    return OrderMealModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == OrderModel.className) {
+    return OrderModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == SubscriptionsMealModel.className) {
     return SubscriptionsMealModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == SubscriptionModel.className) {
     return SubscriptionModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == HomeMealModel.paginateName) {
     return PaginateResponseModel<HomeMealModel>.fromJson(
+      data as Map<String, dynamic>,
+    ) as T;
+  } else if (T.toString() == OrderModel.paginateName) {
+    return PaginateResponseModel<OrderModel>.fromJson(
       data as Map<String, dynamic>,
     ) as T;
   } else if (T.toString() == HomeSubscribeModel.paginateName) {

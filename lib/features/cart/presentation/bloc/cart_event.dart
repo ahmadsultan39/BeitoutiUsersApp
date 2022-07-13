@@ -19,6 +19,24 @@ abstract class GetCartItems extends CartEvent
   }
 }
 
+abstract class IncreaseQuantity extends CartEvent
+    implements Built<IncreaseQuantity, IncreaseQuantityBuilder> {
+  //getter fields
+
+  int get cartItemIndex;
+
+  int get cartItemId;
+
+  IncreaseQuantity._();
+
+  factory IncreaseQuantity([Function(IncreaseQuantityBuilder b) updates]) =
+      _$IncreaseQuantity;
+
+  factory IncreaseQuantity.initial() {
+    return IncreaseQuantity((b) => b);
+  }
+}
+
 abstract class OrderCart extends CartEvent
     implements Built<OrderCart, OrderCartBuilder> {
   //getter fields
@@ -31,6 +49,72 @@ abstract class OrderCart extends CartEvent
 
   factory OrderCart.initial() {
     return OrderCart((b) => b);
+  }
+}
+
+abstract class DecreaseQuantity extends CartEvent
+    implements Built<DecreaseQuantity, DecreaseQuantityBuilder> {
+  //getter fields
+
+  int get cartItemIndex;
+
+  int get cartItemId;
+
+  DecreaseQuantity._();
+
+  factory DecreaseQuantity([Function(DecreaseQuantityBuilder b) updates]) =
+      _$DecreaseQuantity;
+
+  factory DecreaseQuantity.initial() {
+    return DecreaseQuantity((b) => b);
+  }
+}
+
+
+abstract class GetCartMealQuantity extends CartEvent
+    implements Built<GetCartMealQuantity, GetCartMealQuantityBuilder> {
+  //getter fields
+
+  int get mealId;
+
+  GetCartMealQuantity._();
+
+  factory GetCartMealQuantity(
+      [Function(GetCartMealQuantityBuilder b) updates]) = _$GetCartMealQuantity;
+
+  factory GetCartMealQuantity.initial() {
+    return GetCartMealQuantity((b) => b);
+  }
+}
+
+abstract class DeleteCartItem extends CartEvent
+    implements Built<DeleteCartItem, DeleteCartItemBuilder> {
+  //getter fields
+
+  int get id;
+
+  DeleteCartItem._();
+
+  factory DeleteCartItem(
+      [Function(DeleteCartItemBuilder b) updates]) = _$DeleteCartItem;
+
+  factory DeleteCartItem.initial() {
+    return DeleteCartItem((b) => b);
+  }
+}
+
+abstract class GetCartAllMealsQuantity extends CartEvent
+    implements Built<GetCartAllMealsQuantity, GetCartAllMealsQuantityBuilder> {
+  //getter fields
+
+  GetCartAllMealsQuantity._();
+
+  factory GetCartAllMealsQuantity(
+          [Function(GetCartAllMealsQuantityBuilder b) updates]) =
+      _$GetCartAllMealsQuantity;
+
+  factory GetCartAllMealsQuantity.initial() {
+    return GetCartAllMealsQuantity((b) => b);
   }
 }
 

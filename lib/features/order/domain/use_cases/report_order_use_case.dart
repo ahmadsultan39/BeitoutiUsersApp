@@ -7,37 +7,34 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
-class RateOrderUseCase implements UseCase<OrderEntity, ParamsRateOrderUseCase> {
+class ReportOrderUseCase implements UseCase<void, ParamsReportOrderUseCase> {
   final OrderRepository _repository;
 
-  RateOrderUseCase(this._repository);
+  ReportOrderUseCase(this._repository);
 
   @override
-  Future<Either<Failure, OrderEntity>> call(
-    ParamsRateOrderUseCase params,
+  Future<Either<Failure, void>> call(
+    ParamsReportOrderUseCase params,
   ) async {
-    return await _repository.rateOrder(
+    return await _repository.reportOrder(
       orderId: params.orderId,
-      rate: params.rate,
-      notes: params.notes,
-      mealId: params.mealId,
+      reportedOn: params.reportedOn,
+      reason: params.reason,
     );
   }
 }
 
-class ParamsRateOrderUseCase extends Equatable {
-  final int rate;
-  final int mealId;
+class ParamsReportOrderUseCase extends Equatable {
+  final String reason;
+  final String reportedOn;
   final int orderId;
-  final String notes;
 
-  const ParamsRateOrderUseCase({
+  const ParamsReportOrderUseCase({
     required this.orderId,
-    required this.rate,
-    required this.mealId,
-    required this.notes,
+    required this.reason,
+    required this.reportedOn,
   });
 
   @override
-  List<Object?> get props => [orderId, rate, mealId, notes];
+  List<Object?> get props => [reason, reportedOn, orderId];
 }

@@ -7,26 +7,37 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
-class GetOrderUseCase implements UseCase<OrderEntity, ParamsGetOrderUseCase> {
+class RateOrderUseCase implements UseCase<void, ParamsRateOrderUseCase> {
   final OrderRepository _repository;
 
-  GetOrderUseCase(this._repository);
+  RateOrderUseCase(this._repository);
 
   @override
-  Future<Either<Failure, OrderEntity>> call(
-    ParamsGetOrderUseCase params,
+  Future<Either<Failure, void>> call(
+    ParamsRateOrderUseCase params,
   ) async {
-    return await _repository.getOrder(orderId: params.orderId);
+    return await _repository.rateOrder(
+      orderId: params.orderId,
+      rate: params.rate,
+      notes: params.notes,
+      mealId: params.mealId,
+    );
   }
 }
 
-class ParamsGetOrderUseCase extends Equatable {
+class ParamsRateOrderUseCase extends Equatable {
+  final int rate;
+  final int mealId;
   final int orderId;
+  final String notes;
 
-  const ParamsGetOrderUseCase({
+  const ParamsRateOrderUseCase({
     required this.orderId,
+    required this.rate,
+    required this.mealId,
+    required this.notes,
   });
 
   @override
-  List<Object?> get props => [orderId];
+  List<Object?> get props => [orderId, rate, mealId, notes];
 }

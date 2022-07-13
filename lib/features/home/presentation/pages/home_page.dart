@@ -1,9 +1,10 @@
 import 'package:beitouti_users/core/util/generate_screen.dart';
 import 'package:beitouti_users/features/meals/presentation/pages/meals_page.dart';
+import 'package:beitouti_users/features/orders/presentation/pages/orders_page.dart';
+import 'package:beitouti_users/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,23 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> _pages = [
-    MealsPage(),
-    Container(
-      child: Center(
-        child: Text("Chefs page"),
-      ),
+  final List<Widget> _pages = [
+    const MealsPage(),
+    const Center(
+      child: Text("Chefs page"),
     ),
-    Container(
-      child: Center(
-        child: Text("Orders page"),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: Text("Profile page"),
-      ),
-    ),
+    const OrdersPage(),
+    const ProfilePage(),
   ];
 
   int _selectedPage = 0;
@@ -47,15 +38,31 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("بيتوتي"),
+        title: Text(
+          "بَيتوتيْ",
+          style: TextStyle(
+            fontSize: 21.sp,
+          ),
+        ),
         actions: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, NameScreen.cartScreen);
             },
-            child: Icon(Icons.shopping_cart),
+            child: Icon(
+              MdiIcons.cartOutline,
+              size: 25.sp,
+            ),
           ),
-          Icon(Icons.search),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.w,
+            ),
+            child: Icon(
+              Icons.search_rounded,
+              size: 25.sp,
+            ),
+          ),
         ],
       ),
       body: _pages[_selectedPage],

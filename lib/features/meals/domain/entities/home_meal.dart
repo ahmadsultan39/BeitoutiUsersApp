@@ -4,6 +4,7 @@ import 'home_chef.dart';
 class HomeMeal extends Equatable {
   final int id;
   final int price;
+  final int? priceAfterDiscount;
   final double? rating;
   final int ratesCount;
   final int? discountPercentage;
@@ -14,6 +15,7 @@ class HomeMeal extends Equatable {
 
   const HomeMeal({
     required this.id,
+    required this.priceAfterDiscount,
     required this.image,
     required this.name,
     required this.price,

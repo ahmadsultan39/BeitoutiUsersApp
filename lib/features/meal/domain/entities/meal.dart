@@ -10,6 +10,7 @@ class Meal extends Equatable {
   final int maxMealsPerDay;
   final int? discountPercentage;
   final int remainingAvailableMealCount;
+  final int? priceAfterDiscount;
   final double? rating;
   final double deliveryFee;
   final int expectedPreparationTime;
@@ -24,6 +25,7 @@ class Meal extends Equatable {
 
   const Meal({
     required this.id,
+    required this.priceAfterDiscount,
     required this.price,
     required this.isSaved,
     required this.categoryId,
@@ -47,6 +49,7 @@ class Meal extends Equatable {
   List<Object?> get props => [
         id,
         price,
+        priceAfterDiscount,
         categoryId,
         ratesCount,
         maxMealsPerDay,

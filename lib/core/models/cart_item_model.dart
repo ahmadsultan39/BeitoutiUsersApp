@@ -39,4 +39,24 @@ class CartItemModel {
       _$CartItemModelToJson(
         instance ?? this,
       );
+
+  factory CartItemModel.cartItemWithNewQuantity({
+    required CartItemModel item,
+    required int quantity,
+  }) {
+    return CartItemModel(
+      id: item.id,
+      chefId: item.chefId,
+      mealName: item.mealName,
+      chefName: item.chefName,
+      mealImage: item.mealImage,
+      mealQuantity: quantity,
+      deliveryCost: item.deliveryCost,
+      mealCost: item.mealCost,
+      maxMealsPerDay: item.maxMealsPerDay,
+      maxChefMealsPerDay: item.maxChefMealsPerDay,
+      deliveryStartsAt: item.deliveryStartsAt,
+      notes: item.notes,
+    );
+  }
 }

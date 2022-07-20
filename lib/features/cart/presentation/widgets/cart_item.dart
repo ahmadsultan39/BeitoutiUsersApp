@@ -29,135 +29,151 @@ class CartItem extends StatelessWidget {
         horizontal: 20.w,
         vertical: 20.h,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(10,10),
+              blurRadius: 15,
             ),
-            child: CachedNetworkImage(
-              imageUrl: Endpoints.imageUrl + item.mealImage,
-              width: 90.w,
-              height: 90.h,
-              fit: BoxFit.cover,
-              placeholder: (_, __) => Loader(size: 25.sp),
-              errorWidget: (_, __, ___) => Icon(Icons.error, size: 25.sp),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: Endpoints.imageUrl + item.mealImage,
+                width: 90.w,
+                height: 90.h,
+                fit: BoxFit.cover,
+                placeholder: (_, __) => Loader(size: 25.sp),
+                errorWidget: (_, __, ___) => Icon(Icons.error, size: 25.sp),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.w,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.mealName,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 3.h,
                   ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  (item.mealCost * item.mealQuantity).toString() + " ل.س",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w500,
+                  Text(
+                    item.mealName,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                SizedBox(
-                  width: 225.w,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              increase(index, item.id);
-                            },
-                            child: Container(
-                              height: 25.w,
-                              width: 25.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Theme.of(context).backgroundColor,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "+",
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    (item.mealCost * item.mealQuantity).toString() + " ل.س",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  SizedBox(
+                    width: 225.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                increase(index, item.id);
+                              },
+                              child: Container(
+                                height: 25.w,
+                                width: 25.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Theme.of(context).backgroundColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "+",
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10.w,
-                            ),
-                            child: Text(
-                              item.mealQuantity.toString(),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              decrease(index, item.id);
-                            },
-                            child: Container(
-                              height: 25.w,
-                              width: 25.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Theme.of(context).backgroundColor,
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.w,
                               ),
-                              child: Center(
-                                child: Text(
-                                  "-",
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.bold,
+                              child: Text(
+                                item.mealQuantity.toString(),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                decrease(index, item.id);
+                              },
+                              child: Container(
+                                height: 25.w,
+                                width: 25.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Theme.of(context).backgroundColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "-",
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          delete(item.id);
-                        },
-                        child: Icon(
-                          Icons.delete_rounded,
-                          size: 22.sp,
-                          color: Colors.red,
+                          ],
                         ),
-                      ),
-                    ],
+                        GestureDetector(
+                          onTap: () {
+                            delete(item.id);
+                          },
+                          child: Icon(
+                            Icons.delete_rounded,
+                            size: 22.sp,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

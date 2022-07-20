@@ -11,9 +11,17 @@ abstract class MealRepository extends BaseRepository {
 
   Future<Either<Failure, void>> removeFromFavourite(int mealId);
 
+  Future<Either<Failure, int>> getAllCartMealsQuantity();
+
+  Future<Either<Failure, int>> getCartMealQuantity(int mealId);
+
   Future<Either<Failure, void>> addMealToCart({
     required Meal meal,
     required String notes,
     required int quantity,
+  });
+
+  Future<Either<Failure, bool>> checkAddToCartAvailability({
+    required int chefId,
   });
 }

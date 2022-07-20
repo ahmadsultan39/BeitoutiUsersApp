@@ -73,6 +73,55 @@ abstract class RemoveFromFavourite extends MealEvent
   }
 }
 
+abstract class CheckAddToCartAvailability extends MealEvent
+    implements
+        Built<CheckAddToCartAvailability, CheckAddToCartAvailabilityBuilder> {
+  //getter fields
+
+  int get chefId;
+
+  CheckAddToCartAvailability._();
+
+  factory CheckAddToCartAvailability(
+          [Function(CheckAddToCartAvailabilityBuilder b) updates]) =
+      _$CheckAddToCartAvailability;
+
+  factory CheckAddToCartAvailability.initial() {
+    return CheckAddToCartAvailability((b) => b);
+  }
+}
+
+abstract class GetAllCartMealsQuantity extends MealEvent
+    implements Built<GetAllCartMealsQuantity, GetAllCartMealsQuantityBuilder> {
+  //getter fields
+
+  GetAllCartMealsQuantity._();
+
+  factory GetAllCartMealsQuantity(
+          [Function(GetAllCartMealsQuantityBuilder b) updates]) =
+      _$GetAllCartMealsQuantity;
+
+  factory GetAllCartMealsQuantity.initial() {
+    return GetAllCartMealsQuantity((b) => b);
+  }
+}
+
+abstract class GetCartMealQuantity extends MealEvent
+    implements Built<GetCartMealQuantity, GetCartMealQuantityBuilder> {
+  //getter fields
+
+  int get mealId;
+
+  GetCartMealQuantity._();
+
+  factory GetCartMealQuantity(
+      [Function(GetCartMealQuantityBuilder b) updates]) = _$GetCartMealQuantity;
+
+  factory GetCartMealQuantity.initial() {
+    return GetCartMealQuantity((b) => b);
+  }
+}
+
 abstract class ClearMessage extends MealEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields
@@ -80,7 +129,7 @@ abstract class ClearMessage extends MealEvent
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-      _$ClearMessage;
+  _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);

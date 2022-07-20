@@ -10,6 +10,7 @@ import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.d
 import 'package:beitouti_users/features/subscription/data/models/subscription_meal_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 import '../../../features/current_subscriptions/data/models/current_subscription_model.dart';
 import '../../../features/current_subscriptions/data/models/current_subscription_order.dart';
 import '../../../features/chef_menu/data/models/subscription_meal_model.dart';

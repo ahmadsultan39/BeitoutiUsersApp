@@ -1,13 +1,16 @@
+import 'package:beitouti_users/features/meal/presentation/widgets/not_available_dialog.dart';
 import 'package:beitouti_users/features/meal/presentation/widgets/notes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddToCartButton extends StatelessWidget {
   final Function(String) onTap;
+  final String message;
 
   const AddToCartButton({
     Key? key,
     required this.onTap,
+    required this.message,
   }) : super(key: key);
 
   @override
@@ -20,7 +23,11 @@ class AddToCartButton extends StatelessWidget {
         onTap: () {
           showDialog(
             context: context,
-            builder: (_) => NotesDialog(onTap: onTap),
+            builder: (_) => message.isEmpty
+                ? NotesDialog(onTap: onTap)
+                : NotAvailableDialog(
+                    message: message,
+                  ),
           );
         },
         child: Container(

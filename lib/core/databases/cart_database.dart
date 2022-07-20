@@ -37,33 +37,33 @@ class CartDataBaseManager {
   Future<void> addToCart(CartItemModel cartItem) async {
     var dbClient = await database;
 
-    await dbClient.insert(
-      'CART',
-      cartItem.toJson(instance: cartItem),
-      conflictAlgorithm: ConflictAlgorithm.replace,
+    final currentItem = await dbClient.rawQuery(
+      'SELECT id,mealQuantity FROM CART WHERE id=${cartItem.id}',
     );
+    if (currentItem.isEmpty) {
+      await dbClient.insert(
+        'CART',
+        cartItem.toJson(instance: cartItem),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    } else {
+      final int currentItemQuantity =
+          currentItem.elementAt(0)['mealQuantity'] as int;
+      dbClient.rawUpdate(
+        'UPDATE CART SET mealQuantity = ? WHERE id = ?',
+        [currentItemQuantity + cartItem.mealQuantity, cartItem.id],
+      );
+    }
   }
 
   Future<List<CartItemModel>> getCart() async {
     var dbClient = await database;
     final List<CartItemModel> cartItems = [];
-    await dbClient.query(
-      "CART",
-      columns: [
-        'id',
-        'chefId',
-        'mealName',
-        'chefName',
-        'mealImage',
-        'mealQuantity',
-        'deliveryCost',
-        'mealCost',
-        'maxMealsPerDay',
-        'maxChefMealsPerDay',
-        'deliveryStartsAt',
-        'notes',
-      ],
-    ).then((data) {
+    await dbClient
+        .rawQuery(
+      "SELECT * FROM CART",
+    )
+        .then((data) {
       for (var cartItem in data) {
         cartItems.add(CartItemModel.fromJson(cartItem));
       }
@@ -73,38 +73,59 @@ class CartDataBaseManager {
 
   Future<void> removeCartItem(int id) async {
     var dbClient = await database;
-    dbClient.delete("CART", where: "id = $id");
+    await dbClient.delete("CART", where: "id = $id");
   }
 
-  Future<int> getMealQuantity(int mealId) async {
+  Future<void> updateCartItemQuantity({
+    required int id,
+    required int quantity,
+  }) async {
     var dbClient = await database;
-    var queryResult = await dbClient.rawQuery(
-      'SELECT * FROM CART WHERE id=$mealId',
+    dbClient.rawUpdate(
+      'UPDATE CART SET mealQuantity = ? WHERE id = ?',
+      [quantity, id],
     );
-    if (queryResult.isEmpty) {
-      return 0;
-    }
-    print('************************\n');
-    print(queryResult);
-    print('\n************************');
-    return 0;
   }
 
-  Future<int> getAllMealsQuantity(int mealId) async {
+  Future<int> getAllMealsQuantity() async {
     int mealsQuantity = 0;
     var dbClient = await database;
     var queryResult = await dbClient.rawQuery(
-      'SELECT * FROM CART WHERE id=$mealId',
+      'SELECT mealQuantity FROM CART',
     );
-    if (queryResult.isEmpty) {
-      return 0;
-    }
-    print('************************\n');
-    print(queryResult);
-    print('\n************************');
+    // if cart is empty
+    if (queryResult.isEmpty) return 0;
+    // else count all meals quantity to check ability of adding new meal
+    // (to add new meal or increase quantity of meal we should check max meals for chef)
     for (var cartItem in queryResult) {
-      mealsQuantity += cartItem["mealsQuantity"] as int;
+      mealsQuantity += cartItem["mealQuantity"] as int;
     }
     return mealsQuantity;
+  }
+
+  Future<bool> checkAddToCartAvailability({
+    required int chefId,
+  }) async {
+    var dbClient = await database;
+    final records = await dbClient.rawQuery('SELECT chefId FROM CART');
+    // if cart is empty so we can add any meal to it
+    if (records.isEmpty) return true;
+    // if cart contain a meal from the same chef
+    if (records.elementAt(0)['chefId'] == chefId) return true;
+    // if cart contain a meal from another chef (chefId = this.meal.chefId)
+    return false;
+  }
+
+  Future<int> getCartMealQuantity({
+    required int mealId,
+  }) async {
+    var dbClient = await database;
+    final mealQuantity = await dbClient.rawQuery(
+      'SELECT mealQuantity FROM CART WHERE id=$mealId',
+    );
+    // if meal dose not exist
+    if (mealQuantity.isEmpty) return 0;
+    // if meal exist return it's quantity
+    return mealQuantity[0]['mealQuantity'] as int;
   }
 }

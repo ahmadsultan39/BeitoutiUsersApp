@@ -358,6 +358,236 @@ class RemoveFromFavouriteBuilder
   }
 }
 
+class _$CheckAddToCartAvailability extends CheckAddToCartAvailability {
+  @override
+  final int chefId;
+
+  factory _$CheckAddToCartAvailability(
+          [void Function(CheckAddToCartAvailabilityBuilder)? updates]) =>
+      (new CheckAddToCartAvailabilityBuilder()..update(updates))._build();
+
+  _$CheckAddToCartAvailability._({required this.chefId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        chefId, r'CheckAddToCartAvailability', 'chefId');
+  }
+
+  @override
+  CheckAddToCartAvailability rebuild(
+          void Function(CheckAddToCartAvailabilityBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  CheckAddToCartAvailabilityBuilder toBuilder() =>
+      new CheckAddToCartAvailabilityBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CheckAddToCartAvailability && chefId == other.chefId;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, chefId.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CheckAddToCartAvailability')
+          ..add('chefId', chefId))
+        .toString();
+  }
+}
+
+class CheckAddToCartAvailabilityBuilder
+    implements
+        Builder<CheckAddToCartAvailability, CheckAddToCartAvailabilityBuilder> {
+  _$CheckAddToCartAvailability? _$v;
+
+  int? _chefId;
+  int? get chefId => _$this._chefId;
+  set chefId(int? chefId) => _$this._chefId = chefId;
+
+  CheckAddToCartAvailabilityBuilder();
+
+  CheckAddToCartAvailabilityBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _chefId = $v.chefId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CheckAddToCartAvailability other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$CheckAddToCartAvailability;
+  }
+
+  @override
+  void update(void Function(CheckAddToCartAvailabilityBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CheckAddToCartAvailability build() => _build();
+
+  _$CheckAddToCartAvailability _build() {
+    final _$result = _$v ??
+        new _$CheckAddToCartAvailability._(
+            chefId: BuiltValueNullFieldError.checkNotNull(
+                chefId, r'CheckAddToCartAvailability', 'chefId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetAllCartMealsQuantity extends GetAllCartMealsQuantity {
+  factory _$GetAllCartMealsQuantity(
+          [void Function(GetAllCartMealsQuantityBuilder)? updates]) =>
+      (new GetAllCartMealsQuantityBuilder()..update(updates))._build();
+
+  _$GetAllCartMealsQuantity._() : super._();
+
+  @override
+  GetAllCartMealsQuantity rebuild(
+          void Function(GetAllCartMealsQuantityBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetAllCartMealsQuantityBuilder toBuilder() =>
+      new GetAllCartMealsQuantityBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetAllCartMealsQuantity;
+  }
+
+  @override
+  int get hashCode {
+    return 962394883;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetAllCartMealsQuantity').toString();
+  }
+}
+
+class GetAllCartMealsQuantityBuilder
+    implements
+        Builder<GetAllCartMealsQuantity, GetAllCartMealsQuantityBuilder> {
+  _$GetAllCartMealsQuantity? _$v;
+
+  GetAllCartMealsQuantityBuilder();
+
+  @override
+  void replace(GetAllCartMealsQuantity other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetAllCartMealsQuantity;
+  }
+
+  @override
+  void update(void Function(GetAllCartMealsQuantityBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetAllCartMealsQuantity build() => _build();
+
+  _$GetAllCartMealsQuantity _build() {
+    final _$result = _$v ?? new _$GetAllCartMealsQuantity._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetCartMealQuantity extends GetCartMealQuantity {
+  @override
+  final int mealId;
+
+  factory _$GetCartMealQuantity(
+          [void Function(GetCartMealQuantityBuilder)? updates]) =>
+      (new GetCartMealQuantityBuilder()..update(updates))._build();
+
+  _$GetCartMealQuantity._({required this.mealId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        mealId, r'GetCartMealQuantity', 'mealId');
+  }
+
+  @override
+  GetCartMealQuantity rebuild(
+          void Function(GetCartMealQuantityBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetCartMealQuantityBuilder toBuilder() =>
+      new GetCartMealQuantityBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetCartMealQuantity && mealId == other.mealId;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, mealId.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GetCartMealQuantity')
+          ..add('mealId', mealId))
+        .toString();
+  }
+}
+
+class GetCartMealQuantityBuilder
+    implements Builder<GetCartMealQuantity, GetCartMealQuantityBuilder> {
+  _$GetCartMealQuantity? _$v;
+
+  int? _mealId;
+  int? get mealId => _$this._mealId;
+  set mealId(int? mealId) => _$this._mealId = mealId;
+
+  GetCartMealQuantityBuilder();
+
+  GetCartMealQuantityBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _mealId = $v.mealId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetCartMealQuantity other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetCartMealQuantity;
+  }
+
+  @override
+  void update(void Function(GetCartMealQuantityBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetCartMealQuantity build() => _build();
+
+  _$GetCartMealQuantity _build() {
+    final _$result = _$v ??
+        new _$GetCartMealQuantity._(
+            mealId: BuiltValueNullFieldError.checkNotNull(
+                mealId, r'GetCartMealQuantity', 'mealId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

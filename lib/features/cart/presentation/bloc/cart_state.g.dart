@@ -14,7 +14,13 @@ class _$CartState extends CartState {
   @override
   final bool error;
   @override
+  final bool isCartEmpty;
+  @override
   final BuiltList<CartItemModel> cartItems;
+  @override
+  final int mealsCost;
+  @override
+  final int deliveryFee;
 
   factory _$CartState([void Function(CartStateBuilder)? updates]) =>
       (new CartStateBuilder()..update(updates))._build();
@@ -23,12 +29,20 @@ class _$CartState extends CartState {
       {required this.isLoading,
       required this.message,
       required this.error,
-      required this.cartItems})
+      required this.isCartEmpty,
+      required this.cartItems,
+      required this.mealsCost,
+      required this.deliveryFee})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'CartState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'CartState', 'message');
     BuiltValueNullFieldError.checkNotNull(error, r'CartState', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        isCartEmpty, r'CartState', 'isCartEmpty');
     BuiltValueNullFieldError.checkNotNull(cartItems, r'CartState', 'cartItems');
+    BuiltValueNullFieldError.checkNotNull(mealsCost, r'CartState', 'mealsCost');
+    BuiltValueNullFieldError.checkNotNull(
+        deliveryFee, r'CartState', 'deliveryFee');
   }
 
   @override
@@ -45,14 +59,24 @@ class _$CartState extends CartState {
         isLoading == other.isLoading &&
         message == other.message &&
         error == other.error &&
-        cartItems == other.cartItems;
+        isCartEmpty == other.isCartEmpty &&
+        cartItems == other.cartItems &&
+        mealsCost == other.mealsCost &&
+        deliveryFee == other.deliveryFee;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode),
-        cartItems.hashCode));
+        $jc(
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
+                        error.hashCode),
+                    isCartEmpty.hashCode),
+                cartItems.hashCode),
+            mealsCost.hashCode),
+        deliveryFee.hashCode));
   }
 
   @override
@@ -61,7 +85,10 @@ class _$CartState extends CartState {
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
-          ..add('cartItems', cartItems))
+          ..add('isCartEmpty', isCartEmpty)
+          ..add('cartItems', cartItems)
+          ..add('mealsCost', mealsCost)
+          ..add('deliveryFee', deliveryFee))
         .toString();
   }
 }
@@ -81,11 +108,23 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
   bool? get error => _$this._error;
   set error(bool? error) => _$this._error = error;
 
+  bool? _isCartEmpty;
+  bool? get isCartEmpty => _$this._isCartEmpty;
+  set isCartEmpty(bool? isCartEmpty) => _$this._isCartEmpty = isCartEmpty;
+
   ListBuilder<CartItemModel>? _cartItems;
   ListBuilder<CartItemModel> get cartItems =>
       _$this._cartItems ??= new ListBuilder<CartItemModel>();
   set cartItems(ListBuilder<CartItemModel>? cartItems) =>
       _$this._cartItems = cartItems;
+
+  int? _mealsCost;
+  int? get mealsCost => _$this._mealsCost;
+  set mealsCost(int? mealsCost) => _$this._mealsCost = mealsCost;
+
+  int? _deliveryFee;
+  int? get deliveryFee => _$this._deliveryFee;
+  set deliveryFee(int? deliveryFee) => _$this._deliveryFee = deliveryFee;
 
   CartStateBuilder();
 
@@ -95,7 +134,10 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
       _isLoading = $v.isLoading;
       _message = $v.message;
       _error = $v.error;
+      _isCartEmpty = $v.isCartEmpty;
       _cartItems = $v.cartItems.toBuilder();
+      _mealsCost = $v.mealsCost;
+      _deliveryFee = $v.deliveryFee;
       _$v = null;
     }
     return this;
@@ -126,7 +168,13 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
                   message, r'CartState', 'message'),
               error: BuiltValueNullFieldError.checkNotNull(
                   error, r'CartState', 'error'),
-              cartItems: cartItems.build());
+              isCartEmpty: BuiltValueNullFieldError.checkNotNull(
+                  isCartEmpty, r'CartState', 'isCartEmpty'),
+              cartItems: cartItems.build(),
+              mealsCost: BuiltValueNullFieldError.checkNotNull(
+                  mealsCost, r'CartState', 'mealsCost'),
+              deliveryFee: BuiltValueNullFieldError.checkNotNull(
+                  deliveryFee, r'CartState', 'deliveryFee'));
     } catch (_) {
       late String _$failedField;
       try {

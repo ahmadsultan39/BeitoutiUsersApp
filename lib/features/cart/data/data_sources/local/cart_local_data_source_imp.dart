@@ -26,15 +26,18 @@ class CartLocalDataSourceImp extends BaseLocalDataSourceImpl
   }
 
   @override
-  Future<void> decreaseCartItemQuantityByOne(int cartItemId) {
-    // TODO: implement decreaseCartItemQuantityByOne
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> increaseCartItemQuantityByOne(int cartItemId) {
-    // TODO: implement increaseCartItemQuantityByOne
-    throw UnimplementedError();
+  Future<void> updateCartItemQuantity({
+    required int id,
+    required int quantity,
+  }) async {
+    try {
+      await cartDataBaseManager.updateCartItemQuantity(
+        id: id,
+        quantity: quantity,
+      );
+    } catch (e) {
+      throw CacheException();
+    }
   }
 
   @override

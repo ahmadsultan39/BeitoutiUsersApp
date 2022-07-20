@@ -7,7 +7,6 @@ import 'package:beitouti_users/features/meals/domain/entities/home_chef.dart';
 import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
 import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscription_order_page.dart';
 import 'package:beitouti_users/features/current_subscriptions/presentation/pages/current_subscriptions_page.dart';
-import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
 import 'package:beitouti_users/features/meal/presentation/pages/meal_page.dart';
 import 'package:beitouti_users/features/meals/presentation/pages/all_offered_meals_page.dart';
 import 'package:beitouti_users/features/order/presentation/pages/order_page.dart';
@@ -51,7 +50,9 @@ class GenerateScreen {
       case NameScreen.chefScreen:
         {
           return MaterialPageRoute(
-            builder: (context) =>  ChefMenuPage(chef: value.arguments as HomeChef));}
+              builder: (context) =>
+                  ChefMenuPage(chef: value.arguments as HomeChef));
+        }
       case NameScreen.allOfferedMealsScreen:
         {
           return MaterialPageRoute(

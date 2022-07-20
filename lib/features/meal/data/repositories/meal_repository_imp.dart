@@ -75,14 +75,46 @@ class MealRepositoryImp extends BaseRepositoryImpl implements MealRepository {
         mealQuantity: quantity,
         deliveryCost: meal.deliveryFee.round(),
         mealCost: meal.priceAfterDiscount ?? meal.price,
-        maxMealsPerDay: meal.maxMealsPerDay,
-        maxChefMealsPerDay: meal.remainingAvailableMealCount,
+        maxMealsPerDay: meal.remainingAvailableMealCount,
+        maxChefMealsPerDay: meal.chef.remainingAvailableChefMealsCount,
         deliveryStartsAt: meal.chef.deliveryStartsAt,
         notes: notes,
       );
       await _local.addToCart(cartItemModel);
       return const Right(null);
-    } on CacheException catch (e) {
+    } on CacheException {
+      return const Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkAddToCartAvailability({
+    required int chefId,
+  }) async {
+    try {
+      final result = await _local.checkAddToCartAvailability(chefId: chefId);
+      return Right(result);
+    } on CacheException {
+      return const Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getAllCartMealsQuantity() async {
+    try {
+      final result = await _local.getAllCartMealsQuantity();
+      return Right(result);
+    } on CacheException {
+      return const Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getCartMealQuantity(int mealId) async {
+    try {
+      final result = await _local.getCartMealQuantity(mealId: mealId);
+      return Right(result);
+    } on CacheException {
       return const Left(CacheFailure());
     }
   }

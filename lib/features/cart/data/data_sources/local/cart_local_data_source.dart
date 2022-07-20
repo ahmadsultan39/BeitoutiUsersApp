@@ -7,7 +7,8 @@ abstract class CartLocalDataSource extends BaseLocalDataSource {
 
   Future<void> removeCartItem(int cartItemId);
 
-  Future<void> increaseCartItemQuantityByOne(int cartItemId);
-
-  Future<void> decreaseCartItemQuantityByOne(int cartItemId);
+  Future<void> updateCartItemQuantity({
+    required int id,
+    required int quantity,
+  });
 }

@@ -45,6 +45,32 @@ class Meal extends Equatable {
     required this.category,
   });
 
+  factory Meal.withNewFavouriteStatus({
+    required Meal meal,
+    required bool isFavourite,
+  }) =>
+      Meal(
+        id: meal.id,
+        priceAfterDiscount: meal.priceAfterDiscount,
+        price: meal.price,
+        isSaved: isFavourite,
+        categoryId: meal.categoryId,
+        ratesCount: meal.ratesCount,
+        maxMealsPerDay: meal.maxMealsPerDay,
+        discountPercentage: meal.discountPercentage,
+        remainingAvailableMealCount: meal.remainingAvailableMealCount,
+        rating: meal.rating,
+        deliveryFee: meal.deliveryFee,
+        expectedPreparationTime: meal.expectedPreparationTime,
+        name: meal.name,
+        image: meal.image,
+        ingredients: meal.ingredients,
+        approved: meal.approved,
+        isAvailable: meal.isAvailable,
+        chef: meal.chef,
+        category: meal.category,
+      );
+
   @override
   List<Object?> get props => [
         id,

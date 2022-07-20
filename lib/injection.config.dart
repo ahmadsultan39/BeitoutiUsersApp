@@ -28,7 +28,7 @@ import 'features/auth/domain/repository/auth_repository.dart' as _i33;
 import 'features/auth/domain/use_cases/check_code_use_case.dart' as _i43;
 import 'features/auth/domain/use_cases/request_register_use_case.dart' as _i98;
 import 'features/auth/domain/use_cases/send_code_use_case.dart' as _i104;
-import 'features/auth/presentation/bloc/auth_bloc.dart' as _i111;
+import 'features/auth/presentation/bloc/auth_bloc.dart' as _i112;
 import 'features/cart/data/data_sources/local/cart_local_data_source.dart'
     as _i37;
 import 'features/cart/data/data_sources/local/cart_local_data_source_imp.dart'
@@ -39,10 +39,12 @@ import 'features/cart/data/data_sources/remote/cart_remote_data_source_imp.dart'
     as _i40;
 import 'features/cart/data/repositories/cart_repository_imp.dart' as _i42;
 import 'features/cart/domain/repositories/cart_repository.dart' as _i41;
-import 'features/cart/domain/use_cases/delet_cart_item_use_case.dart' as _i62;
+import 'features/cart/domain/use_cases/delete_cart_item_use_case.dart' as _i62;
 import 'features/cart/domain/use_cases/get_cart_items_use_case.dart' as _i63;
+import 'features/cart/domain/use_cases/increase_cart_item_quantity_use_case.dart'
+    as _i109;
 import 'features/cart/domain/use_cases/order_cart_use_case.dart' as _i82;
-import 'features/cart/presentation/bloc/cart_bloc.dart' as _i113;
+import 'features/cart/presentation/bloc/cart_bloc.dart' as _i114;
 import 'features/chef_menu/data/data_sources/local/chef_menu_local_data_source.dart'
     as _i44;
 import 'features/chef_menu/data/data_sources/local/chef_menu_local_data_source_imp.dart'
@@ -61,7 +63,7 @@ import 'features/chef_menu/domain/use_cases/get_chef_category_meals.dart'
 import 'features/chef_menu/domain/use_cases/get_chef_info.dart' as _i66;
 import 'features/chef_menu/domain/use_cases/get_chef_subscriptions.dart'
     as _i67;
-import 'features/chef_menu/presentation/bloc/chef_menu_bloc.dart' as _i115;
+import 'features/chef_menu/presentation/bloc/chef_menu_bloc.dart' as _i117;
 import 'features/chefs/data/data_sources/local/chefs_local_data_source.dart'
     as _i50;
 import 'features/chefs/data/data_sources/local/chefs_local_data_source_imp.dart'
@@ -76,7 +78,7 @@ import 'features/chefs/domain/use_cases/get_most_recent.dart' as _i69;
 import 'features/chefs/domain/use_cases/get_nearest.dart' as _i70;
 import 'features/chefs/domain/use_cases/get_top_orders.dart' as _i72;
 import 'features/chefs/domain/use_cases/get_top_rated.dart' as _i73;
-import 'features/chefs/presentation/bloc/chefs_bloc.dart' as _i116;
+import 'features/chefs/presentation/bloc/chefs_bloc.dart' as _i118;
 import 'features/current_subscriptions/data/data_sources/local/current_subscriptions_local_data_source.dart'
     as _i56;
 import 'features/current_subscriptions/data/data_sources/local/current_subscriptions_local_data_source_imp.dart'
@@ -94,7 +96,7 @@ import 'features/current_subscriptions/domain/use_cases/get_current_subscription
 import 'features/current_subscriptions/domain/use_cases/get_subscription_order_use_case.dart'
     as _i71;
 import 'features/current_subscriptions/presentation/bloc/current_subscriptions_bloc.dart'
-    as _i117;
+    as _i119;
 import 'features/meal/data/data_sources/local/meal_local_data_source.dart'
     as _i74;
 import 'features/meal/data/data_sources/local/meal_local_data_source_imp.dart'
@@ -105,12 +107,17 @@ import 'features/meal/data/data_sources/remote/meal_remote_data_source_imp.dart'
     as _i7;
 import 'features/meal/data/repositories/meal_repository_imp.dart' as _i77;
 import 'features/meal/domain/repositories/meal_repository.dart' as _i76;
-import 'features/meal/domain/use_cases/add_meal_to_cart_use_case.dart' as _i109;
-import 'features/meal/domain/use_cases/add_to_favourite_use_case.dart' as _i110;
-import 'features/meal/domain/use_cases/get_meal_use_case.dart' as _i121;
+import 'features/meal/domain/use_cases/add_meal_to_cart_use_case.dart' as _i110;
+import 'features/meal/domain/use_cases/add_to_favourite_use_case.dart' as _i111;
+import 'features/meal/domain/use_cases/check_add_to_cart_availability_use_case.dart'
+    as _i115;
+import 'features/meal/domain/use_cases/get_all_cart_meals_quantity_use_case.dart'
+    as _i120;
+import 'features/meal/domain/use_cases/get_cart_meal_quantity.dart' as _i123;
+import 'features/meal/domain/use_cases/get_meal_use_case.dart' as _i125;
 import 'features/meal/domain/use_cases/remove_from_favourite_use_case.dart'
     as _i96;
-import 'features/meal/presentation/bloc/meal_bloc.dart' as _i131;
+import 'features/meal/presentation/bloc/meal_bloc.dart' as _i135;
 import 'features/meals/data/data_sources/local/meals_local_data_source.dart'
     as _i78;
 import 'features/meals/data/data_sources/local/meals_local_data_source_imp.dart'
@@ -122,20 +129,20 @@ import 'features/meals/data/data_sources/remote/meals_remote_data_source_imp.dar
 import 'features/meals/data/repositories/meals_repository_imp.dart' as _i81;
 import 'features/meals/domain/repositories/meals_repository.dart' as _i80;
 import 'features/meals/domain/use_cases/get_all_offered_meals_use_case.dart'
-    as _i118;
+    as _i121;
 import 'features/meals/domain/use_cases/get_all_subscriptions_use_case.dart'
-    as _i119;
-import 'features/meals/domain/use_cases/get_offered_meals_use_case.dart'
     as _i122;
+import 'features/meals/domain/use_cases/get_offered_meals_use_case.dart'
+    as _i126;
 import 'features/meals/domain/use_cases/get_recent_meals_use_case.dart'
-    as _i125;
-import 'features/meals/domain/use_cases/get_top_ordered_meals_use_case.dart'
-    as _i128;
-import 'features/meals/domain/use_cases/get_top_rated_meals_use_case.dart'
     as _i129;
+import 'features/meals/domain/use_cases/get_top_ordered_meals_use_case.dart'
+    as _i132;
+import 'features/meals/domain/use_cases/get_top_rated_meals_use_case.dart'
+    as _i133;
 import 'features/meals/domain/use_cases/get_top_subscriptions_meals_use_case.dart'
-    as _i130;
-import 'features/meals/presentation/bloc/meals_bloc.dart' as _i132;
+    as _i134;
+import 'features/meals/presentation/bloc/meals_bloc.dart' as _i136;
 import 'features/order/data/data_sources/local/order_local_data_source.dart'
     as _i83;
 import 'features/order/data/data_sources/local/order_local_data_source_imp.dart'
@@ -148,8 +155,8 @@ import 'features/order/data/repositories/order_repository_imp.dart' as _i86;
 import 'features/order/domain/repositories/order_repository.dart' as _i85;
 import 'features/order/domain/use_cases/rate_order_use_case.dart' as _i95;
 import 'features/order/domain/use_cases/report_order_use_case.dart' as _i97;
-import 'features/order/domain/use_cases/show_order_use_case.dart' as _i123;
-import 'features/order/presentation/bloc/order_bloc.dart' as _i133;
+import 'features/order/domain/use_cases/show_order_use_case.dart' as _i127;
+import 'features/order/presentation/bloc/order_bloc.dart' as _i137;
 import 'features/orders/data/data_sources/local/orders_local_data_source.dart'
     as _i87;
 import 'features/orders/data/data_sources/local/orders_local_data_source_imp.dart'
@@ -160,12 +167,12 @@ import 'features/orders/data/data_sources/remote/orders_remote_data_source_imp.d
     as _i14;
 import 'features/orders/data/repositories/orders_repository_imp.dart' as _i90;
 import 'features/orders/domain/repositories/orders_repository.dart' as _i89;
-import 'features/orders/domain/use_cases/cancel_order_use_case.dart' as _i112;
+import 'features/orders/domain/use_cases/cancel_order_use_case.dart' as _i113;
 import 'features/orders/domain/use_cases/get_current_orders_use_case.dart'
-    as _i120;
-import 'features/orders/domain/use_cases/get_previous_orders_use_case.dart'
     as _i124;
-import 'features/orders/presentation/bloc/orders_bloc.dart' as _i134;
+import 'features/orders/domain/use_cases/get_previous_orders_use_case.dart'
+    as _i128;
+import 'features/orders/presentation/bloc/orders_bloc.dart' as _i138;
 import 'features/profile/data/data_sources/local/profile_local_data_source.dart'
     as _i91;
 import 'features/profile/data/data_sources/local/profile_local_data_source_imp.dart'
@@ -187,8 +194,8 @@ import 'features/search/data/data_sources/remote/search_remote_data_source_imp.d
     as _i19;
 import 'features/search/data/repositories/search_repository_imp.dart' as _i102;
 import 'features/search/domain/repositories/search_repository.dart' as _i101;
-import 'features/search/domain/use_cases/search_chefs.dart' as _i135;
-import 'features/search/domain/use_cases/search_meals.dart' as _i136;
+import 'features/search/domain/use_cases/search_chefs.dart' as _i139;
+import 'features/search/domain/use_cases/search_meals.dart' as _i140;
 import 'features/search/domain/use_cases/search_subscriptions.dart' as _i103;
 import 'features/splash/data/data_source/local/splash_local_data_source.dart'
     as _i21;
@@ -200,8 +207,8 @@ import 'features/splash/data/data_source/remote/splash_remote_data_source_imp.da
     as _i24;
 import 'features/splash/data/repository/splash_repository_imp.dart' as _i106;
 import 'features/splash/domain/repository/splash_repository.dart' as _i105;
-import 'features/splash/domain/use_cases/check_auth_use_case.dart' as _i114;
-import 'features/splash/presentation/bloc/splash_bloc.dart' as _i137;
+import 'features/splash/domain/use_cases/check_auth_use_case.dart' as _i116;
+import 'features/splash/presentation/bloc/splash_bloc.dart' as _i141;
 import 'features/subscription/data/data_sources/local/subscription_local_data_source.dart'
     as _i25;
 import 'features/subscription/data/data_sources/local/subscription_local_data_source_imp.dart'
@@ -215,14 +222,14 @@ import 'features/subscription/data/repositories/subscription_repository_imp.dart
 import 'features/subscription/domain/repositories/subscription_repository.dart'
     as _i107;
 import 'features/subscription/domain/use_cases/get_subscription_meals_use_case.dart'
-    as _i126;
+    as _i130;
 import 'features/subscription/domain/use_cases/get_subscription_use_case.dart'
-    as _i127;
+    as _i131;
 import 'features/subscription/domain/use_cases/subscribe_use_case.dart'
-    as _i138;
+    as _i142;
 import 'features/subscription/presentation/bloc/subscription_bloc.dart'
-    as _i139;
-import 'injection.dart' as _i140; // ignore_for_file: unnecessary_lambdas
+    as _i143;
+import 'injection.dart' as _i144; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -396,96 +403,108 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
           get<_i27.SubscriptionRemoteDataSource>(),
           baseLocalDataSource: get<_i35.BaseLocalDataSource>(),
           networkInfo: get<_i10.NetworkInfo>()));
-  gh.lazySingleton<_i109.AddMealToCartUseCase>(
-      () => _i109.AddMealToCartUseCase(get<_i76.MealRepository>()));
-  gh.lazySingleton<_i110.AddToFavouriteUseCase>(
-      () => _i110.AddToFavouriteUseCase(get<_i76.MealRepository>()));
-  gh.factory<_i111.AuthBloc>(() => _i111.AuthBloc(get<_i43.CheckCodeUseCase>(),
+  gh.lazySingleton<_i109.UpdateCartItemQuantityUseCase>(
+      () => _i109.UpdateCartItemQuantityUseCase(get<_i41.CartRepository>()));
+  gh.lazySingleton<_i110.AddMealToCartUseCase>(
+      () => _i110.AddMealToCartUseCase(get<_i76.MealRepository>()));
+  gh.lazySingleton<_i111.AddToFavouriteUseCase>(
+      () => _i111.AddToFavouriteUseCase(get<_i76.MealRepository>()));
+  gh.factory<_i112.AuthBloc>(() => _i112.AuthBloc(get<_i43.CheckCodeUseCase>(),
       get<_i98.RequestRegisterUseCase>(), get<_i104.SendCodeUseCase>()));
-  gh.lazySingleton<_i112.CancelOrderUseCase>(
-      () => _i112.CancelOrderUseCase(get<_i89.OrdersRepository>()));
-  gh.factory<_i113.CartBloc>(() => _i113.CartBloc(
+  gh.lazySingleton<_i113.CancelOrderUseCase>(
+      () => _i113.CancelOrderUseCase(get<_i89.OrdersRepository>()));
+  gh.factory<_i114.CartBloc>(() => _i114.CartBloc(
       get<_i63.GetCartItemsUseCase>(),
       get<_i82.OrderCartUseCase>(),
-      get<_i62.DeleteCartItemUseCase>()));
-  gh.lazySingleton<_i114.CheckAuthUseCase>(
-      () => _i114.CheckAuthUseCase(get<_i105.SplashRepository>()));
-  gh.factory<_i115.ChefMenuBloc>(() => _i115.ChefMenuBloc(
+      get<_i62.DeleteCartItemUseCase>(),
+      get<_i109.UpdateCartItemQuantityUseCase>()));
+  gh.lazySingleton<_i115.CheckAddToCartAvailabilityUseCase>(() =>
+      _i115.CheckAddToCartAvailabilityUseCase(get<_i76.MealRepository>()));
+  gh.lazySingleton<_i116.CheckAuthUseCase>(
+      () => _i116.CheckAuthUseCase(get<_i105.SplashRepository>()));
+  gh.factory<_i117.ChefMenuBloc>(() => _i117.ChefMenuBloc(
       get<_i64.GetChefCategoriesUseCase>(),
       get<_i65.GetChefCategoryMealsUseCase>(),
       get<_i66.GetChefInfoUseCase>(),
       get<_i67.GetChefSubscriptionsUseCase>()));
-  gh.factory<_i116.ChefsBloc>(() => _i116.ChefsBloc(
+  gh.factory<_i118.ChefsBloc>(() => _i118.ChefsBloc(
       get<_i70.GetNearestChefsUseCase>(),
       get<_i72.GetTopOrdersChefsUseCase>(),
       get<_i73.GetTopRatedChefsUseCase>(),
       get<_i69.GetMostRecentChefsUseCase>()));
-  gh.factory<_i117.CurrentSubscriptionsBloc>(() =>
-      _i117.CurrentSubscriptionsBloc(
+  gh.factory<_i119.CurrentSubscriptionsBloc>(() =>
+      _i119.CurrentSubscriptionsBloc(
           get<_i68.GetCurrentSubscriptionsUseCase>(),
           get<_i71.GetSubscriptionOrdersUseCase>(),
-          get<_i112.CancelOrderUseCase>()));
-  gh.lazySingleton<_i118.GetAllOfferedMealsUseCase>(
-      () => _i118.GetAllOfferedMealsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i119.GetAllSubscriptionsUseCase>(
-      () => _i119.GetAllSubscriptionsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i120.GetCurrentOrdersUseCase>(
-      () => _i120.GetCurrentOrdersUseCase(get<_i89.OrdersRepository>()));
-  gh.lazySingleton<_i121.GetMealUseCase>(
-      () => _i121.GetMealUseCase(get<_i76.MealRepository>()));
-  gh.lazySingleton<_i122.GetOfferedMealsUseCase>(
-      () => _i122.GetOfferedMealsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i123.GetOrderUseCase>(
-      () => _i123.GetOrderUseCase(get<_i85.OrderRepository>()));
-  gh.lazySingleton<_i124.GetPreviousOrdersUseCase>(
-      () => _i124.GetPreviousOrdersUseCase(get<_i89.OrdersRepository>()));
-  gh.lazySingleton<_i125.GetRecentMealsUseCase>(
-      () => _i125.GetRecentMealsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i126.GetSubscriptionMealsUseCase>(() =>
-      _i126.GetSubscriptionMealsUseCase(get<_i107.SubscriptionRepository>()));
-  gh.lazySingleton<_i127.GetSubscriptionUseCase>(
-      () => _i127.GetSubscriptionUseCase(get<_i107.SubscriptionRepository>()));
-  gh.lazySingleton<_i128.GetTopOrderedMealsUseCase>(
-      () => _i128.GetTopOrderedMealsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i129.GetTopRatedMealsUseCase>(
-      () => _i129.GetTopRatedMealsUseCase(get<_i80.MealsRepository>()));
-  gh.lazySingleton<_i130.GetTopSubscriptionsUseCase>(
-      () => _i130.GetTopSubscriptionsUseCase(get<_i80.MealsRepository>()));
-  gh.factory<_i131.MealBloc>(() => _i131.MealBloc(
-      get<_i121.GetMealUseCase>(),
+          get<_i113.CancelOrderUseCase>()));
+  gh.lazySingleton<_i120.GetAllCartMealsQuantityUseCase>(
+      () => _i120.GetAllCartMealsQuantityUseCase(get<_i76.MealRepository>()));
+  gh.lazySingleton<_i121.GetAllOfferedMealsUseCase>(
+      () => _i121.GetAllOfferedMealsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i122.GetAllSubscriptionsUseCase>(
+      () => _i122.GetAllSubscriptionsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i123.GetCartMealQuantityUseCase>(
+      () => _i123.GetCartMealQuantityUseCase(get<_i76.MealRepository>()));
+  gh.lazySingleton<_i124.GetCurrentOrdersUseCase>(
+      () => _i124.GetCurrentOrdersUseCase(get<_i89.OrdersRepository>()));
+  gh.lazySingleton<_i125.GetMealUseCase>(
+      () => _i125.GetMealUseCase(get<_i76.MealRepository>()));
+  gh.lazySingleton<_i126.GetOfferedMealsUseCase>(
+      () => _i126.GetOfferedMealsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i127.GetOrderUseCase>(
+      () => _i127.GetOrderUseCase(get<_i85.OrderRepository>()));
+  gh.lazySingleton<_i128.GetPreviousOrdersUseCase>(
+      () => _i128.GetPreviousOrdersUseCase(get<_i89.OrdersRepository>()));
+  gh.lazySingleton<_i129.GetRecentMealsUseCase>(
+      () => _i129.GetRecentMealsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i130.GetSubscriptionMealsUseCase>(() =>
+      _i130.GetSubscriptionMealsUseCase(get<_i107.SubscriptionRepository>()));
+  gh.lazySingleton<_i131.GetSubscriptionUseCase>(
+      () => _i131.GetSubscriptionUseCase(get<_i107.SubscriptionRepository>()));
+  gh.lazySingleton<_i132.GetTopOrderedMealsUseCase>(
+      () => _i132.GetTopOrderedMealsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i133.GetTopRatedMealsUseCase>(
+      () => _i133.GetTopRatedMealsUseCase(get<_i80.MealsRepository>()));
+  gh.lazySingleton<_i134.GetTopSubscriptionsUseCase>(
+      () => _i134.GetTopSubscriptionsUseCase(get<_i80.MealsRepository>()));
+  gh.factory<_i135.MealBloc>(() => _i135.MealBloc(
+      get<_i125.GetMealUseCase>(),
       get<_i96.RemoveFromFavouriteUseCase>(),
-      get<_i110.AddToFavouriteUseCase>(),
-      get<_i109.AddMealToCartUseCase>()));
-  gh.factory<_i132.MealsBloc>(() => _i132.MealsBloc(
-      get<_i122.GetOfferedMealsUseCase>(),
-      get<_i125.GetRecentMealsUseCase>(),
-      get<_i130.GetTopSubscriptionsUseCase>(),
-      get<_i128.GetTopOrderedMealsUseCase>(),
-      get<_i129.GetTopRatedMealsUseCase>(),
-      get<_i118.GetAllOfferedMealsUseCase>(),
-      get<_i119.GetAllSubscriptionsUseCase>()));
-  gh.factory<_i133.OrderBloc>(() => _i133.OrderBloc(
-      get<_i112.CancelOrderUseCase>(),
-      get<_i123.GetOrderUseCase>(),
+      get<_i111.AddToFavouriteUseCase>(),
+      get<_i110.AddMealToCartUseCase>(),
+      get<_i115.CheckAddToCartAvailabilityUseCase>(),
+      get<_i120.GetAllCartMealsQuantityUseCase>(),
+      get<_i123.GetCartMealQuantityUseCase>()));
+  gh.factory<_i136.MealsBloc>(() => _i136.MealsBloc(
+      get<_i126.GetOfferedMealsUseCase>(),
+      get<_i129.GetRecentMealsUseCase>(),
+      get<_i134.GetTopSubscriptionsUseCase>(),
+      get<_i132.GetTopOrderedMealsUseCase>(),
+      get<_i133.GetTopRatedMealsUseCase>(),
+      get<_i121.GetAllOfferedMealsUseCase>(),
+      get<_i122.GetAllSubscriptionsUseCase>()));
+  gh.factory<_i137.OrderBloc>(() => _i137.OrderBloc(
+      get<_i113.CancelOrderUseCase>(),
+      get<_i127.GetOrderUseCase>(),
       get<_i97.ReportOrderUseCase>(),
       get<_i95.RateOrderUseCase>()));
-  gh.factory<_i134.OrdersBloc>(() => _i134.OrdersBloc(
-      get<_i120.GetCurrentOrdersUseCase>(),
-      get<_i124.GetPreviousOrdersUseCase>(),
-      get<_i112.CancelOrderUseCase>()));
-  gh.lazySingleton<_i135.SearchChefsUseCase>(
-      () => _i135.SearchChefsUseCase(get<_i101.SearchRepo>()));
-  gh.lazySingleton<_i136.SearchMealsUseCase>(
-      () => _i136.SearchMealsUseCase(get<_i101.SearchRepo>()));
-  gh.factory<_i137.SplashBloc>(
-      () => _i137.SplashBloc(get<_i114.CheckAuthUseCase>()));
-  gh.lazySingleton<_i138.SubscribeUseCase>(
-      () => _i138.SubscribeUseCase(get<_i107.SubscriptionRepository>()));
-  gh.factory<_i139.SubscriptionBloc>(() => _i139.SubscriptionBloc(
-      get<_i127.GetSubscriptionUseCase>(),
-      get<_i126.GetSubscriptionMealsUseCase>(),
-      get<_i138.SubscribeUseCase>()));
+  gh.factory<_i138.OrdersBloc>(() => _i138.OrdersBloc(
+      get<_i124.GetCurrentOrdersUseCase>(),
+      get<_i128.GetPreviousOrdersUseCase>(),
+      get<_i113.CancelOrderUseCase>()));
+  gh.lazySingleton<_i139.SearchChefsUseCase>(
+      () => _i139.SearchChefsUseCase(get<_i101.SearchRepo>()));
+  gh.lazySingleton<_i140.SearchMealsUseCase>(
+      () => _i140.SearchMealsUseCase(get<_i101.SearchRepo>()));
+  gh.factory<_i141.SplashBloc>(
+      () => _i141.SplashBloc(get<_i116.CheckAuthUseCase>()));
+  gh.lazySingleton<_i142.SubscribeUseCase>(
+      () => _i142.SubscribeUseCase(get<_i107.SubscriptionRepository>()));
+  gh.factory<_i143.SubscriptionBloc>(() => _i143.SubscriptionBloc(
+      get<_i131.GetSubscriptionUseCase>(),
+      get<_i130.GetSubscriptionMealsUseCase>(),
+      get<_i142.SubscribeUseCase>()));
   return get;
 }
 
-class _$RegisterModule extends _i140.RegisterModule {}
+class _$RegisterModule extends _i144.RegisterModule {}

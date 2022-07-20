@@ -4,25 +4,27 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
+import '../entities/meal.dart';
 
 @lazySingleton
-class RemoveFromFavouriteUseCase
-    implements UseCase<void, ParamsRemoveFromFavouriteUseCase> {
+class GetCartMealQuantityUseCase
+    implements UseCase<int, ParamsGetCartMealQuantityUseCase> {
   final MealRepository _repository;
 
-  RemoveFromFavouriteUseCase(this._repository);
+  GetCartMealQuantityUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(
-      ParamsRemoveFromFavouriteUseCase params) async {
-    return await _repository.removeFromFavourite(params.mealId);
+  Future<Either<Failure, int>> call(
+    ParamsGetCartMealQuantityUseCase params,
+  ) async {
+    return await _repository.getCartMealQuantity(params.mealId);
   }
 }
 
-class ParamsRemoveFromFavouriteUseCase extends Equatable {
+class ParamsGetCartMealQuantityUseCase extends Equatable {
   final int mealId;
 
-  const ParamsRemoveFromFavouriteUseCase({
+  const ParamsGetCartMealQuantityUseCase({
     required this.mealId,
   });
 

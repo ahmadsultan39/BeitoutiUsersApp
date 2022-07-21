@@ -1,4 +1,6 @@
 import 'package:beitouti_users/features/auth/presentation/pages/auth_page.dart';
+import 'package:beitouti_users/features/cart/presentation/bloc/cart.dart';
+import 'package:beitouti_users/features/cart/presentation/pages/order_cart_page.dart';
 
 import 'package:beitouti_users/features/chef_menu/presentation/pages/chef_menu_page.dart';
 import 'package:beitouti_users/features/chefs/presentation/pages/chefs_page.dart';
@@ -15,6 +17,7 @@ import 'package:beitouti_users/features/profile/presentation/pages/profile_page.
 import 'package:beitouti_users/features/splash/presentation/pages/splash_page.dart';
 import 'package:beitouti_users/features/subscription/presentation/pages/subscription_page.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../features/meals/presentation/pages/all_subscriptions_page.dart';
 
@@ -119,6 +122,13 @@ class GenerateScreen {
             builder: (_) => const ProfilePage(),
           );
         }
+      case NameScreen.orderCartScreen:
+        {
+          return PageTransition(
+            child: const OrderCartPage(),
+            type: PageTransitionType.leftToRightWithFade,
+          );
+        }
       default:
         return _errorRoute();
     }
@@ -156,4 +166,5 @@ class NameScreen {
   static const String currentSubscriptionsScreen = "/current-subscriptions";
   static const String subscriptionOrdersScreen = "/subscription-orders";
   static const String profileScreen = "/profile";
+  static const String orderCartScreen = "/order-cart-screen";
 }

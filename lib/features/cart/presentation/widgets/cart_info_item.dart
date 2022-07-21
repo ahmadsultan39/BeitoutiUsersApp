@@ -29,7 +29,7 @@ class CartInfoItem extends StatelessWidget {
             ),
           ),
           Text(
-            value,
+            value + " ل.س",
             style: TextStyle(
               color: Theme.of(context).colorScheme.tertiary,
               fontWeight: FontWeight.w500,

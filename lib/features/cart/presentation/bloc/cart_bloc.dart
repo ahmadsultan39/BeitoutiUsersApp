@@ -9,7 +9,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'cart.dart';
 
-@injectable
+@lazySingleton
 class CartBloc extends Bloc<CartEvent, CartState> {
   final GetCartItemsUseCase _getCartItemsUseCase;
   final OrderCartUseCase _orderCartUseCase;
@@ -58,7 +58,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     ));
   }
 
-  @factoryMethod
   CartBloc(
     this._getCartItemsUseCase,
     this._orderCartUseCase,
@@ -87,27 +86,32 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-              (failure) => emit(
-                    state.rebuild(
-                      (b) => b
-                        ..error = true
-                        ..isLoading = false
-                        ..message = failure.error,
-                    ),
-                  ), (success) {
-            final deletedItem = state.cartItems
-                .firstWhere((cartItem) => cartItem.id == event.id);
-            emit(
+            (failure) => emit(
               state.rebuild(
                 (b) => b
-                  ..mealsCost = state.mealsCost -
-                      (deletedItem.mealCost * deletedItem.mealQuantity)
-                  ..cartItems.remove(deletedItem)
+                  ..error = true
                   ..isLoading = false
-                  ..message = 'تمت عملية الحذف بنجاح',
+                  ..message = failure.error,
               ),
-            );
-          });
+            ),
+            (success) {
+              final deletedItem = state.cartItems
+                  .firstWhere((cartItem) => cartItem.id == event.id);
+              emit(
+                state.rebuild(
+                  (b) => b
+                    ..mealsCost = state.mealsCost -
+                        (deletedItem.mealCost * deletedItem.mealQuantity)
+                    ..cartItems.remove(deletedItem)
+                    ..isLoading = false
+                    ..message = 'تمت عملية الحذف بنجاح',
+                ),
+              );
+              emit(
+                state.rebuild((b) => b..isCartEmpty = state.cartItems.isEmpty),
+              );
+            },
+          );
         }
 
         /// *** GetCartItems *** ///
@@ -132,11 +136,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
                   mealsCost += (item.mealCost * item.mealQuantity);
                 }
                 emit(
-                  state.rebuild((b) => b
-                    ..isLoading = false
-                    ..mealsCost = mealsCost
-                    ..deliveryFee = cartItems[0].deliveryCost
-                    ..cartItems.addAll(cartItems)),
+                  state.rebuild(
+                    (b) => b
+                      ..isLoading = false
+                      ..mealsCost = mealsCost
+                      ..deliveryFee = cartItems[0].deliveryCost
+                      ..cartItems.addAll(cartItems),
+                  ),
                 );
               } else {
                 emit(

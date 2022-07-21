@@ -413,7 +413,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i98.RequestRegisterUseCase>(), get<_i104.SendCodeUseCase>()));
   gh.lazySingleton<_i113.CancelOrderUseCase>(
       () => _i113.CancelOrderUseCase(get<_i89.OrdersRepository>()));
-  gh.factory<_i114.CartBloc>(() => _i114.CartBloc(
+  gh.lazySingleton<_i114.CartBloc>(() => _i114.CartBloc(
       get<_i63.GetCartItemsUseCase>(),
       get<_i82.OrderCartUseCase>(),
       get<_i62.DeleteCartItemUseCase>(),

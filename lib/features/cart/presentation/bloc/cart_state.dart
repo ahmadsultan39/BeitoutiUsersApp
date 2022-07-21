@@ -15,6 +15,7 @@ abstract class CartState implements Built<CartState, CartStateBuilder> {
 
   BuiltList<CartItemModel> get cartItems;
 
+
   int get mealsCost;
 
   int get deliveryFee;

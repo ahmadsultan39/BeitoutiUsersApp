@@ -78,6 +78,7 @@ class MealRepositoryImp extends BaseRepositoryImpl implements MealRepository {
         maxMealsPerDay: meal.remainingAvailableMealCount,
         maxChefMealsPerDay: meal.chef.remainingAvailableChefMealsCount,
         deliveryStartsAt: meal.chef.deliveryStartsAt,
+        deliveryEndsAt: meal.chef.deliveryEndsAt,
         notes: notes,
       );
       await _local.addToCart(cartItemModel);

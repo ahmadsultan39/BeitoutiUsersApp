@@ -62,11 +62,11 @@ class _CartPageState extends State<CartPage> {
     Navigator.of(context).pushNamed(NameScreen.orderCartScreen);
   }
 
-  @override
-  void dispose() async {
-    super.dispose();
-    await _bloc.close();
-  }
+  // @override
+  // void dispose() async {
+  //   super.dispose();
+  //   await _bloc.close();
+  // }
 
   // void orderCart({
   //   required String selectedDeliveryTime,

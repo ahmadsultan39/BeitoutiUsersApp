@@ -14,6 +14,7 @@ class CartItemModel {
   final String chefName;
   final String mealImage;
   final String deliveryStartsAt;
+  final String deliveryEndsAt;
   int mealQuantity;
   final int mealCost;
 
@@ -29,6 +30,7 @@ class CartItemModel {
     required this.maxMealsPerDay,
     required this.maxChefMealsPerDay,
     required this.deliveryStartsAt,
+    required this.deliveryEndsAt,
     required this.notes,
   });
 
@@ -57,6 +59,7 @@ class CartItemModel {
       maxChefMealsPerDay: item.maxChefMealsPerDay,
       deliveryStartsAt: item.deliveryStartsAt,
       notes: item.notes,
+      deliveryEndsAt: item.deliveryEndsAt,
     );
   }
 }

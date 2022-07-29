@@ -1,7 +1,10 @@
 import 'package:beitouti_users/core/util/constants.dart';
+import 'package:beitouti_users/features/cart/presentation/widgets/order_cart_row.dart';
+import 'package:beitouti_users/features/cart/presentation/widgets/radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 import '../../../../injection.dart';
 import '../bloc/cart.dart';
@@ -15,9 +18,24 @@ class OrderCartPage extends StatefulWidget {
 }
 
 class _OrderCartPageState extends State<OrderCartPage> {
-  final _bloc = sl<CartBloc>();
   final TextEditingController _notesTextFieldController =
       TextEditingController();
+
+  final _bloc = sl<CartBloc>();
+
+  final String _paymentMethod = 'كاش';
+
+  String _selectedDeliveryTime = '';
+
+  String _selectedDeliveryDate = 'اليوم';
+
+  void _changeDeliveryDate(String? date) {
+    if (date != null) {
+      setState(() {
+        _selectedDeliveryDate = date; // today or tomorrow
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,80 +70,72 @@ class _OrderCartPageState extends State<OrderCartPage> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10.h,
+                    OrderCartRow(
+                      value: RadioButton(
+                        onChanged: (_) {},
+                        value: 'كاش',
+                        groupValue: _paymentMethod,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "طريقة الدفع:",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Radio<String>(
-                                value: 'كاش',
-                                groupValue: 'كاش',
-                                onChanged: (_) {},
-                                activeColor:
-                                    Theme.of(context).colorScheme.secondary,
-                              ),
-                              Text(
-                                'كاش',
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      title: "طريقة الدفع:",
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10.h,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                    OrderCartRow(
+                      value: Column(
                         children: [
-                          Text(
-                            "وقت التوصيل:",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          RadioButton(
+                            onChanged: _changeDeliveryDate,
+                            value: 'اليوم',
+                            groupValue: _selectedDeliveryDate,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              showTimePicker(
-                                context: context,
-                                initialTime:
-                                    TimeOfDay.fromDateTime(DateTime.now()),
-                              );
-                            },
-                            child: Text(
-                              'اختر وقت التوصيل',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                          RadioButton(
+                            onChanged: _changeDeliveryDate,
+                            value: 'غداً',
+                            groupValue: _selectedDeliveryDate,
                           ),
                         ],
                       ),
+                      title: "تاريخ التوصيل:",
+                    ),
+                    OrderCartRow(
+                      value: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<TimeOfDay?>(
+                            context: context,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                            )),
+                            builder: (context) => TimePickerSpinner(
+                              isForce2Digits: true,
+                              is24HourMode: true,
+                              minutesInterval: 60,
+                              onTimeChange: (selectedTime) {
+                                if (selectedTime.hour <= 9) {
+                                  setState(() {
+                                    _selectedDeliveryTime =
+                                        "0" + selectedTime.hour.toString();
+                                  });
+                                } else {
+                                  setState(() {
+                                    _selectedDeliveryTime =
+                                        selectedTime.hour.toString();
+                                  });
+                                }
+                                print(_selectedDeliveryTime);
+                              },
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'اختر وقت التوصيل',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      title: "وقت التوصيل:",
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(

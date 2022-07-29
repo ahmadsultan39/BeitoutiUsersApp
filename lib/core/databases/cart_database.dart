@@ -30,7 +30,7 @@ class CartDataBaseManager {
     int version,
   ) async {
     await db.execute(
-      'CREATE TABLE CART (id INTEGER PRIMARY KEY, chefId INTEGER NOT NULL,chefName TEXT NOT NULL,mealName TEXT NOT NULL, mealImage TEXT NOT NULL, mealQuantity INTEGER NOT NULL,deliveryCost INTEGER NOT NULL,mealCost INTEGER NOT NULL, maxMealsPerDay INTEGER NOT NULL, maxChefMealsPerDay INTEGER NOT NULL,deliveryStartsAt TEXT NOT NULL,notes TEXT NOT NULL)',
+      'CREATE TABLE CART (id INTEGER PRIMARY KEY, chefId INTEGER NOT NULL,chefName TEXT NOT NULL,mealName TEXT NOT NULL, mealImage TEXT NOT NULL, mealQuantity INTEGER NOT NULL,deliveryCost INTEGER NOT NULL,mealCost INTEGER NOT NULL, maxMealsPerDay INTEGER NOT NULL, maxChefMealsPerDay INTEGER NOT NULL,deliveryStartsAt TEXT NOT NULL,deliveryEndsAt TEXT NOT NULL,notes TEXT NOT NULL)',
     );
   }
 

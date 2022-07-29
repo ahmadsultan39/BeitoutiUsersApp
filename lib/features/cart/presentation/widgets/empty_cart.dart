@@ -16,10 +16,7 @@ class EmptyCart extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/empty_cart.png',
-            color: Theme.of(context)
-                .colorScheme
-                .secondary
-                .withOpacity(0.9),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
             width: 150.w,
             fit: BoxFit.fitWidth,
           ),
@@ -44,8 +41,12 @@ class EmptyCart extends StatelessWidget {
               horizontal: 25.w,
             ),
             child: GestureDetector(
-              onTap: (){
-                Navigator.pushReplacementNamed(context, NameScreen.homeScreen);
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  NameScreen.homeScreen,
+                  (_) => false,
+                );
               },
               child: Container(
                 height: 50.h,

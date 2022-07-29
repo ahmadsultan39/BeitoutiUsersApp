@@ -19,6 +19,7 @@ CartItemModel _$CartItemModelFromJson(Map<String, dynamic> json) =>
       maxMealsPerDay: json['maxMealsPerDay'] as int,
       maxChefMealsPerDay: json['maxChefMealsPerDay'] as int,
       deliveryStartsAt: json['deliveryStartsAt'] as String,
+      deliveryEndsAt: json['deliveryEndsAt'] as String,
       notes: json['notes'] as String,
     );
 
@@ -34,6 +35,7 @@ Map<String, dynamic> _$CartItemModelToJson(CartItemModel instance) =>
       'chefName': instance.chefName,
       'mealImage': instance.mealImage,
       'deliveryStartsAt': instance.deliveryStartsAt,
+      'deliveryEndsAt': instance.deliveryEndsAt,
       'mealQuantity': instance.mealQuantity,
       'mealCost': instance.mealCost,
     };

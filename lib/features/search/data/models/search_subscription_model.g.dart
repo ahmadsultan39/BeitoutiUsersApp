@@ -14,7 +14,7 @@ SearchSubscriptionModel _$SearchSubscriptionModelFromJson(
       (json['meals'] as List<dynamic>).map((e) => e as String).toList(),
       json['days_number'] as int,
       json['starts_at'] as String,
-      json['total_cost'] as int,
+      (json['total_cost'] as num).toDouble(),
       (json['rate'] as num?)?.toDouble(),
       json['rate_count'] as int?,
       SearchChefModel.fromJson(json['chef'] as Map<String, dynamic>),

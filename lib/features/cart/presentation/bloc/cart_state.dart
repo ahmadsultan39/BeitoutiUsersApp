@@ -11,7 +11,13 @@ abstract class CartState implements Built<CartState, CartStateBuilder> {
 
   bool get error;
 
+  bool get isCartEmpty;
+
   BuiltList<CartItemModel> get cartItems;
+
+  int get mealsCost;
+
+  int get deliveryFee;
 
   CartState._();
 
@@ -22,6 +28,9 @@ abstract class CartState implements Built<CartState, CartStateBuilder> {
       (b) => b
         ..isLoading = false
         ..message = ""
+        ..isCartEmpty = false
+        ..deliveryFee = 0
+        ..mealsCost = 0
         ..cartItems.replace([])
         ..error = false,
     );

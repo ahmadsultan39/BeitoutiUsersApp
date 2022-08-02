@@ -103,7 +103,7 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                   },
                   child: _index == 3
                       ? Text(
-                          "الاشتراكات (${widget.bloc.state.totalChefs})",
+                          "الاشتراكات (${widget.bloc.state.totalSubscriptions})",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: primaryColor,
@@ -111,7 +111,7 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                           ),
                         )
                       : Text(
-                          "الاشتراكات (${widget.bloc.state.totalChefs})",
+                          "الاشتراكات (${widget.bloc.state.totalSubscriptions})",
                           style: TextStyle(
                             color: primaryColor,
                             fontSize: 16.sp,

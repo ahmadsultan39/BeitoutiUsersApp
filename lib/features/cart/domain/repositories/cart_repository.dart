@@ -10,4 +10,9 @@ abstract class CartRepository extends BaseRepository {
   Future<Either<Failure, void>> orderCart(CartModel cart);
 
   Future<Either<Failure, void>> deleteCartItem(int id);
+
+  Future<Either<Failure, void>> updateCartItemQuantity({
+    required int id,
+    required int quantity,
+  });
 }

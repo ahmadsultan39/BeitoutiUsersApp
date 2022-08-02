@@ -27,7 +27,7 @@ class _AppState extends State<App> {
 
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      builder: (context, _) {
+      builder: (context, child) {
         return MaterialApp(
           navigatorKey: App.navigatorKey,
           title: 'Beitouti',

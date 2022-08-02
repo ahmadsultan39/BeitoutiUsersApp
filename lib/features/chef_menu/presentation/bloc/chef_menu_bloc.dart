@@ -102,7 +102,7 @@ class ChefMenuBloc extends Bloc<ChefMenuEvent, ChefMenuState> {
             state.rebuild(
               (b) => b
                 ..isCategoryMealsLoading = false
-                ..categoryMeals = meals,
+                ..meals!.update(event.categoryId, (_) => meals,ifAbsent: () => meals),
             ),
           ),
         );

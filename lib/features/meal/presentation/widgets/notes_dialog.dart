@@ -23,7 +23,7 @@ class _NotesDialogState extends State<NotesDialog> {
       ),
       title: Center(
         child: Text(
-          "ملاحظات",
+          "إضافة ملاحظات",
           style: TextStyle(
             color: Theme.of(context).colorScheme.secondary,
             fontSize: 21.sp,
@@ -47,20 +47,14 @@ class _NotesDialogState extends State<NotesDialog> {
           ),
           maxLines: 6,
           decoration: InputDecoration(
-            // // LABEL
-            // labelText: 'labelText',
-            // labelStyle: TextStyle(
-            //   color: Theme.of(context).colorScheme.primary,
-            //   fontSize: 12.sp,
-            // ),
-            //
-            // // HINT
-            // hintText: 'hintText',
-            // hintStyle: TextStyle(
-            //   color: Colors.grey,
-            //   fontSize: 12.sp,
-            //   fontWeight: FontWeight.w300,
-            // ),
+            // LABEL
+            labelText: 'الملاحظات الخاصة بالوجبة',
+            labelStyle: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+              fontSize: 12.sp,
+            ),
+
+            alignLabelWithHint: true,
 
             // FILL COLOR
             filled: true,
@@ -109,8 +103,11 @@ class _NotesDialogState extends State<NotesDialog> {
       actionsAlignment: MainAxisAlignment.center,
       actions: [
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             widget.onTap(_notesTextFieldController.text);
+            Navigator.of(context).pop();
+            // if meal added to cart so we must pop out meal page to reset all counters and quantities
+            await Future.delayed(const Duration(milliseconds: 50));
             Navigator.of(context).pop();
           },
           child: Container(

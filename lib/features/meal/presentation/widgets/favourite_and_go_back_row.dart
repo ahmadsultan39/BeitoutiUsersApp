@@ -24,6 +24,25 @@ class FavouriteAndGoBackRow extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              height: 45.h,
+              width: 45.h,
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
               if (isMealSaved) {
                 removeMealFromFavourite();
               } else {
@@ -41,25 +60,6 @@ class FavouriteAndGoBackRow extends StatelessWidget {
                 child: Icon(
                   isMealSaved ? Icons.favorite : Icons.favorite_outline_rounded,
                   color: Colors.red,
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Container(
-              height: 45.h,
-              width: 45.h,
-              decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),

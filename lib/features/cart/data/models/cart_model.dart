@@ -31,5 +31,6 @@ class CartModel extends Cart {
   factory CartModel.fromJson(Map<String, dynamic> json) =>
       _$CartModelFromJson(json);
 
+
   Map<String, dynamic> toJson() => _$CartModelToJson(this);
 }

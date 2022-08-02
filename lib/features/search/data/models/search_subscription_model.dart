@@ -20,7 +20,7 @@ class SearchSubscriptionModel extends SearchSubscription {
   final String startsAt;
 
   @JsonKey(name: "total_cost")
-  final int totalCost;
+  final double totalCost;
 
   @JsonKey(name: "rate")
   final double? rating;

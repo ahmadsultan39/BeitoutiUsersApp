@@ -13,6 +13,9 @@ class ChefMealModel extends ChefMeal {
   @JsonKey(name: 'discount_percentage')
   final int? discountPercentage;
 
+  @JsonKey(name: 'price_after_discount')
+  final int? priceAfterDiscount;
+
   @JsonKey(name: 'is_available')
   final bool isAvailable;
 
@@ -28,6 +31,7 @@ class ChefMealModel extends ChefMeal {
       double? rating,
       String name,
       String image,
+      this.priceAfterDiscount,
       this.ratesCount,
       this.discountPercentage,
       this.isAvailable,
@@ -35,6 +39,7 @@ class ChefMealModel extends ChefMeal {
       : super(
           id,
           price,
+          priceAfterDiscount,
           rating,
           ratesCount,
           discountPercentage,

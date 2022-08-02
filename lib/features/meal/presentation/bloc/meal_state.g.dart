@@ -15,6 +15,12 @@ class _$MealState extends MealState {
   final bool error;
   @override
   final Meal? meal;
+  @override
+  final bool? isCartAvailable;
+  @override
+  final int? cartMealQuantity;
+  @override
+  final int? allCartMealsQuantity;
 
   factory _$MealState([void Function(MealStateBuilder)? updates]) =>
       (new MealStateBuilder()..update(updates))._build();
@@ -23,7 +29,10 @@ class _$MealState extends MealState {
       {required this.isLoading,
       required this.message,
       required this.error,
-      this.meal})
+      this.meal,
+      this.isCartAvailable,
+      this.cartMealQuantity,
+      this.allCartMealsQuantity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'MealState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'MealState', 'message');
@@ -44,14 +53,24 @@ class _$MealState extends MealState {
         isLoading == other.isLoading &&
         message == other.message &&
         error == other.error &&
-        meal == other.meal;
+        meal == other.meal &&
+        isCartAvailable == other.isCartAvailable &&
+        cartMealQuantity == other.cartMealQuantity &&
+        allCartMealsQuantity == other.allCartMealsQuantity;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode),
-        meal.hashCode));
+        $jc(
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
+                        error.hashCode),
+                    meal.hashCode),
+                isCartAvailable.hashCode),
+            cartMealQuantity.hashCode),
+        allCartMealsQuantity.hashCode));
   }
 
   @override
@@ -60,7 +79,10 @@ class _$MealState extends MealState {
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
-          ..add('meal', meal))
+          ..add('meal', meal)
+          ..add('isCartAvailable', isCartAvailable)
+          ..add('cartMealQuantity', cartMealQuantity)
+          ..add('allCartMealsQuantity', allCartMealsQuantity))
         .toString();
   }
 }
@@ -84,6 +106,21 @@ class MealStateBuilder implements Builder<MealState, MealStateBuilder> {
   Meal? get meal => _$this._meal;
   set meal(Meal? meal) => _$this._meal = meal;
 
+  bool? _isCartAvailable;
+  bool? get isCartAvailable => _$this._isCartAvailable;
+  set isCartAvailable(bool? isCartAvailable) =>
+      _$this._isCartAvailable = isCartAvailable;
+
+  int? _cartMealQuantity;
+  int? get cartMealQuantity => _$this._cartMealQuantity;
+  set cartMealQuantity(int? cartMealQuantity) =>
+      _$this._cartMealQuantity = cartMealQuantity;
+
+  int? _allCartMealsQuantity;
+  int? get allCartMealsQuantity => _$this._allCartMealsQuantity;
+  set allCartMealsQuantity(int? allCartMealsQuantity) =>
+      _$this._allCartMealsQuantity = allCartMealsQuantity;
+
   MealStateBuilder();
 
   MealStateBuilder get _$this {
@@ -93,6 +130,9 @@ class MealStateBuilder implements Builder<MealState, MealStateBuilder> {
       _message = $v.message;
       _error = $v.error;
       _meal = $v.meal;
+      _isCartAvailable = $v.isCartAvailable;
+      _cartMealQuantity = $v.cartMealQuantity;
+      _allCartMealsQuantity = $v.allCartMealsQuantity;
       _$v = null;
     }
     return this;
@@ -121,7 +161,10 @@ class MealStateBuilder implements Builder<MealState, MealStateBuilder> {
                 message, r'MealState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
                 error, r'MealState', 'error'),
-            meal: meal);
+            meal: meal,
+            isCartAvailable: isCartAvailable,
+            cartMealQuantity: cartMealQuantity,
+            allCartMealsQuantity: allCartMealsQuantity);
     replace(_$result);
     return _$result;
   }

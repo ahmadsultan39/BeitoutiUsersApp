@@ -42,7 +42,7 @@ class _ChefMenuMealsPageState extends State<ChefMenuMealsPage> {
                   ],
                 ),
               ),
-              if (state.isCategoriesLoading) const Loader()
+              if (state.isCategoriesLoading || state.isCategoryMealsLoading) const Loader()
             ],
           );
         },

@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const baseUrl = "http://1708-31-9-106-7.ngrok.io/api/user";
-  static const imageUrl = "http://1708-31-9-106-7.ngrok.io";
+  static const baseUrl = "http://13e7-46-213-57-181.ngrok.io/api/user";
+  static const imageUrl = "http://13e7-46-213-57-181.ngrok.io";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
@@ -94,19 +94,6 @@ class ErrorMessage {
   static String someThingWentWrong = 'حدث خطأ ما';
   static String nullData = 'لايوجد بيانات لعرضها';
 }
-
-final option = Options(
-  headers: {
-    'Accept': 'application/json',
-  },
-);
-
-final baseOptions = BaseOptions(
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  },
-);
 
 class RequestBody {
   // Send Code

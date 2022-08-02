@@ -50,7 +50,23 @@ class CartRepositoryImp extends BaseRepositoryImpl implements CartRepository {
     try {
       await _local.removeCartItem(id);
       return const Right(null);
-    } on CacheException catch (e) {
+    } on CacheException {
+      return const Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateCartItemQuantity({
+    required int id,
+    required int quantity,
+  }) async {
+    try {
+      await _local.updateCartItemQuantity(
+        quantity: quantity,
+        id: id,
+      );
+      return const Right(null);
+    } on CacheException {
       return const Left(CacheFailure());
     }
   }

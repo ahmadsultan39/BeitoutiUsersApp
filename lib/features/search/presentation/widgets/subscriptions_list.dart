@@ -200,7 +200,7 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
                                     // ),
                                     Spacer(),
                                     Text(
-                                      "سعر الاشتراك ${widget.bloc.state.subscriptions[index].totalCost} ل.س",
+                                      "سعر الاشتراك ${widget.bloc.state.subscriptions[index].totalCost.toString().split(".").first} ل.س",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18.sp,

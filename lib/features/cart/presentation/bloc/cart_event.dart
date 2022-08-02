@@ -27,6 +27,8 @@ abstract class IncreaseQuantity extends CartEvent
 
   int get cartItemId;
 
+  int get currentQuantity;
+
   IncreaseQuantity._();
 
   factory IncreaseQuantity([Function(IncreaseQuantityBuilder b) updates]) =
@@ -60,6 +62,8 @@ abstract class DecreaseQuantity extends CartEvent
 
   int get cartItemId;
 
+  int get currentQuantity;
+
   DecreaseQuantity._();
 
   factory DecreaseQuantity([Function(DecreaseQuantityBuilder b) updates]) =
@@ -69,7 +73,6 @@ abstract class DecreaseQuantity extends CartEvent
     return DecreaseQuantity((b) => b);
   }
 }
-
 
 abstract class GetCartMealQuantity extends CartEvent
     implements Built<GetCartMealQuantity, GetCartMealQuantityBuilder> {
@@ -95,8 +98,8 @@ abstract class DeleteCartItem extends CartEvent
 
   DeleteCartItem._();
 
-  factory DeleteCartItem(
-      [Function(DeleteCartItemBuilder b) updates]) = _$DeleteCartItem;
+  factory DeleteCartItem([Function(DeleteCartItemBuilder b) updates]) =
+      _$DeleteCartItem;
 
   factory DeleteCartItem.initial() {
     return DeleteCartItem((b) => b);

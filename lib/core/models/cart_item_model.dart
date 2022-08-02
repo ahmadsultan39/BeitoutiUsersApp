@@ -14,6 +14,7 @@ class CartItemModel {
   final String chefName;
   final String mealImage;
   final String deliveryStartsAt;
+  final String deliveryEndsAt;
   int mealQuantity;
   final int mealCost;
 
@@ -29,6 +30,7 @@ class CartItemModel {
     required this.maxMealsPerDay,
     required this.maxChefMealsPerDay,
     required this.deliveryStartsAt,
+    required this.deliveryEndsAt,
     required this.notes,
   });
 
@@ -39,4 +41,25 @@ class CartItemModel {
       _$CartItemModelToJson(
         instance ?? this,
       );
+
+  factory CartItemModel.cartItemWithNewQuantity({
+    required CartItemModel item,
+    required int quantity,
+  }) {
+    return CartItemModel(
+      id: item.id,
+      chefId: item.chefId,
+      mealName: item.mealName,
+      chefName: item.chefName,
+      mealImage: item.mealImage,
+      mealQuantity: quantity,
+      deliveryCost: item.deliveryCost,
+      mealCost: item.mealCost,
+      maxMealsPerDay: item.maxMealsPerDay,
+      maxChefMealsPerDay: item.maxChefMealsPerDay,
+      deliveryStartsAt: item.deliveryStartsAt,
+      notes: item.notes,
+      deliveryEndsAt: item.deliveryEndsAt,
+    );
+  }
 }

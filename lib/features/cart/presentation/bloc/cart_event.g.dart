@@ -68,17 +68,24 @@ class _$IncreaseQuantity extends IncreaseQuantity {
   final int cartItemIndex;
   @override
   final int cartItemId;
+  @override
+  final int currentQuantity;
 
   factory _$IncreaseQuantity(
           [void Function(IncreaseQuantityBuilder)? updates]) =>
       (new IncreaseQuantityBuilder()..update(updates))._build();
 
-  _$IncreaseQuantity._({required this.cartItemIndex, required this.cartItemId})
+  _$IncreaseQuantity._(
+      {required this.cartItemIndex,
+      required this.cartItemId,
+      required this.currentQuantity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         cartItemIndex, r'IncreaseQuantity', 'cartItemIndex');
     BuiltValueNullFieldError.checkNotNull(
         cartItemId, r'IncreaseQuantity', 'cartItemId');
+    BuiltValueNullFieldError.checkNotNull(
+        currentQuantity, r'IncreaseQuantity', 'currentQuantity');
   }
 
   @override
@@ -94,19 +101,22 @@ class _$IncreaseQuantity extends IncreaseQuantity {
     if (identical(other, this)) return true;
     return other is IncreaseQuantity &&
         cartItemIndex == other.cartItemIndex &&
-        cartItemId == other.cartItemId;
+        cartItemId == other.cartItemId &&
+        currentQuantity == other.currentQuantity;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, cartItemIndex.hashCode), cartItemId.hashCode));
+    return $jf($jc($jc($jc(0, cartItemIndex.hashCode), cartItemId.hashCode),
+        currentQuantity.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'IncreaseQuantity')
           ..add('cartItemIndex', cartItemIndex)
-          ..add('cartItemId', cartItemId))
+          ..add('cartItemId', cartItemId)
+          ..add('currentQuantity', currentQuantity))
         .toString();
   }
 }
@@ -124,6 +134,11 @@ class IncreaseQuantityBuilder
   int? get cartItemId => _$this._cartItemId;
   set cartItemId(int? cartItemId) => _$this._cartItemId = cartItemId;
 
+  int? _currentQuantity;
+  int? get currentQuantity => _$this._currentQuantity;
+  set currentQuantity(int? currentQuantity) =>
+      _$this._currentQuantity = currentQuantity;
+
   IncreaseQuantityBuilder();
 
   IncreaseQuantityBuilder get _$this {
@@ -131,6 +146,7 @@ class IncreaseQuantityBuilder
     if ($v != null) {
       _cartItemIndex = $v.cartItemIndex;
       _cartItemId = $v.cartItemId;
+      _currentQuantity = $v.currentQuantity;
       _$v = null;
     }
     return this;
@@ -156,7 +172,9 @@ class IncreaseQuantityBuilder
             cartItemIndex: BuiltValueNullFieldError.checkNotNull(
                 cartItemIndex, r'IncreaseQuantity', 'cartItemIndex'),
             cartItemId: BuiltValueNullFieldError.checkNotNull(
-                cartItemId, r'IncreaseQuantity', 'cartItemId'));
+                cartItemId, r'IncreaseQuantity', 'cartItemId'),
+            currentQuantity: BuiltValueNullFieldError.checkNotNull(
+                currentQuantity, r'IncreaseQuantity', 'currentQuantity'));
     replace(_$result);
     return _$result;
   }
@@ -245,17 +263,24 @@ class _$DecreaseQuantity extends DecreaseQuantity {
   final int cartItemIndex;
   @override
   final int cartItemId;
+  @override
+  final int currentQuantity;
 
   factory _$DecreaseQuantity(
           [void Function(DecreaseQuantityBuilder)? updates]) =>
       (new DecreaseQuantityBuilder()..update(updates))._build();
 
-  _$DecreaseQuantity._({required this.cartItemIndex, required this.cartItemId})
+  _$DecreaseQuantity._(
+      {required this.cartItemIndex,
+      required this.cartItemId,
+      required this.currentQuantity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         cartItemIndex, r'DecreaseQuantity', 'cartItemIndex');
     BuiltValueNullFieldError.checkNotNull(
         cartItemId, r'DecreaseQuantity', 'cartItemId');
+    BuiltValueNullFieldError.checkNotNull(
+        currentQuantity, r'DecreaseQuantity', 'currentQuantity');
   }
 
   @override
@@ -271,19 +296,22 @@ class _$DecreaseQuantity extends DecreaseQuantity {
     if (identical(other, this)) return true;
     return other is DecreaseQuantity &&
         cartItemIndex == other.cartItemIndex &&
-        cartItemId == other.cartItemId;
+        cartItemId == other.cartItemId &&
+        currentQuantity == other.currentQuantity;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, cartItemIndex.hashCode), cartItemId.hashCode));
+    return $jf($jc($jc($jc(0, cartItemIndex.hashCode), cartItemId.hashCode),
+        currentQuantity.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'DecreaseQuantity')
           ..add('cartItemIndex', cartItemIndex)
-          ..add('cartItemId', cartItemId))
+          ..add('cartItemId', cartItemId)
+          ..add('currentQuantity', currentQuantity))
         .toString();
   }
 }
@@ -301,6 +329,11 @@ class DecreaseQuantityBuilder
   int? get cartItemId => _$this._cartItemId;
   set cartItemId(int? cartItemId) => _$this._cartItemId = cartItemId;
 
+  int? _currentQuantity;
+  int? get currentQuantity => _$this._currentQuantity;
+  set currentQuantity(int? currentQuantity) =>
+      _$this._currentQuantity = currentQuantity;
+
   DecreaseQuantityBuilder();
 
   DecreaseQuantityBuilder get _$this {
@@ -308,6 +341,7 @@ class DecreaseQuantityBuilder
     if ($v != null) {
       _cartItemIndex = $v.cartItemIndex;
       _cartItemId = $v.cartItemId;
+      _currentQuantity = $v.currentQuantity;
       _$v = null;
     }
     return this;
@@ -333,7 +367,9 @@ class DecreaseQuantityBuilder
             cartItemIndex: BuiltValueNullFieldError.checkNotNull(
                 cartItemIndex, r'DecreaseQuantity', 'cartItemIndex'),
             cartItemId: BuiltValueNullFieldError.checkNotNull(
-                cartItemId, r'DecreaseQuantity', 'cartItemId'));
+                cartItemId, r'DecreaseQuantity', 'cartItemId'),
+            currentQuantity: BuiltValueNullFieldError.checkNotNull(
+                currentQuantity, r'DecreaseQuantity', 'currentQuantity'));
     replace(_$result);
     return _$result;
   }

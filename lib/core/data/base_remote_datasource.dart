@@ -30,10 +30,11 @@ abstract class BaseRemoteDataSource {
   });
 
   @protected
-  Future<T> performGetRequest<T>(
-    String endpoint,
-    String token,
-  );
+  Future<T> performGetRequest<T>({
+    required String endpoint,
+    required String token,
+    Map<String, dynamic>? params,
+  });
 }
 
 class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
@@ -188,13 +189,14 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   }
 
   @override
-
-  Future<T> performGetRequest<T>(String endpoint, String token) async {
+  Future<T> performGetRequest<T>(
+      {required String endpoint, required String token, Map<String, dynamic>? params}) async {
     debugPrint("PerformGetRequest");
     try {
       final response = await dio.get(
         endpoint,
         options: GetOptions.getOptionsWithToken(token),
+        queryParameters: params,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final BaseResponseModel<T> finalResponse =

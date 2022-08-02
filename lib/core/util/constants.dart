@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const baseUrl = "https://78f8-31-9-140-112.ngrok.io/api/user";
-  static const imageUrl = "https://78f8-31-9-140-112.ngrok.io";
+  static const baseUrl = "http://1708-31-9-106-7.ngrok.io/api/user";
+  static const imageUrl = "http://1708-31-9-106-7.ngrok.io";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
@@ -20,18 +20,11 @@ class Endpoints {
   static const topOrderedChefs = "/filter-top-ordered-chefs";
   static const mostRecentChefs = "/filter-newest-chefs";
   static const currentOrders = "/current-orders";
+  static const String searchChefs = "/search/chefs";
+  static const String searchMeals = "/search/meals";
+  static const String searchSubscriptions = "/search/subscriptions";
 
   static String getChefInfo(int id) => "/show-chef/$id";
-
-  /// Todo add params
-  static String searchMeals(String query, int page) =>
-      "/search/meals?search=$query";
-
-  static String searchSubscriptions(String query, int page) =>
-      "/search/subscriptions?search=$query";
-
-  static String searchChefs(String query, int page) =>
-      "/search/chefs?search=$query";
 
   static String getChefCategories(int id) => "/show-chef/$id/categories";
 
@@ -154,10 +147,12 @@ class RequestBody {
   static FormData checkCode({
     required String phoneNumber,
     required String code,
+    required String fcmToken,
   }) {
     return FormData.fromMap({
       'phone_number': phoneNumber,
       'code': code,
+      'fcm_token' : fcmToken,
     });
   }
 
@@ -173,6 +168,7 @@ class RequestBody {
   // Request Register
   static FormData requestRegister({
     required RegisterRequestModel request,
+    required String fcmToken,
   }) {
     return FormData.fromMap({
       'phone_number': request.phoneNumber,
@@ -187,6 +183,7 @@ class RequestBody {
       'email': request.email,
       'location': request.location.index,
       'gender': request.gender.index,
+      'fcm_token' : fcmToken,
     });
   }
 }

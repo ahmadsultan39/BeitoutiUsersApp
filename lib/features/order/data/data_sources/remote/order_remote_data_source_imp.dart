@@ -18,8 +18,8 @@ class OrderRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
   }) async =>
       await performGetRequest<OrderModel>(
-        Endpoints.showOrder(orderId),
-        token,
+       endpoint: Endpoints.showOrder(orderId),
+        token : token,
       );
 
   @override

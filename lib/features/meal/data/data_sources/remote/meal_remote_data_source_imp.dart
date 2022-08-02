@@ -20,8 +20,8 @@ class MealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required int mealId,
   }) =>
       performGetRequest<MealModel>(
-        Endpoints.showMeal(mealId),
-        token,
+        endpoint: Endpoints.showMeal(mealId),
+        token: token,
       );
 
   @override

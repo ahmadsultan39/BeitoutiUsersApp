@@ -20,13 +20,15 @@ class SearchRepoImp extends SearchRepo {
   SearchRepoImp(this._local, this._remote);
 
   @override
-  Future<Either<Failure, PaginateList<SearchMeal>>> getMeals(String query,int page) async {
+  Future<Either<Failure, PaginateList<SearchMeal>>> getMeals(String query,int page,String? priceSort,String? rateSort) async {
     try {
       final token = await _local.token;
       final result = await _remote.getMeals(
         token: token,
         query: query,
         page : page,
+        priceSort: priceSort,
+        rateSort: rateSort,
       );
 
       return Right(PaginateList(
@@ -37,18 +39,19 @@ class SearchRepoImp extends SearchRepo {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      debugPrint('Error in new release repo $e');
+      debugPrint('Error in new search repo $e');
       return const Left(ServerFailure());
     }
   }
   @override
-  Future<Either<Failure, PaginateList<SearchSubscription>>> getSubscriptions(String query,int page) async {
+  Future<Either<Failure, PaginateList<SearchSubscription>>> getSubscriptions(String query,int page,int? daysFilter) async {
     try {
       final token = await _local.token;
       final result = await _remote.getSubscriptions(
         token: token,
         query: query,
         page : page,
+          daysFilter : daysFilter,
       );
 
       return Right(PaginateList(
@@ -59,7 +62,7 @@ class SearchRepoImp extends SearchRepo {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      debugPrint('Error in new release repo $e');
+      debugPrint('Error in new search repo $e');
       return const Left(ServerFailure());
     }
   }
@@ -81,7 +84,7 @@ class SearchRepoImp extends SearchRepo {
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      debugPrint('Error in new release repo $e');
+      debugPrint('Error in new search repo $e');
       return const Left(ServerFailure());
     }
   }

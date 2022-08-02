@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../../search/presentation/pages/custom_search_delegate.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -53,15 +55,17 @@ class _HomePageState extends State<HomePage> {
               size: 25.sp,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-            ),
-            child: Icon(
-              Icons.search_rounded,
-              size: 25.sp,
-            ),
-          ),
+          IconButton(
+              onPressed: () {
+                showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                    useRootNavigator: true);
+              },
+              icon: Icon(
+                Icons.search,
+                // color: Theme.of(context).iconTheme.color,
+              ))
         ],
       ),
       body: _pages[_selectedPage],

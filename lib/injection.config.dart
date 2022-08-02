@@ -190,6 +190,7 @@ import 'features/search/domain/repositories/search_repository.dart' as _i101;
 import 'features/search/domain/use_cases/search_chefs.dart' as _i135;
 import 'features/search/domain/use_cases/search_meals.dart' as _i136;
 import 'features/search/domain/use_cases/search_subscriptions.dart' as _i103;
+import 'features/search/presentation/bloc/search_bloc.dart' as _i140;
 import 'features/splash/data/data_source/local/splash_local_data_source.dart'
     as _i21;
 import 'features/splash/data/data_source/local/splash_local_data_source_imp.dart'
@@ -222,7 +223,7 @@ import 'features/subscription/domain/use_cases/subscribe_use_case.dart'
     as _i138;
 import 'features/subscription/presentation/bloc/subscription_bloc.dart'
     as _i139;
-import 'injection.dart' as _i140; // ignore_for_file: unnecessary_lambdas
+import 'injection.dart' as _i141; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -485,7 +486,11 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i127.GetSubscriptionUseCase>(),
       get<_i126.GetSubscriptionMealsUseCase>(),
       get<_i138.SubscribeUseCase>()));
+  gh.factory<_i140.SearchBloc>(() => _i140.SearchBloc(
+      get<_i136.SearchMealsUseCase>(),
+      get<_i103.SearchSubscriptionsUseCase>(),
+      get<_i135.SearchChefsUseCase>()));
   return get;
 }
 
-class _$RegisterModule extends _i140.RegisterModule {}
+class _$RegisterModule extends _i141.RegisterModule {}

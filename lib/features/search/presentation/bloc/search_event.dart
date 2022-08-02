@@ -23,6 +23,8 @@ abstract class GetMealsEvent extends SearchEvent
     implements Built<GetMealsEvent, GetMealsEventBuilder> {
   String get query;
   int get page;
+  String? get sortPrice;
+  String? get sortRate;
 
   GetMealsEvent._();
 
@@ -33,10 +35,37 @@ abstract class GetMealsEvent extends SearchEvent
   }
 }
 
+abstract class SortMealsByPriceEvent extends SearchEvent
+    implements Built<SortMealsByPriceEvent, SortMealsByPriceEventBuilder> {
+  String get sortOrder;
+
+  SortMealsByPriceEvent._();
+
+  factory SortMealsByPriceEvent([Function(SortMealsByPriceEventBuilder b) updates]) = _$SortMealsByPriceEvent;
+
+  factory SortMealsByPriceEvent.initial() {
+    return SortMealsByPriceEvent((b) => b);
+  }
+}
+
+abstract class SortMealsByRateEvent extends SearchEvent
+    implements Built<SortMealsByRateEvent, SortMealsByRateEventBuilder> {
+  String get sortOrder;
+
+  SortMealsByRateEvent._();
+
+  factory SortMealsByRateEvent([Function(SortMealsByRateEventBuilder b) updates]) = _$SortMealsByRateEvent;
+
+  factory SortMealsByRateEvent.initial() {
+    return SortMealsByRateEvent((b) => b);
+  }
+}
+
 abstract class GetSubscriptionsEvent extends SearchEvent
     implements Built<GetSubscriptionsEvent, GetSubscriptionsEventBuilder> {
   String get query;
   int get page;
+  int? get filterDays;
 
   GetSubscriptionsEvent._();
 
@@ -44,6 +73,20 @@ abstract class GetSubscriptionsEvent extends SearchEvent
 
   factory GetSubscriptionsEvent.initial() {
     return GetSubscriptionsEvent((b) => b);
+  }
+}
+
+
+abstract class FilterSubscriptionsByDaysEvent extends SearchEvent
+    implements Built<FilterSubscriptionsByDaysEvent, FilterSubscriptionsByDaysEventBuilder> {
+  int get filterDays;
+
+  FilterSubscriptionsByDaysEvent._();
+
+  factory FilterSubscriptionsByDaysEvent([Function(FilterSubscriptionsByDaysEventBuilder b) updates]) = _$FilterSubscriptionsByDaysEvent;
+
+  factory FilterSubscriptionsByDaysEvent.initial() {
+    return FilterSubscriptionsByDaysEvent((b) => b);
   }
 }
 

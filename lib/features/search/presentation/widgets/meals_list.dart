@@ -32,7 +32,10 @@ class _MealsListState extends State<MealsList> {
             !widget.bloc.state.isLoading &&
             _controller.position.pixels ==
                 _controller.position.maxScrollExtent) {
-          widget.bloc.addMealsEvent(widget.query);
+          widget.bloc.addMealsEvent(
+              widget.query,
+              widget.bloc.state.mealsPriceSort,
+              widget.bloc.state.mealsRateSort);
         }
       },
     );
@@ -53,7 +56,10 @@ class _MealsListState extends State<MealsList> {
               !widget.bloc.state.isLoading &&
               _controller.position.pixels ==
                   _controller.position.maxScrollExtent) {
-            widget.bloc.addMealsEvent(widget.query);
+            widget.bloc.addMealsEvent(
+                widget.query,
+                widget.bloc.state.mealsPriceSort,
+                widget.bloc.state.mealsRateSort);
           }
           //recursively check again
           _checkInitialExtent();
@@ -74,141 +80,172 @@ class _MealsListState extends State<MealsList> {
           _checkInitialExtent();
         }
         return Expanded(
-          child: SingleChildScrollView(
-            controller: _controller,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                widget.bloc.state.isLoading
-                    ? const Loader()
-                    : GridView.builder(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(0),
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                        ),
-                        itemCount: widget.bloc.state.meals.length,
-                        itemBuilder: (ctx, index) {
-                          return GestureDetector(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 15.w,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width: 220.w,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        CachedNetworkImage(
-                                          imageUrl: Endpoints.imageUrl +
-                                              state.meals[index].image,
-                                          placeholder: (_, __) =>
-                                              const Loader(),
-                                          errorWidget: (_, __, ___) =>
-                                              const Icon(Icons.error),
-                                          fit: BoxFit.cover,
-                                          height: 150.w,
-                                          width: 220.w,
-                                        ),
-                                        Container(
-                                          height: 150.w,
-                                          width: 220.w,
-                                          color: Colors.black.withOpacity(0.2),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 220.w,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: 120.w,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                state.meals[index].name,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 15.sp,
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              Text(
-                                                state.meals[index].chef.name,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12.sp,
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Text(
-                                          state.meals[index]
-                                                      .priceWithDiscount ==
-                                                  null
-                                              ? state.meals[index]
-                                                  .priceWithoutDiscount.toString()
-                                              : state.meals[index]
-                                                      .priceWithDiscount
-                                                      .toString() +
-                                                  ' ل.س',
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .tertiary,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            onTap: () {
-                              // Navigator.pushNamed(
-                              //     context, NameScreen.,
-                              //     arguments:
-                              //         widget.bloc.state.meals[index]);
-                            },
+          child: widget.bloc.state.isLoading
+              ? const Loader()
+              : SingleChildScrollView(
+                  controller: _controller,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DropdownButton<String>(
+                        value: state.mealsPriceSort != null
+                            ? state.mealsPriceSort == "desc"
+                                ? "حسب الأعلى سعرا"
+                                : "حسب الأقل سعرا"
+                            : state.mealsRateSort != null
+                                ? "حسب الأعلى تقييما"
+                                : null,
+                        hint: const Text("الترتيب"),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: [
+                          "حسب الأعلى تقييما",
+                          "حسب الأعلى سعرا",
+                          "حسب الأقل سعرا",
+                        ].map((item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: Text(item),
                           );
-                        }),
-                SizedBox(
-                  height: 10.h,
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          /// add event
+                          if (newValue == "حسب الأعلى تقييما") {
+                            widget.bloc.addSortMealsByRateEvent("desc");
+                          } else if (newValue == "حسب الأعلى سعرا") {
+                            widget.bloc.addSortMealsByPriceEvent("desc");
+                          } else {
+                            widget.bloc.addSortMealsByPriceEvent("asc");
+                          }
+
+                        },
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(0),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: widget.bloc.state.meals.length,
+                          itemBuilder: (ctx, index) {
+                            return GestureDetector(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 600.w,
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          CachedNetworkImage(
+                                            imageUrl: Endpoints.imageUrl +
+                                                state.meals[index].image,
+                                            placeholder: (_, __) =>
+                                                const Loader(),
+                                            errorWidget: (_, __, ___) =>
+                                                const Icon(Icons.error),
+                                            fit: BoxFit.cover,
+                                            height: 250.w,
+                                            width: 600.w,
+                                          ),
+                                          Container(
+                                            height: 150.w,
+                                            width: 600.w,
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 600.w,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: 120.w,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  state.meals[index].name,
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15.sp,
+                                                  ),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                Text(
+                                                  state.meals[index].chef.name,
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp,
+                                                  ),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Text(
+                                            state.meals[index]
+                                                        .priceWithDiscount ==
+                                                    null
+                                                ? state.meals[index]
+                                                    .priceWithoutDiscount
+                                                    .toString()
+                                                : state.meals[index]
+                                                        .priceWithDiscount
+                                                        .toString() +
+                                                    ' ل.س',
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiary,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {
+                                // Navigator.pushNamed(
+                                //     context, NameScreen.,
+                                //     arguments:
+                                //         widget.bloc.state.meals[index]);
+                              },
+                            );
+                          }),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      if (!state.isMealsFinished && state.meals.isNotEmpty)
+                        const Loader(),
+                    ],
+                  ),
                 ),
-                if (!state.isMealsFinished && state.meals.isNotEmpty)
-                  const Loader(),
-              ],
-            ),
-          ),
         );
       },
     );

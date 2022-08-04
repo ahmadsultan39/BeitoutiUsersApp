@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../injection.dart';
 
 class MealsPage extends StatefulWidget {
@@ -38,6 +39,14 @@ class _MealsPageState extends State<MealsPage> {
     return BlocBuilder<MealsBloc, MealsState>(
       bloc: _bloc,
       builder: (context, state) {
+        WidgetsBinding.instance?.addPostFrameCallback(
+              (_) => message(
+            message: state.message,
+            isError: state.error,
+            bloc: _bloc,
+            context: context,
+          ),
+        );
         return Stack(
           children: [
             SingleChildScrollView(

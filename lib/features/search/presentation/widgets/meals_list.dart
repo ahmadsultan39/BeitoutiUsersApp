@@ -79,6 +79,14 @@ class _MealsListState extends State<MealsList> {
             !widget.bloc.state.isLoading) {
           _checkInitialExtent();
         }
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: widget.bloc,
+          );
+        });
         return Expanded(
           child: widget.bloc.state.isLoading
               ? const Loader()

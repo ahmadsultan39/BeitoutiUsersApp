@@ -31,8 +31,8 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
     add(GetMostRecentChefsEvent((b) => b));
   }
 
-  void clearError() {
-    add(ClearError((b) => b));
+  void clearMessage() {
+    add(ClearMessage());
   }
 
   @factoryMethod
@@ -132,11 +132,15 @@ class ChefsBloc extends Bloc<ChefsEvent, ChefsState> {
         });
       }
 
-      /***** ClearError *****/
-      if (event is ClearError) {
-        emit(state.rebuild((b) => b
-          ..error = false
-          ..message = ''));
+      /// *** ClearMessage *** ///
+      if (event is ClearMessage) {
+        emit(
+          state.rebuild(
+                (b) => b
+              ..error = false
+              ..message = '',
+          ),
+        );
       }
     });
   }

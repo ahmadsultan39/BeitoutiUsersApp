@@ -75,6 +75,14 @@ class _ChefsListState extends State<ChefsList> {
             !widget.bloc.state.isLoading) {
           _checkInitialExtent();
         }
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: widget.bloc,
+          );
+        });
         return Expanded(
           child: SingleChildScrollView(
             controller: _controller,

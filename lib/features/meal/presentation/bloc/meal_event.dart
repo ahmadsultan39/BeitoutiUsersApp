@@ -124,8 +124,6 @@ abstract class GetCartMealQuantity extends MealEvent
 
 abstract class ClearMessage extends MealEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
-  //getter fields
-
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =

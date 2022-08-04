@@ -67,8 +67,6 @@ ClearSubscriptionOrders._();
 
 abstract class ClearMessage extends CurrentSubscriptionsEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
-  //getter fields
-
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =

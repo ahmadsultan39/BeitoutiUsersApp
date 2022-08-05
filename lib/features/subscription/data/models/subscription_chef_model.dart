@@ -11,11 +11,13 @@ class SubscriptionChefModel extends SubscriptionChef {
   const SubscriptionChefModel({
     required int id,
     required String name,
+    required String location,
     required this.profilePicture,
   }) : super(
           id: id,
           name: name,
           profilePicture: profilePicture,
+          location: location,
         );
 
   factory SubscriptionChefModel.fromJson(Map<String, dynamic> json) =>

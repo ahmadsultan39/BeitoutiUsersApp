@@ -25,9 +25,9 @@ class _CartPageState extends State<CartPage> {
 
   @override
   void initState() {
-    if (_bloc.state.cartItems.isEmpty) {
+    // TODO check empty cart
       _bloc.addGetCartItemsEvent();
-    }
+
     super.initState();
   }
 
@@ -127,8 +127,7 @@ class _CartPageState extends State<CartPage> {
           ),
           body: state.isLoading
               ? const Loader()
-              : state.isCartEmpty
-                  ? const EmptyCart()
+
                   : Stack(
                       children: [
                         SizedBox(

@@ -1,4 +1,4 @@
-// import 'package:beitouti_users/features/chef_menu/domain/entities/subscription_meal.dart';
+// import 'package:beitouti_users/features/chef_menu/domain/entities/subscription_meal_item.dart';
 // import 'package:dartz/dartz.dart';
 // import 'package:equatable/equatable.dart';
 // import 'package:injectable/injectable.dart';

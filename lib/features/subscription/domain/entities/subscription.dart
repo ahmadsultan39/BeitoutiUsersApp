@@ -10,7 +10,7 @@ class Subscription extends Equatable {
   final String startsAt;
   final int maxSubscribers;
   final int mealsCost;
-  final int totalCost;
+  final double totalCost;
   final double? rating;
   final int ratingCount;
   final int availableSubscriptionsCount;

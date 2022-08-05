@@ -4,11 +4,13 @@ class SubscriptionChef extends Equatable {
   final int id;
   final String name;
   final String profilePicture;
+  final String location;
 
   const SubscriptionChef({
     required this.id,
     required this.name,
     required this.profilePicture,
+    required this.location,
   });
 
   @override
@@ -16,5 +18,6 @@ class SubscriptionChef extends Equatable {
         id,
         name,
         profilePicture,
+    location,
       ];
 }

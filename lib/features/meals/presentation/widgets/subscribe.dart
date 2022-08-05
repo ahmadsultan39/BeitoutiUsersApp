@@ -26,7 +26,7 @@ class Subscribe extends StatelessWidget {
           Navigator.pushNamed(
             context,
             NameScreen.subscriptionScreen,
-            arguments: subscribe.id,
+            arguments: subscribe,
           );
         },
         child: Column(

@@ -14,7 +14,7 @@ HomeSubscribeModel _$HomeSubscribeModelFromJson(Map<String, dynamic> json) =>
       chef: HomeChefModel.fromJson(json['chef'] as Map<String, dynamic>),
       chefId: json['chef_id'] as int,
       daysNumber: json['days_number'] as int,
-      totalCost: json['total_cost'] as int,
+      totalCost: (json['total_cost'] as num).toDouble(),
       startsAt: json['starts_at'] as String,
     );
 

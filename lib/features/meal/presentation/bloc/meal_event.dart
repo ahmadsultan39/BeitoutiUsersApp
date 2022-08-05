@@ -37,6 +37,23 @@ abstract class AddToFavourite extends MealEvent
   }
 }
 
+abstract class RemoveFromFavourite extends MealEvent
+    implements Built<RemoveFromFavourite, RemoveFromFavouriteBuilder> {
+  //getter fields
+
+  int get mealId;
+
+  RemoveFromFavourite._();
+
+  factory RemoveFromFavourite(
+      [Function(RemoveFromFavouriteBuilder b) updates]) = _$RemoveFromFavourite;
+
+  factory RemoveFromFavourite.initial() {
+    return RemoveFromFavourite((b) => b);
+  }
+}
+
+
 abstract class AddMealToCart extends MealEvent
     implements Built<AddMealToCart, AddMealToCartBuilder> {
   //getter fields
@@ -57,21 +74,6 @@ abstract class AddMealToCart extends MealEvent
   }
 }
 
-abstract class RemoveFromFavourite extends MealEvent
-    implements Built<RemoveFromFavourite, RemoveFromFavouriteBuilder> {
-  //getter fields
-
-  int get mealId;
-
-  RemoveFromFavourite._();
-
-  factory RemoveFromFavourite(
-      [Function(RemoveFromFavouriteBuilder b) updates]) = _$RemoveFromFavourite;
-
-  factory RemoveFromFavourite.initial() {
-    return RemoveFromFavourite((b) => b);
-  }
-}
 
 abstract class CheckAddToCartAvailability extends MealEvent
     implements

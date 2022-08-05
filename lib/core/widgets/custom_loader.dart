@@ -10,9 +10,9 @@ class Loader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: LoadingAnimationWidget.fourRotatingDots( // or hexagonDots
+      child: LoadingAnimationWidget.hexagonDots( // or hexagonDots
         color: Theme.of(context).colorScheme.secondary,
-        size: size ?? 60.sp,
+        size: size ?? 40.sp,
       ),
     );
   }

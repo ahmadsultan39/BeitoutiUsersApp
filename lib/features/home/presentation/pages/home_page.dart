@@ -35,90 +35,103 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "بَيتوتيْ",
-          style: TextStyle(
-            fontSize: 21.sp,
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, NameScreen.cartScreen);
-            },
-            child: Icon(
-              MdiIcons.cartOutline,
-              size: 25.sp,
+    return WillPopScope(
+      onWillPop: () async {
+        // if the current page is not the home page => navigate to home page
+        if (_selectedPage != 0) {
+          setState(() {
+            _selectedPage = 0;
+          });
+          return false;
+        }
+        // else close the pop up the application
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "بَيتوتيْ",
+            style: TextStyle(
+              fontSize: 21.sp,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, NameScreen.cartScreen);
+              },
+              child: Icon(
+                MdiIcons.cartOutline,
+                size: 25.sp,
+              ),
             ),
-            child: Icon(
-              Icons.search_rounded,
-              size: 25.sp,
-            ),
-          ),
-        ],
-      ),
-      body: _pages[_selectedPage],
-      bottomNavigationBar: SizedBox(
-        height: 65.h,
-        child: GNav(
-          onTabChange: _onTapChange,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          color: Colors.white,
-          activeColor: Theme.of(context).colorScheme.primary,
-          tabBackgroundColor: Theme.of(context).colorScheme.tertiary,
-          tabs: [
-            GButton(
-              icon: MdiIcons.food,
-              text: 'الوجبات',
+            Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 10.h,
+                horizontal: 12.w,
               ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5.w,
-              ),
-            ),
-            GButton(
-              icon: MdiIcons.chefHat,
-              text: 'الطهاة',
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 10.h,
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5.w,
-              ),
-            ),
-            GButton(
-              icon: Icons.playlist_add_check,
-              text: 'الطلبات',
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 10.h,
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5.w,
-              ),
-            ),
-            GButton(
-              icon: Icons.person,
-              text: 'الملف الشخصي',
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 10.h,
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5.w,
+              child: Icon(
+                Icons.search_rounded,
+                size: 25.sp,
               ),
             ),
           ],
+        ),
+        body: _pages[_selectedPage],
+        bottomNavigationBar: SizedBox(
+          height: 65.h,
+          child: GNav(
+            onTabChange: _onTapChange,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            color: Colors.white,
+            activeColor: Theme.of(context).colorScheme.primary,
+            tabBackgroundColor: Theme.of(context).colorScheme.tertiary,
+            tabs: [
+              GButton(
+                icon: MdiIcons.food,
+                text: 'الوجبات',
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 10.h,
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                ),
+              ),
+              GButton(
+                icon: MdiIcons.chefHat,
+                text: 'الطهاة',
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 10.h,
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                ),
+              ),
+              GButton(
+                icon: Icons.playlist_add_check,
+                text: 'الطلبات',
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 10.h,
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                ),
+              ),
+              GButton(
+                icon: Icons.person,
+                text: 'الملف الشخصي',
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 10.h,
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

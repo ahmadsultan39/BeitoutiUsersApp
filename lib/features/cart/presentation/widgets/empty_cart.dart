@@ -42,11 +42,12 @@ class EmptyCart extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  NameScreen.homeScreen,
-                  (_) => false,
-                );
+                Navigator.of(context).pop();
+                // Navigator.pushNamedAndRemoveUntil(
+                //   context,
+                //   NameScreen.homeScreen,
+                //   (_) => false,
+                // );
               },
               child: Container(
                 height: 50.h,

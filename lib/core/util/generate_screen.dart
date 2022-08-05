@@ -19,6 +19,7 @@ import 'package:beitouti_users/features/subscription/presentation/pages/subscrip
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../features/meals/domain/entities/home_subscribe.dart';
 import '../../features/meals/presentation/pages/all_subscriptions_page.dart';
 
 class GenerateScreen {
@@ -80,7 +81,7 @@ class GenerateScreen {
         {
           return MaterialPageRoute(
             builder: (_) => SubscriptionPage(
-              subscriptionId: value.arguments as int,
+              subscribe: value.arguments as HomeSubscribe,
             ),
           );
         }

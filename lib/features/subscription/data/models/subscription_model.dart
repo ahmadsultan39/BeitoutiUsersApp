@@ -27,7 +27,7 @@ class SubscriptionModel extends Subscription {
   final int mealsCost;
 
   @JsonKey(name: 'total_cost')
-  final int totalCost;
+  final double totalCost;
 
   @JsonKey(name: 'rating_count')
   final int ratingCount;

@@ -18,7 +18,7 @@ class HomeSubscribeModel extends HomeSubscribe {
   final int daysNumber;
 
   @JsonKey(name: 'total_cost')
-  final int totalCost;
+  final double totalCost;
 
 
   @JsonKey(name: 'is_available')

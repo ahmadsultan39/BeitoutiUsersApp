@@ -5,6 +5,7 @@ import 'package:beitouti_users/core/models/order_model.dart';
 import 'package:beitouti_users/features/chef_menu/data/models/chef_category_model.dart';
 import 'package:beitouti_users/features/chef_menu/data/models/chef_meal_model.dart';
 import 'package:beitouti_users/features/chefs/data/models/chef_model.dart';
+import 'package:beitouti_users/features/favourites/data/models/favourite_meal_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_meal_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
 import 'package:beitouti_users/features/subscription/data/models/subscription_meal_model.dart';
@@ -97,6 +98,11 @@ class _Converter<T> implements JsonConverter<T, Object> {
     else if (json is Map<String, dynamic> &&
         T.toString() == OrderModel.className) {
       return OrderModel.fromJson(json) as T;
+    }
+    /*** FavouriteMealModel ***/
+    else if (json is Map<String, dynamic> &&
+        T.toString() == FavouriteMealModel.className) {
+      return FavouriteMealModel.fromJson(json) as T;
     }
     /*** ParseError ***/
     debugPrint('Parse Error');

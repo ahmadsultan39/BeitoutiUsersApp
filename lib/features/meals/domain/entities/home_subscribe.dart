@@ -4,8 +4,8 @@ import 'package:equatable/equatable.dart';
 class HomeSubscribe extends Equatable {
   final int id;
   final int chefId;
-  final int totalCost;
   final int daysNumber;
+  final double totalCost;
   final String name;
   final String startsAt;
   final bool isAvailable;

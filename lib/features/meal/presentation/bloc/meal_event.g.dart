@@ -165,6 +165,90 @@ class AddToFavouriteBuilder
   }
 }
 
+class _$RemoveFromFavourite extends RemoveFromFavourite {
+  @override
+  final int mealId;
+
+  factory _$RemoveFromFavourite(
+          [void Function(RemoveFromFavouriteBuilder)? updates]) =>
+      (new RemoveFromFavouriteBuilder()..update(updates))._build();
+
+  _$RemoveFromFavourite._({required this.mealId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        mealId, r'RemoveFromFavourite', 'mealId');
+  }
+
+  @override
+  RemoveFromFavourite rebuild(
+          void Function(RemoveFromFavouriteBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  RemoveFromFavouriteBuilder toBuilder() =>
+      new RemoveFromFavouriteBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is RemoveFromFavourite && mealId == other.mealId;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, mealId.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'RemoveFromFavourite')
+          ..add('mealId', mealId))
+        .toString();
+  }
+}
+
+class RemoveFromFavouriteBuilder
+    implements Builder<RemoveFromFavourite, RemoveFromFavouriteBuilder> {
+  _$RemoveFromFavourite? _$v;
+
+  int? _mealId;
+  int? get mealId => _$this._mealId;
+  set mealId(int? mealId) => _$this._mealId = mealId;
+
+  RemoveFromFavouriteBuilder();
+
+  RemoveFromFavouriteBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _mealId = $v.mealId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(RemoveFromFavourite other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$RemoveFromFavourite;
+  }
+
+  @override
+  void update(void Function(RemoveFromFavouriteBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  RemoveFromFavourite build() => _build();
+
+  _$RemoveFromFavourite _build() {
+    final _$result = _$v ??
+        new _$RemoveFromFavourite._(
+            mealId: BuiltValueNullFieldError.checkNotNull(
+                mealId, r'RemoveFromFavourite', 'mealId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$AddMealToCart extends AddMealToCart {
   @override
   final Meal meal;
@@ -269,90 +353,6 @@ class AddMealToCartBuilder
                 notes, r'AddMealToCart', 'notes'),
             quantity: BuiltValueNullFieldError.checkNotNull(
                 quantity, r'AddMealToCart', 'quantity'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$RemoveFromFavourite extends RemoveFromFavourite {
-  @override
-  final int mealId;
-
-  factory _$RemoveFromFavourite(
-          [void Function(RemoveFromFavouriteBuilder)? updates]) =>
-      (new RemoveFromFavouriteBuilder()..update(updates))._build();
-
-  _$RemoveFromFavourite._({required this.mealId}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        mealId, r'RemoveFromFavourite', 'mealId');
-  }
-
-  @override
-  RemoveFromFavourite rebuild(
-          void Function(RemoveFromFavouriteBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  RemoveFromFavouriteBuilder toBuilder() =>
-      new RemoveFromFavouriteBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is RemoveFromFavourite && mealId == other.mealId;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(0, mealId.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'RemoveFromFavourite')
-          ..add('mealId', mealId))
-        .toString();
-  }
-}
-
-class RemoveFromFavouriteBuilder
-    implements Builder<RemoveFromFavourite, RemoveFromFavouriteBuilder> {
-  _$RemoveFromFavourite? _$v;
-
-  int? _mealId;
-  int? get mealId => _$this._mealId;
-  set mealId(int? mealId) => _$this._mealId = mealId;
-
-  RemoveFromFavouriteBuilder();
-
-  RemoveFromFavouriteBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _mealId = $v.mealId;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(RemoveFromFavourite other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$RemoveFromFavourite;
-  }
-
-  @override
-  void update(void Function(RemoveFromFavouriteBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  RemoveFromFavourite build() => _build();
-
-  _$RemoveFromFavourite _build() {
-    final _$result = _$v ??
-        new _$RemoveFromFavourite._(
-            mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, r'RemoveFromFavourite', 'mealId'));
     replace(_$result);
     return _$result;
   }

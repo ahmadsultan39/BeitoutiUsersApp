@@ -158,7 +158,3 @@ class MealItem extends StatelessWidget {
     );
   }
 }
-
-int countDiscountPrice(int discountPercentage, int price) {
-  return (price * discountPercentage) ~/ 100;
-}

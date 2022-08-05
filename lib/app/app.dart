@@ -38,6 +38,7 @@ class _AppState extends State<App> {
               primary: const Color(0xFF013760),
               secondary: const Color(0xFF2B9694),
               tertiary: const Color(0xFFEC9005),
+              background:  const Color(0xFFE1E8EA),
             ),
           ),
           home: const SplashPage(),

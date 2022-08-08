@@ -13,7 +13,7 @@ class CustomSearchDelegate extends SearchDelegate {
       IconButton(
         icon: Icon(
           Icons.clear,
-          color: Theme.of(context).iconTheme.color,
+          color: Theme.of(context).backgroundColor,
         ),
         onPressed: () {
           query = '';
@@ -27,8 +27,8 @@ class CustomSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: Icon(
         Icons.arrow_back,
-        color: Theme.of(context).iconTheme.color,
-      ),
+        color: Theme.of(context).backgroundColor,
+),
       onPressed: () {
         close(context, null);
       },
@@ -73,7 +73,7 @@ class CustomSearchDelegate extends SearchDelegate {
         shadowColor: theme.shadowColor,
         brightness: theme.brightness,
         primaryColor: theme.primaryColor,
-        hintColor: theme.hintColor,
+        hintColor: theme.backgroundColor,
         indicatorColor: theme.indicatorColor,
         bottomAppBarColor: theme.bottomAppBarColor,
         primaryColorLight: theme.primaryColorLight,
@@ -83,7 +83,7 @@ class CustomSearchDelegate extends SearchDelegate {
         hoverColor: theme.hoverColor,
         highlightColor: theme.highlightColor,
         focusColor: theme.focusColor,
-        textTheme: theme.textTheme);
+        textTheme: theme.textTheme.copyWith(headline6: TextStyle(color: theme.backgroundColor,fontSize: 18)));
 
     // ThemeData(
     //   appBarTheme: Theme.of(context).appBarTheme.copyWith(

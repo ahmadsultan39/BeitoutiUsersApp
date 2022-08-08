@@ -234,7 +234,7 @@ class _ChefsListState extends State<ChefsList> {
                 SizedBox(
                   height: 10.h,
                 ),
-                if (!state.isMealsFinished && state.meals.isNotEmpty)
+                if (!state.isChefsFinished && state.chefs.isNotEmpty)
                   const Loader(),
               ],
             ),

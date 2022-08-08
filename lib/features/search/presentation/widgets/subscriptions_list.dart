@@ -95,7 +95,7 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
                     children: [
                       DropdownButton<int>(
                         value: state.subscriptionsDaysFilter,
-                        hint: const Text("عدد الأيام"),
+                        hint: const Text("عدد الأيام",style: TextStyle(color: Colors.black)),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: [
                           5,
@@ -103,7 +103,7 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
                         ].map((item) {
                           return DropdownMenuItem(
                             value: item,
-                            child: Text(item.toString()),
+                            child: Text(item.toString(),style: TextStyle(color: Colors.black)),
                           );
                         }).toList(),
                         onChanged: (int? newValue) {
@@ -231,7 +231,7 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      if (!state.isMealsFinished && state.meals.isNotEmpty)
+                      if (!state.isSubscriptionsFinished && state.subscriptions.isNotEmpty)
                         const Loader(),
                     ],
                   ),

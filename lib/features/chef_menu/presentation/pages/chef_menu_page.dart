@@ -1,4 +1,5 @@
 import 'package:beitouti_users/core/widgets/custom_loader.dart';
+import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:beitouti_users/features/chef_menu/presentation/pages/chef_menu_meals_page.dart';
 import 'package:beitouti_users/features/chef_menu/presentation/pages/subscriptions_page.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_chef.dart';
@@ -69,14 +70,19 @@ class _ChefMenuPageState extends State<ChefMenuPage>
               children: [
                 Column(
                   children: [
-                    Container(
+                    ImageChecker(
                       width: 110.w,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      clipBehavior: Clip.hardEdge,
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: CachedNetworkImage(
-                          imageUrl: Endpoints.imageUrl + widget.chef.profilePicture!),
+                      height: 120.h,
+                      imageUrl: widget.chef.profilePicture ?? '',
                     ),
+                    // Container(
+                    //   width: 110.w,
+                    //   margin: const EdgeInsets.symmetric(vertical: 8),
+                    //   clipBehavior: Clip.hardEdge,
+                    //   decoration: const BoxDecoration(shape: BoxShape.circle),
+                    //   child: CachedNetworkImage(
+                    //       imageUrl: Endpoints.imageUrl + widget.chef.profilePicture!),
+                    // ),
                     if (state.chefInfo != null)
                       Row(
                         children: [

@@ -1,4 +1,5 @@
 import 'package:beitouti_users/core/usecase/usecase.dart';
+import 'package:beitouti_users/core/util/enums.dart';
 import 'package:beitouti_users/features/orders/domain/use_cases/cancel_order_use_case.dart';
 import 'package:beitouti_users/features/orders/domain/use_cases/get_current_orders_use_case.dart';
 import 'package:beitouti_users/features/orders/domain/use_cases/get_previous_orders_use_case.dart';
@@ -23,8 +24,14 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     add(GetPreviousOrders((b) => b..page = state.previousOrdersPage));
   }
 
-  void addCancelOrderEvent(int orderId) {
-    add(CancelOrder((b) => b..orderId = orderId));
+  void addCancelOrderEvent(int orderId, int orderIndex) {
+    add(
+      CancelOrder(
+        (b) => b
+          ..orderId = orderId
+          ..orderIndex = orderIndex,
+      ),
+    );
   }
 
   void clearMessage() {
@@ -71,6 +78,11 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               state.rebuild(
                 (b) => b
                   ..isLoading = false
+                  ..currentOrders.update(
+                    (b) => b[event.orderIndex]
+                      ..status = OrderStatus.canceled
+                      ..canBeCanceled = false,
+                  )
                   ..message = 'تم إلغاء الطلب بنجاح',
               ),
             ),

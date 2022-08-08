@@ -40,6 +40,8 @@ abstract class CancelOrder extends OrdersEvent
 
   int get orderId;
 
+  int get orderIndex;
+
   CancelOrder._();
 
   factory CancelOrder([Function(CancelOrderBuilder b) updates]) = _$CancelOrder;

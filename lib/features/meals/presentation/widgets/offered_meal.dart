@@ -30,7 +30,7 @@ class OfferedMeal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: 150.w,
+              height: 150.h,
               width: 375.w,
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class OfferedMeal extends StatelessWidget {
                     circle: false,
                   ),
                   Container(
-                    height: 150.w,
+                    height: 150.h,
                     width: 375.w,
                     color: Colors.black.withOpacity(0.4),
                   ),

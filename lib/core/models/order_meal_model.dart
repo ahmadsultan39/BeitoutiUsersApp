@@ -8,7 +8,7 @@ class OrderMealModel extends OrderMeal {
 
   static const String className = 'OrderMealModel';
 
-  const OrderMealModel({
+   OrderMealModel({
     required int id,
     required String name,
     required String image,

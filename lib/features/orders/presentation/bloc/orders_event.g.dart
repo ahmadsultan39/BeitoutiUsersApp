@@ -150,12 +150,17 @@ class GetPreviousOrdersBuilder
 class _$CancelOrder extends CancelOrder {
   @override
   final int orderId;
+  @override
+  final int orderIndex;
 
   factory _$CancelOrder([void Function(CancelOrderBuilder)? updates]) =>
       (new CancelOrderBuilder()..update(updates))._build();
 
-  _$CancelOrder._({required this.orderId}) : super._() {
+  _$CancelOrder._({required this.orderId, required this.orderIndex})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(orderId, r'CancelOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(
+        orderIndex, r'CancelOrder', 'orderIndex');
   }
 
   @override
@@ -168,18 +173,21 @@ class _$CancelOrder extends CancelOrder {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CancelOrder && orderId == other.orderId;
+    return other is CancelOrder &&
+        orderId == other.orderId &&
+        orderIndex == other.orderIndex;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, orderId.hashCode));
+    return $jf($jc($jc(0, orderId.hashCode), orderIndex.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CancelOrder')
-          ..add('orderId', orderId))
+          ..add('orderId', orderId)
+          ..add('orderIndex', orderIndex))
         .toString();
   }
 }
@@ -191,12 +199,17 @@ class CancelOrderBuilder implements Builder<CancelOrder, CancelOrderBuilder> {
   int? get orderId => _$this._orderId;
   set orderId(int? orderId) => _$this._orderId = orderId;
 
+  int? _orderIndex;
+  int? get orderIndex => _$this._orderIndex;
+  set orderIndex(int? orderIndex) => _$this._orderIndex = orderIndex;
+
   CancelOrderBuilder();
 
   CancelOrderBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _orderId = $v.orderId;
+      _orderIndex = $v.orderIndex;
       _$v = null;
     }
     return this;
@@ -220,7 +233,9 @@ class CancelOrderBuilder implements Builder<CancelOrder, CancelOrderBuilder> {
     final _$result = _$v ??
         new _$CancelOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
-                orderId, r'CancelOrder', 'orderId'));
+                orderId, r'CancelOrder', 'orderId'),
+            orderIndex: BuiltValueNullFieldError.checkNotNull(
+                orderIndex, r'CancelOrder', 'orderIndex'));
     replace(_$result);
     return _$result;
   }

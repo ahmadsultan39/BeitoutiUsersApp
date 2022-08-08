@@ -10,6 +10,8 @@ abstract class RateOrder extends OrderEvent
 
   int get orderId;
 
+  int get mealIndex;
+
   int get mealId;
 
   int get rate;

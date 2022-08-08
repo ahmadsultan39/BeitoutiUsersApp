@@ -38,11 +38,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     required String notes,
     required int rate,
     required int orderId,
+    required int mealIndex,
     required int mealId,
   }) {
     add(RateOrder(
       (b) => b
         ..orderId = orderId
+        ..mealIndex = mealIndex
         ..notes = notes
         ..rate = rate
         ..mealId = mealId,
@@ -127,6 +129,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             (success) => emit(
               state.rebuild(
                 (b) => b
+                  ..order!.meals![event.mealIndex].userRate = event.rate
                   ..isLoading = false
                   ..message = 'تم إرسال التقييم بنجاح',
               ),

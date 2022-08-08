@@ -9,9 +9,9 @@ class OrderMeal extends Equatable {
   final dynamic price;
 
   @JsonKey(name: 'user_rate')
-  final int? userRate;
+  int? userRate;
 
-  const OrderMeal({
+   OrderMeal({
     required this.id,
     required this.name,
     required this.image,
@@ -19,6 +19,12 @@ class OrderMeal extends Equatable {
     required this.price,
     required this.userRate,
   });
+
+  void changeUserRate(int rate){
+
+
+    userRate = rate;
+  }
 
   @override
   List<Object?> get props => [

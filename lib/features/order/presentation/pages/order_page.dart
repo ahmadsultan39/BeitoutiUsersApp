@@ -1,8 +1,13 @@
 import 'package:beitouti_users/core/util/constants.dart';
+import 'package:beitouti_users/core/util/enums.dart';
 import 'package:beitouti_users/core/widgets/custom_loader.dart';
+import 'package:beitouti_users/core/widgets/image_checker.dart';
+import 'package:beitouti_users/features/order/presentation/widgets/order_details.dart';
+import 'package:beitouti_users/features/order/presentation/widgets/order_meal_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../../../injection.dart';
 import '../bloc/order.dart';
 
@@ -43,67 +48,118 @@ class _OrderPageState extends State<OrderPage> {
           },
         );
         return Scaffold(
-          appBar: AppBar(),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          appBar: AppBar(
+            title: const Text('تفاصيل الطلب'),
+          ),
           body: Stack(
             children: [
               if (state.order != null)
                 SingleChildScrollView(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(state.order!.id.toString()),
-                      Text(state.order!.chefName.toString()),
-                      Text(state.order!.chefImage.toString()),
-                      Text(state.order!.createdAt.toString()),
-                      Text(state.order!.notes.toString()),
-                      Text(state.order!.status.toString()),
-                      Text(state.order!.deliveryFee.toString()),
-                      Text(state.order!.totalCost.toString()),
-                      Text(state.order!.selectedDeliveryTime.toString()),
-                      Text(state.order!.canBeEvaluated.toString()),
-                      Text(state.order!.canBeCanceled.toString()),
-                      const Text("********************"),
-                      ...state.order!.meals!
-                          .map(
-                            (e) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 20.h,
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15.w,
+                          vertical: 15.h,
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              ImageChecker(
+                                imageUrl: state.order!.chefImage ?? '',
+                                borderColor: Colors.grey,
                               ),
-                              child: Container(
-                                color: Colors.blueGrey,
-                                child: Column(
-                                  children: [
-                                    Text(e.name),
-                                    Text(e.image),
-                                    Text(e.id.toString()),
-                                    Text(e.userRate.toString()),
-                                    Text(e.quantity.toString()),
-                                  ],
+                              SizedBox(height: 3.h),
+                              Text(
+                                state.order!.chefName,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.sp,
                                 ),
                               ),
-                            ),
-                          )
-                          .toList(),
-                      TextButton(
-                        onPressed: () {
-                          _bloc.addRateOrderEvent(
-                            notes: "كترووو ملح",
-                            rate: 4,
-                            orderId: state.order!.id,
-                            mealId: state.order!.meals![0].id,
-                          );
-                        },
-                        child: Text("Rate"),
+                            ],
+                          ),
+                        ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          _bloc.addReportOrderEvent(
-                            reason: "الأكل نظيف بس ما عجبني",
-                            reportedOn: "chef",
-                            orderId:  state.order!.id,
-                          );
-                        },
-                        child: Text("Report"),
+                      OrderDetails(
+                        icon: Icons.numbers,
+                        title: 'رقم الطلب',
+                        value: state.order!.id.toString(),
                       ),
+                      OrderDetails(
+                        icon: Icons.delivery_dining_rounded,
+                        title: 'رسوم التوصيل',
+                        value: state.order!.deliveryFee.round().toString(),
+                      ),
+                      OrderDetails(
+                        icon: MdiIcons.cash,
+                        title: 'التكلفة الإجمالية',
+                        value: state.order!.totalCost.round().toString(),
+                      ),
+                      OrderDetails(
+                        icon: Icons.timer,
+                        title: 'وقت الطلب',
+                        value: state.order!.createdAt.substring(0, 10) +
+                            " " +
+                            state.order!.createdAt.substring(11, 16),
+                      ),
+
+                      OrderDetails(
+                        icon: Icons.timer,
+                        title: 'وقت التوصيل',
+                        value: state.order!.selectedDeliveryTime,
+                      ),
+                      if (state.order!.notes != null)
+                        OrderDetails(
+                          icon: Icons.notes,
+                          title: 'ملاحظات الطلب',
+                          value: state.order!.notes.toString(),
+                        ),
+                      OrderDetails(
+                        icon: MdiIcons.listStatus,
+                        title: 'الحالة',
+                        value: orderStatusToMessage(state.order!.status),
+                      ),
+                      Center(
+                        child: Text(
+                          'الوجبات' ' (${state.order!.meals!.length})',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ...state.order!.meals!.map(
+                        (meal) => OrderMealItem(
+                          meal: meal,
+                          canBeEvaluated: state.order!.canBeEvaluated ?? false,
+                          sendRate: (mealId, rate, notes) {
+                            _bloc.addRateOrderEvent(
+                              mealIndex: state.order!.meals!.indexOf(meal),
+                              notes: notes,
+                              rate: rate.round(),
+                              orderId: widget.orderId,
+                              mealId: mealId,
+                            );
+                          },
+                        ),
+                      ),
+                      // TextButton(
+                      //   onPressed: () {
+                      //     _bloc.addReportOrderEvent(
+                      //       reason: "الأكل نظيف بس ما عجبني",
+                      //       reportedOn: "chef",
+                      //       orderId:  state.order!.id,
+                      //     );
+                      //   },
+                      //   child: Text("Report"),
+                      // ),
                     ],
                   ),
                 ),

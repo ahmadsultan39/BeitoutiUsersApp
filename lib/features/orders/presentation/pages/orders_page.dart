@@ -42,18 +42,18 @@ class _OrdersPageState extends State<OrdersPage> {
         );
         return Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    if (state.currentOrders.isNotEmpty)
-                      Row(
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  if (state.currentOrders.isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 15.w,
+                      ),
+                      child: Row(
                         children: [
                           Icon(
                             Icons.timer,
@@ -73,19 +73,29 @@ class _OrdersPageState extends State<OrdersPage> {
                           ),
                         ],
                       ),
-                    ...state.currentOrders
-                        .map(
-                          (order) => CurrentOrderItem(
-                            order: order,
-                            bloc: _bloc,
-                          ),
-                        )
-                        .toList(),
-                    SizedBox(
-                      height: 20.h,
                     ),
-                    if (state.previousOrders.isNotEmpty)
-                      Row(
+                  ...state.currentOrders
+                      .map(
+                        (order) => CurrentOrderItem(
+                          order: order,
+                          cancel: (orderId) {
+                            _bloc.addCancelOrderEvent(
+                              orderId,
+                              state.currentOrders.indexOf(order),
+                            );
+                          },
+                        ),
+                      )
+                      .toList(),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  if (state.previousOrders.isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 15.w,
+                      ),
+                      child: Row(
                         children: [
                           Icon(
                             Icons.history,
@@ -105,13 +115,16 @@ class _OrdersPageState extends State<OrdersPage> {
                           ),
                         ],
                       ),
-                    ...state.previousOrders
-                        .map(
-                          (order) => CurrentOrderItem(order: order),
-                        )
-                        .toList(),
-                  ],
-                ),
+                    ),
+                  ...state.previousOrders
+                      .map(
+                        (order) => CurrentOrderItem(
+                          order: order,
+                          previous: true,
+                        ),
+                      )
+                      .toList(),
+                ],
               ),
             ),
             if (state.isLoading) const Loader(),

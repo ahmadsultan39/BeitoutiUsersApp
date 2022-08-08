@@ -56,27 +56,13 @@ class EmptyCart extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "عودة إلى صفحة الوجبات",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Icon(
-                        MdiIcons.food,
-                        color: Colors.white,
-                        size: 22.sp,
-                      ),
-                    ],
+                  child: Text(
+                    "عودة",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

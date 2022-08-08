@@ -7,14 +7,14 @@ import '../util/enums.dart';
 class OrderEntity extends Equatable {
   final int id;
   final String? notes;
-  final OrderStatus status;
+  OrderStatus status;
   final List<OrderMeal>? meals;
 
   @JsonKey(name: 'subscription_id')
   final int? subscriptionId;
 
   @JsonKey(name: 'can_be_canceled')
-  final bool? canBeCanceled;
+  bool? canBeCanceled;
 
   @JsonKey(name: 'can_be_evaluated')
   final bool? canBeEvaluated;
@@ -37,7 +37,7 @@ class OrderEntity extends Equatable {
   @JsonKey(name: 'delivery_fee')
   final dynamic deliveryFee;
 
-  const OrderEntity({
+  OrderEntity({
     required this.id,
     required this.notes,
     required this.status,
@@ -70,4 +70,3 @@ class OrderEntity extends Equatable {
         meals,
       ];
 }
-

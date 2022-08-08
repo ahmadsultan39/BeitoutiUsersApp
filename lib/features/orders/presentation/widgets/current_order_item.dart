@@ -1,23 +1,29 @@
 import 'package:beitouti_users/core/entities/order.dart';
-import 'package:beitouti_users/features/orders/presentation/bloc/orders.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:beitouti_users/core/util/enums.dart';
+import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/util/constants.dart';
 import '../../../../core/util/generate_screen.dart';
 
 class CurrentOrderItem extends StatelessWidget {
   final OrderEntity order;
-  final OrdersBloc? bloc;
+  final Function(int)? cancel;
+  final bool previous;
 
-  const CurrentOrderItem({Key? key, required this.order,this.bloc}) : super(key: key);
+  const CurrentOrderItem({
+    Key? key,
+    required this.order,
+    this.cancel,
+    this.previous = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 10.h,
+        horizontal: 15.w,
       ),
       child: GestureDetector(
         onTap: () {
@@ -33,9 +39,9 @@ class CurrentOrderItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             boxShadow: const [
               BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5,
-                offset: Offset(0, 5),
+                color: Colors.black26,
+                blurRadius: 10,
+                offset: Offset(0, 10),
               ),
             ],
           ),
@@ -52,26 +58,13 @@ class CurrentOrderItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          child: order.chefImage!.isNotEmpty
-                              ? CachedNetworkImage(
-                                  imageUrl:
-                                      Endpoints.imageUrl + order.chefImage!,
-                                  fit: BoxFit.fitWidth,
-                                )
-                              : Image.asset(
-                                  'assets/images/chef_hat.png',
-                                  fit: BoxFit.fitWidth,
-                                ),
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          height: 70.h,
-                          width: 60.w,
+                        ImageChecker(
+                          imageUrl: order.chefImage ?? '',
+                          width: 50.w,
+                          height: 50.h,
                         ),
                         SizedBox(
-                          width: 10.w,
+                          width: 5.w,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,10 +85,10 @@ class CurrentOrderItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    if (!order.canBeCanceled!)
+                    if (order.canBeCanceled!)
                       GestureDetector(
                         onTap: () {
-                         bloc!.addCancelOrderEvent(order.id);
+                          cancel!(order.id);
                         },
                         child: Icon(
                           Icons.delete,
@@ -109,15 +102,24 @@ class CurrentOrderItem extends StatelessWidget {
                   height: 10.h,
                 ),
                 RowText(
+                  text: "حالة الطلب:",
+                  width: 130.w,
+                  value: orderStatusToMessage(order.status),
+                ),
+                RowText(
                   text: "وقت الطلب:",
                   width: 200.w,
-                  value: order.createdAt,
+                  value: order.createdAt.substring(0, 10) +
+                      " " +
+                      order.createdAt.substring(11, 16),
                 ),
+                if(!previous)
                 RowText(
                   text: "الوقت المتوقع لوصول الطلب:",
                   width: 130.w,
                   value: order.selectedDeliveryTime,
                 ),
+
               ],
             ),
           ),
@@ -142,6 +144,8 @@ class RowText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           text,
@@ -159,7 +163,7 @@ class RowText extends StatelessWidget {
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
             ),
-            overflow: TextOverflow.ellipsis,
+            overflow: TextOverflow.fade,
           ),
         ),
       ],

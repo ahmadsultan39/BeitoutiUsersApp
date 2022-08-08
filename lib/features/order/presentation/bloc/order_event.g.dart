@@ -10,6 +10,8 @@ class _$RateOrder extends RateOrder {
   @override
   final int orderId;
   @override
+  final int mealIndex;
+  @override
   final int mealId;
   @override
   final int rate;
@@ -21,11 +23,13 @@ class _$RateOrder extends RateOrder {
 
   _$RateOrder._(
       {required this.orderId,
+      required this.mealIndex,
       required this.mealId,
       required this.rate,
       required this.notes})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(orderId, r'RateOrder', 'orderId');
+    BuiltValueNullFieldError.checkNotNull(mealIndex, r'RateOrder', 'mealIndex');
     BuiltValueNullFieldError.checkNotNull(mealId, r'RateOrder', 'mealId');
     BuiltValueNullFieldError.checkNotNull(rate, r'RateOrder', 'rate');
     BuiltValueNullFieldError.checkNotNull(notes, r'RateOrder', 'notes');
@@ -43,6 +47,7 @@ class _$RateOrder extends RateOrder {
     if (identical(other, this)) return true;
     return other is RateOrder &&
         orderId == other.orderId &&
+        mealIndex == other.mealIndex &&
         mealId == other.mealId &&
         rate == other.rate &&
         notes == other.notes;
@@ -51,7 +56,10 @@ class _$RateOrder extends RateOrder {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, orderId.hashCode), mealId.hashCode), rate.hashCode),
+        $jc(
+            $jc($jc($jc(0, orderId.hashCode), mealIndex.hashCode),
+                mealId.hashCode),
+            rate.hashCode),
         notes.hashCode));
   }
 
@@ -59,6 +67,7 @@ class _$RateOrder extends RateOrder {
   String toString() {
     return (newBuiltValueToStringHelper(r'RateOrder')
           ..add('orderId', orderId)
+          ..add('mealIndex', mealIndex)
           ..add('mealId', mealId)
           ..add('rate', rate)
           ..add('notes', notes))
@@ -72,6 +81,10 @@ class RateOrderBuilder implements Builder<RateOrder, RateOrderBuilder> {
   int? _orderId;
   int? get orderId => _$this._orderId;
   set orderId(int? orderId) => _$this._orderId = orderId;
+
+  int? _mealIndex;
+  int? get mealIndex => _$this._mealIndex;
+  set mealIndex(int? mealIndex) => _$this._mealIndex = mealIndex;
 
   int? _mealId;
   int? get mealId => _$this._mealId;
@@ -91,6 +104,7 @@ class RateOrderBuilder implements Builder<RateOrder, RateOrderBuilder> {
     final $v = _$v;
     if ($v != null) {
       _orderId = $v.orderId;
+      _mealIndex = $v.mealIndex;
       _mealId = $v.mealId;
       _rate = $v.rate;
       _notes = $v.notes;
@@ -118,6 +132,8 @@ class RateOrderBuilder implements Builder<RateOrder, RateOrderBuilder> {
         new _$RateOrder._(
             orderId: BuiltValueNullFieldError.checkNotNull(
                 orderId, r'RateOrder', 'orderId'),
+            mealIndex: BuiltValueNullFieldError.checkNotNull(
+                mealIndex, r'RateOrder', 'mealIndex'),
             mealId: BuiltValueNullFieldError.checkNotNull(
                 mealId, r'RateOrder', 'mealId'),
             rate: BuiltValueNullFieldError.checkNotNull(

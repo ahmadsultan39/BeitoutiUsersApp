@@ -12,7 +12,7 @@ class OrderModel extends OrderEntity {
 
   final List<OrderMealModel>? meals;
 
-  const OrderModel({
+  OrderModel({
     required int id,
     required String? notes,
     required OrderStatus status,

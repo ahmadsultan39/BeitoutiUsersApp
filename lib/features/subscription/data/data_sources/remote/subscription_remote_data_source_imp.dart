@@ -22,8 +22,8 @@ class SubscriptionRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
   }) =>
       performGetRequest<SubscriptionModel>(
-        Endpoints.showSubscription(subscriptionId),
-        token,
+        endpoint: Endpoints.showSubscription(subscriptionId),
+        token: token,
       );
 
   @override

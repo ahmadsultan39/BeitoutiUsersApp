@@ -52,15 +52,13 @@ abstract class GetMostRecentChefsEvent extends ChefsEvent
   }
 }
 
-abstract class ClearError extends ChefsEvent
-    implements Built<ClearError, ClearErrorBuilder> {
-  //getter fields
+abstract class ClearMessage extends ChefsEvent
+    implements Built<ClearMessage, ClearMessageBuilder> {
+  ClearMessage._();
 
-  ClearError._();
+  factory ClearMessage([Function(ClearMessageBuilder b) updates]) = _$ClearMessage;
 
-  factory ClearError([Function(ClearErrorBuilder b) updates]) = _$ClearError;
-
-  factory ClearError.initial() {
-    return ClearError((b) => b);
+  factory ClearMessage.initial() {
+    return ClearMessage((b) => b);
   }
 }

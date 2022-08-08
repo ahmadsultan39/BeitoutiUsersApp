@@ -21,8 +21,10 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
 
   @override
   void initState() {
-    widget.bloc.addMealsEvent(widget.query);
-    widget.bloc.addSubscriptionsEvent(widget.query);
+    widget.bloc.addMealsEvent(widget.query, widget.bloc.state.mealsPriceSort,
+        widget.bloc.state.mealsRateSort);
+    widget.bloc.addSubscriptionsEvent(
+        widget.query, widget.bloc.state.subscriptionsDaysFilter);
     widget.bloc.addChefsEvent(widget.query);
     super.initState();
   }
@@ -101,20 +103,20 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                   },
                   child: _index == 3
                       ? Text(
-                    "الاشتراكات (${widget.bloc.state.totalChefs})",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor,
-                      fontSize: 18.sp,
-                    ),
-                  )
+                          "الاشتراكات (${widget.bloc.state.totalSubscriptions})",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                            fontSize: 18.sp,
+                          ),
+                        )
                       : Text(
-                    "الاشتراكات (${widget.bloc.state.totalChefs})",
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontSize: 16.sp,
-                    ),
-                  ),
+                          "الاشتراكات (${widget.bloc.state.totalSubscriptions})",
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 16.sp,
+                          ),
+                        ),
                 ),
               ],
             ),

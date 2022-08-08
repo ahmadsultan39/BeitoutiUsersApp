@@ -11,7 +11,7 @@ class SubscriptionChefModel extends SubscriptionChef {
   const SubscriptionChefModel({
     required int id,
     required String name,
-    required String location,
+    required String? location,
     required this.profilePicture,
   }) : super(
           id: id,

@@ -12,6 +12,8 @@ class _$SearchState extends SearchState {
   @override
   final String message;
   @override
+  final String query;
+  @override
   final bool error;
   @override
   final BuiltList<SearchMeal> meals;
@@ -24,6 +26,10 @@ class _$SearchState extends SearchState {
   @override
   final bool isMealsLoading;
   @override
+  final String? mealsPriceSort;
+  @override
+  final String? mealsRateSort;
+  @override
   final BuiltList<SearchSubscription> subscriptions;
   @override
   final int subscriptionsPage;
@@ -33,6 +39,8 @@ class _$SearchState extends SearchState {
   final int totalSubscriptions;
   @override
   final bool isSubscriptionsLoading;
+  @override
+  final int? subscriptionsDaysFilter;
   @override
   final BuiltList<SearchChef> chefs;
   @override
@@ -50,17 +58,21 @@ class _$SearchState extends SearchState {
   _$SearchState._(
       {required this.isLoading,
       required this.message,
+      required this.query,
       required this.error,
       required this.meals,
       required this.mealsPage,
       required this.isMealsFinished,
       required this.totalMeals,
       required this.isMealsLoading,
+      this.mealsPriceSort,
+      this.mealsRateSort,
       required this.subscriptions,
       required this.subscriptionsPage,
       required this.isSubscriptionsFinished,
       required this.totalSubscriptions,
       required this.isSubscriptionsLoading,
+      this.subscriptionsDaysFilter,
       required this.chefs,
       required this.chefsPage,
       required this.isChefsFinished,
@@ -70,6 +82,7 @@ class _$SearchState extends SearchState {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'SearchState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'SearchState', 'message');
+    BuiltValueNullFieldError.checkNotNull(query, r'SearchState', 'query');
     BuiltValueNullFieldError.checkNotNull(error, r'SearchState', 'error');
     BuiltValueNullFieldError.checkNotNull(meals, r'SearchState', 'meals');
     BuiltValueNullFieldError.checkNotNull(
@@ -114,17 +127,21 @@ class _$SearchState extends SearchState {
     return other is SearchState &&
         isLoading == other.isLoading &&
         message == other.message &&
+        query == other.query &&
         error == other.error &&
         meals == other.meals &&
         mealsPage == other.mealsPage &&
         isMealsFinished == other.isMealsFinished &&
         totalMeals == other.totalMeals &&
         isMealsLoading == other.isMealsLoading &&
+        mealsPriceSort == other.mealsPriceSort &&
+        mealsRateSort == other.mealsRateSort &&
         subscriptions == other.subscriptions &&
         subscriptionsPage == other.subscriptionsPage &&
         isSubscriptionsFinished == other.isSubscriptionsFinished &&
         totalSubscriptions == other.totalSubscriptions &&
         isSubscriptionsLoading == other.isSubscriptionsLoading &&
+        subscriptionsDaysFilter == other.subscriptionsDaysFilter &&
         chefs == other.chefs &&
         chefsPage == other.chefsPage &&
         isChefsFinished == other.isChefsFinished &&
@@ -152,24 +169,21 @@ class _$SearchState extends SearchState {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            0,
-                                                                            isLoading
-                                                                                .hashCode),
-                                                                        message
-                                                                            .hashCode),
-                                                                    error
-                                                                        .hashCode),
-                                                                meals.hashCode),
-                                                            mealsPage.hashCode),
-                                                        isMealsFinished
-                                                            .hashCode),
-                                                    totalMeals.hashCode),
-                                                isMealsLoading.hashCode),
-                                            subscriptions.hashCode),
-                                        subscriptionsPage.hashCode),
-                                    isSubscriptionsFinished.hashCode),
-                                totalSubscriptions.hashCode),
-                            isSubscriptionsLoading.hashCode),
+                                                                            $jc($jc($jc($jc(0, isLoading.hashCode), message.hashCode), query.hashCode),
+                                                                                error.hashCode),
+                                                                            meals.hashCode),
+                                                                        mealsPage.hashCode),
+                                                                    isMealsFinished.hashCode),
+                                                                totalMeals.hashCode),
+                                                            isMealsLoading.hashCode),
+                                                        mealsPriceSort.hashCode),
+                                                    mealsRateSort.hashCode),
+                                                subscriptions.hashCode),
+                                            subscriptionsPage.hashCode),
+                                        isSubscriptionsFinished.hashCode),
+                                    totalSubscriptions.hashCode),
+                                isSubscriptionsLoading.hashCode),
+                            subscriptionsDaysFilter.hashCode),
                         chefs.hashCode),
                     chefsPage.hashCode),
                 isChefsFinished.hashCode),
@@ -182,17 +196,21 @@ class _$SearchState extends SearchState {
     return (newBuiltValueToStringHelper(r'SearchState')
           ..add('isLoading', isLoading)
           ..add('message', message)
+          ..add('query', query)
           ..add('error', error)
           ..add('meals', meals)
           ..add('mealsPage', mealsPage)
           ..add('isMealsFinished', isMealsFinished)
           ..add('totalMeals', totalMeals)
           ..add('isMealsLoading', isMealsLoading)
+          ..add('mealsPriceSort', mealsPriceSort)
+          ..add('mealsRateSort', mealsRateSort)
           ..add('subscriptions', subscriptions)
           ..add('subscriptionsPage', subscriptionsPage)
           ..add('isSubscriptionsFinished', isSubscriptionsFinished)
           ..add('totalSubscriptions', totalSubscriptions)
           ..add('isSubscriptionsLoading', isSubscriptionsLoading)
+          ..add('subscriptionsDaysFilter', subscriptionsDaysFilter)
           ..add('chefs', chefs)
           ..add('chefsPage', chefsPage)
           ..add('isChefsFinished', isChefsFinished)
@@ -212,6 +230,10 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
   String? _message;
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
+
+  String? _query;
+  String? get query => _$this._query;
+  set query(String? query) => _$this._query = query;
 
   bool? _error;
   bool? get error => _$this._error;
@@ -240,6 +262,16 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
   set isMealsLoading(bool? isMealsLoading) =>
       _$this._isMealsLoading = isMealsLoading;
 
+  String? _mealsPriceSort;
+  String? get mealsPriceSort => _$this._mealsPriceSort;
+  set mealsPriceSort(String? mealsPriceSort) =>
+      _$this._mealsPriceSort = mealsPriceSort;
+
+  String? _mealsRateSort;
+  String? get mealsRateSort => _$this._mealsRateSort;
+  set mealsRateSort(String? mealsRateSort) =>
+      _$this._mealsRateSort = mealsRateSort;
+
   ListBuilder<SearchSubscription>? _subscriptions;
   ListBuilder<SearchSubscription> get subscriptions =>
       _$this._subscriptions ??= new ListBuilder<SearchSubscription>();
@@ -265,6 +297,11 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
   bool? get isSubscriptionsLoading => _$this._isSubscriptionsLoading;
   set isSubscriptionsLoading(bool? isSubscriptionsLoading) =>
       _$this._isSubscriptionsLoading = isSubscriptionsLoading;
+
+  int? _subscriptionsDaysFilter;
+  int? get subscriptionsDaysFilter => _$this._subscriptionsDaysFilter;
+  set subscriptionsDaysFilter(int? subscriptionsDaysFilter) =>
+      _$this._subscriptionsDaysFilter = subscriptionsDaysFilter;
 
   ListBuilder<SearchChef>? _chefs;
   ListBuilder<SearchChef> get chefs =>
@@ -296,17 +333,21 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
     if ($v != null) {
       _isLoading = $v.isLoading;
       _message = $v.message;
+      _query = $v.query;
       _error = $v.error;
       _meals = $v.meals.toBuilder();
       _mealsPage = $v.mealsPage;
       _isMealsFinished = $v.isMealsFinished;
       _totalMeals = $v.totalMeals;
       _isMealsLoading = $v.isMealsLoading;
+      _mealsPriceSort = $v.mealsPriceSort;
+      _mealsRateSort = $v.mealsRateSort;
       _subscriptions = $v.subscriptions.toBuilder();
       _subscriptionsPage = $v.subscriptionsPage;
       _isSubscriptionsFinished = $v.isSubscriptionsFinished;
       _totalSubscriptions = $v.totalSubscriptions;
       _isSubscriptionsLoading = $v.isSubscriptionsLoading;
+      _subscriptionsDaysFilter = $v.subscriptionsDaysFilter;
       _chefs = $v.chefs.toBuilder();
       _chefsPage = $v.chefsPage;
       _isChefsFinished = $v.isChefsFinished;
@@ -340,6 +381,8 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
                   isLoading, r'SearchState', 'isLoading'),
               message: BuiltValueNullFieldError.checkNotNull(
                   message, r'SearchState', 'message'),
+              query: BuiltValueNullFieldError.checkNotNull(
+                  query, r'SearchState', 'query'),
               error: BuiltValueNullFieldError.checkNotNull(
                   error, r'SearchState', 'error'),
               meals: meals.build(),
@@ -351,13 +394,15 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
                   totalMeals, r'SearchState', 'totalMeals'),
               isMealsLoading: BuiltValueNullFieldError.checkNotNull(
                   isMealsLoading, r'SearchState', 'isMealsLoading'),
+              mealsPriceSort: mealsPriceSort,
+              mealsRateSort: mealsRateSort,
               subscriptions: subscriptions.build(),
               subscriptionsPage: BuiltValueNullFieldError.checkNotNull(
                   subscriptionsPage, r'SearchState', 'subscriptionsPage'),
-              isSubscriptionsFinished:
-                  BuiltValueNullFieldError.checkNotNull(isSubscriptionsFinished, r'SearchState', 'isSubscriptionsFinished'),
+              isSubscriptionsFinished: BuiltValueNullFieldError.checkNotNull(isSubscriptionsFinished, r'SearchState', 'isSubscriptionsFinished'),
               totalSubscriptions: BuiltValueNullFieldError.checkNotNull(totalSubscriptions, r'SearchState', 'totalSubscriptions'),
               isSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(isSubscriptionsLoading, r'SearchState', 'isSubscriptionsLoading'),
+              subscriptionsDaysFilter: subscriptionsDaysFilter,
               chefs: chefs.build(),
               chefsPage: BuiltValueNullFieldError.checkNotNull(chefsPage, r'SearchState', 'chefsPage'),
               isChefsFinished: BuiltValueNullFieldError.checkNotNull(isChefsFinished, r'SearchState', 'isChefsFinished'),

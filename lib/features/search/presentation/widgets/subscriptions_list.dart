@@ -26,16 +26,16 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
   @override
   void initState() {
     _controller.addListener(
-          () {
+      () {
         if (_controller.position.extentAfter <= 0 &&
             !widget.bloc.state.isSubscriptionsFinished &&
             widget.bloc.state.subscriptions.isNotEmpty &&
-            !widget.bloc.state.isSubscriptionsLoading
-            &&
+            !widget.bloc.state.isSubscriptionsLoading &&
             !widget.bloc.state.isLoading &&
             _controller.position.pixels ==
                 _controller.position.maxScrollExtent) {
-          widget.bloc.addSubscriptionsEvent(widget.query);
+          widget.bloc.addSubscriptionsEvent(
+              widget.query, widget.bloc.state.subscriptionsDaysFilter);
         }
       },
     );
@@ -52,12 +52,12 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
           if (_controller.position.extentAfter <= 0 &&
               !widget.bloc.state.isSubscriptionsFinished &&
               widget.bloc.state.subscriptions.isNotEmpty &&
-              !widget.bloc.state.isSubscriptionsLoading
-              &&
+              !widget.bloc.state.isSubscriptionsLoading &&
               !widget.bloc.state.isLoading &&
               _controller.position.pixels ==
                   _controller.position.maxScrollExtent) {
-            widget.bloc.addSubscriptionsEvent(widget.query);
+            widget.bloc.addSubscriptionsEvent(
+                widget.query, widget.bloc.state.subscriptionsDaysFilter);
           }
           //recursively check again
           _checkInitialExtent();
@@ -77,129 +77,165 @@ class _SubscriptionsListState extends State<SubscriptionsList> {
             !widget.bloc.state.isLoading) {
           _checkInitialExtent();
         }
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: widget.bloc,
+          );
+        });
         return Expanded(
-          child: SingleChildScrollView(
-            controller: _controller,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                widget.bloc.state.isLoading
-                    ? const Loader()
-                    : ListView.builder(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(0),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.bloc.state.subscriptions.length,
-                    itemBuilder: (ctx, index) {
-                      return GestureDetector(
-                        child:  Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.all(20),
-                          height: 275.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(0.0, 1.0),
-                                  blurRadius: 6.0,
-                                ),
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    widget.bloc.state.subscriptions[index].name,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.sp,
-                                      color: Theme.of(context).colorScheme.secondary,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.star,color: Colors.yellow,),
-                                      Text(
-                                        " ${widget.bloc.state.subscriptions[index].rating?.round() ?? 0} (${widget.bloc.state.subscriptions[index].ratesCount})",
-                                        style: TextStyle(
-                                          fontSize: 18.sp,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                " - عدد أيام الاشتراك : ${widget.bloc.state.subscriptions[index].daysNumber}",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                ),
-                              ),
-                              // Text(
-                              //   " - توقيت الوجبات : ${widget.bloc.state.subscriptions[index].mealDeliveryTime.substring(0,5)}",
-                              //   style: TextStyle(
-                              //     fontSize: 16.sp,
-                              //   ),
-                              // ),
-                              Text(
-                                " - بداية الاشتراك : ${widget.bloc.state.subscriptions[index].startsAt}",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                ),
-                              ),
-                              // Row(
-                              //   children: [
-                              //     Icon(
-                              //       Icons.circle,
-                              //       color: widget.bloc.state.subscriptions[index].
-                              //           ? Colors.green
-                              //           : Colors.red,
-                              //       size: 16.sp,
-                              //     ),
-                              //     Text(
-                              //       subscription.isAvailable
-                              //           ? " متاح"
-                              //           : " مغلق",
-                              //       style: TextStyle(
-                              //         fontWeight: FontWeight.normal,
-                              //         fontSize: 16.sp,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
-                              Spacer(),
-                              Text(
-                                "سعر الاشتراك ${widget.bloc.state.subscriptions[index].totalCost} ل.س",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                  color: Theme.of(context).colorScheme.secondary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          // Navigator.pushNamed(
-                          //     context, NameScreen.,
-                          //     arguments:
-                          //         widget.bloc.state.subscriptions[index]);
+          child: widget.bloc.state.isLoading
+              ? const Loader()
+              : SingleChildScrollView(
+                  controller: _controller,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DropdownButton<int>(
+                        value: state.subscriptionsDaysFilter,
+                        hint: const Text("عدد الأيام"),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: [
+                          5,
+                          7,
+                        ].map((item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: Text(item.toString()),
+                          );
+                        }).toList(),
+                        onChanged: (int? newValue) {
+                          /// add event
+                          widget.bloc
+                              .addFilterSubscriptionsByDaysEvent(newValue!);
                         },
-                      );
-                    }),
-                SizedBox(
-                  height: 10.h,
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(0),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: widget.bloc.state.subscriptions.length,
+                          itemBuilder: (ctx, index) {
+                            return GestureDetector(
+                              child: Container(
+                                margin: const EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(20),
+                                height: 275.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Colors.grey,
+                                        offset: Offset(0.0, 1.0),
+                                        blurRadius: 6.0,
+                                      ),
+                                    ]),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          widget.bloc.state.subscriptions[index]
+                                              .name,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.sp,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                            Text(
+                                              " ${widget.bloc.state.subscriptions[index].rating?.round() ?? 0} (${widget.bloc.state.subscriptions[index].ratesCount})",
+                                              style: TextStyle(
+                                                fontSize: 18.sp,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      " - عدد أيام الاشتراك : ${widget.bloc.state.subscriptions[index].daysNumber}",
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                    // Text(
+                                    //   " - توقيت الوجبات : ${widget.bloc.state.subscriptions[index].mealDeliveryTime.substring(0,5)}",
+                                    //   style: TextStyle(
+                                    //     fontSize: 16.sp,
+                                    //   ),
+                                    // ),
+                                    Text(
+                                      " - بداية الاشتراك : ${widget.bloc.state.subscriptions[index].startsAt}",
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                    // Row(
+                                    //   children: [
+                                    //     Icon(
+                                    //       Icons.circle,
+                                    //       color: widget.bloc.state.subscriptions[index].
+                                    //           ? Colors.green
+                                    //           : Colors.red,
+                                    //       size: 16.sp,
+                                    //     ),
+                                    //     Text(
+                                    //       subscription.isAvailable
+                                    //           ? " متاح"
+                                    //           : " مغلق",
+                                    //       style: TextStyle(
+                                    //         fontWeight: FontWeight.normal,
+                                    //         fontSize: 16.sp,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    Spacer(),
+                                    Text(
+                                      "سعر الاشتراك ${widget.bloc.state.subscriptions[index].totalCost.toString().split(".").first} ل.س",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.sp,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {
+                                // Navigator.pushNamed(
+                                //     context, NameScreen.,
+                                //     arguments:
+                                //         widget.bloc.state.subscriptions[index]);
+                              },
+                            );
+                          }),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      if (!state.isMealsFinished && state.meals.isNotEmpty)
+                        const Loader(),
+                    ],
+                  ),
                 ),
-                if (!state.isMealsFinished && state.meals.isNotEmpty)
-                  const Loader(),
-              ],
-            ),
-          ),
         );
       },
     );

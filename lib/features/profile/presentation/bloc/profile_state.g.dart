@@ -13,17 +13,27 @@ class _$ProfileState extends ProfileState {
   final String message;
   @override
   final bool error;
+  @override
+  final bool logoutSuccess;
+  @override
+  final Profile? profile;
 
   factory _$ProfileState([void Function(ProfileStateBuilder)? updates]) =>
       (new ProfileStateBuilder()..update(updates))._build();
 
   _$ProfileState._(
-      {required this.isLoading, required this.message, required this.error})
+      {required this.isLoading,
+      required this.message,
+      required this.error,
+      required this.logoutSuccess,
+      this.profile})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'ProfileState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'ProfileState', 'message');
     BuiltValueNullFieldError.checkNotNull(error, r'ProfileState', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        logoutSuccess, r'ProfileState', 'logoutSuccess');
   }
 
   @override
@@ -39,13 +49,19 @@ class _$ProfileState extends ProfileState {
     return other is ProfileState &&
         isLoading == other.isLoading &&
         message == other.message &&
-        error == other.error;
+        error == other.error &&
+        logoutSuccess == other.logoutSuccess &&
+        profile == other.profile;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode));
+    return $jf($jc(
+        $jc(
+            $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
+                error.hashCode),
+            logoutSuccess.hashCode),
+        profile.hashCode));
   }
 
   @override
@@ -53,7 +69,9 @@ class _$ProfileState extends ProfileState {
     return (newBuiltValueToStringHelper(r'ProfileState')
           ..add('isLoading', isLoading)
           ..add('message', message)
-          ..add('error', error))
+          ..add('error', error)
+          ..add('logoutSuccess', logoutSuccess)
+          ..add('profile', profile))
         .toString();
   }
 }
@@ -74,6 +92,15 @@ class ProfileStateBuilder
   bool? get error => _$this._error;
   set error(bool? error) => _$this._error = error;
 
+  bool? _logoutSuccess;
+  bool? get logoutSuccess => _$this._logoutSuccess;
+  set logoutSuccess(bool? logoutSuccess) =>
+      _$this._logoutSuccess = logoutSuccess;
+
+  Profile? _profile;
+  Profile? get profile => _$this._profile;
+  set profile(Profile? profile) => _$this._profile = profile;
+
   ProfileStateBuilder();
 
   ProfileStateBuilder get _$this {
@@ -82,6 +109,8 @@ class ProfileStateBuilder
       _isLoading = $v.isLoading;
       _message = $v.message;
       _error = $v.error;
+      _logoutSuccess = $v.logoutSuccess;
+      _profile = $v.profile;
       _$v = null;
     }
     return this;
@@ -109,7 +138,10 @@ class ProfileStateBuilder
             message: BuiltValueNullFieldError.checkNotNull(
                 message, r'ProfileState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, r'ProfileState', 'error'));
+                error, r'ProfileState', 'error'),
+            logoutSuccess: BuiltValueNullFieldError.checkNotNull(
+                logoutSuccess, r'ProfileState', 'logoutSuccess'),
+            profile: profile);
     replace(_$result);
     return _$result;
   }

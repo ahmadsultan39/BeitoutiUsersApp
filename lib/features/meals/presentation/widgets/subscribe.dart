@@ -1,11 +1,8 @@
 import 'package:beitouti_users/core/util/generate_screen.dart';
+import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_subscribe.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/util/constants.dart';
-import '../../../../core/widgets/custom_loader.dart';
 
 class Subscribe extends StatelessWidget {
   final HomeSubscribe subscribe;
@@ -20,6 +17,7 @@ class Subscribe extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 15.w,
+        vertical: 10.h,
       ),
       child: GestureDetector(
         onTap: () {
@@ -34,32 +32,14 @@ class Subscribe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                ImageChecker(
+                  imageUrl: subscribe.chef.profilePicture ?? '',
                   width: 50.w,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Stack(
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl: Endpoints.imageUrl +
-                            (subscribe.chef.profilePicture ?? ''),
-                        placeholder: (_, __) => const Loader(),
-                        errorWidget: (_, __, ___) => const Icon(Icons.error),
-                        fit: BoxFit.cover,
-                        height: 50.w,
-                        width: 50.w,
-                      ),
-                      Container(
-                        height: 50.w,
-                        width: 50.w,
-                        color: Colors.black.withOpacity(0.2),
-                      ),
-                    ],
-                  ),
+                  height: 50.h,
+                  circle: false,
+                  borderColor: Colors.black26,
+                  borderRadius: 20,
                 ),
                 SizedBox(
                   width: 10.w,
@@ -75,6 +55,9 @@ class Subscribe extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
                     Text(
                       subscribe.chef.name,
                       style: TextStyle(
@@ -88,76 +71,65 @@ class Subscribe extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 10.h,
+              height: 5.h,
             ),
-            Row(
-              children: [
-                Text(
-                  "عدد الأيام: ",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  subscribe.daysNumber.toString(),
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+            SubscriptionInfo(
+              title: 'التكلفة',
+              value: subscribe.totalCost.toString() + ' ل.س',
             ),
-            SizedBox(
-              height: 10.h,
+            SubscriptionInfo(
+              title: 'عدد الأيام',
+              value: subscribe.daysNumber.toString(),
             ),
-            Row(
-              children: [
-                Text(
-                  "التكلفة: ",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  subscribe.totalCost.toString() + " ل.س",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Row(
-              children: [
-                Text(
-                  "تاريخ البدء: ",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  subscribe.startsAt,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+            SubscriptionInfo(
+              title: 'تاريخ البدء:',
+              value: subscribe.startsAt,
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SubscriptionInfo extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const SubscriptionInfo({
+    Key? key,
+    required this.title,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 5.h,
+      ),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            width: 5.w,
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }

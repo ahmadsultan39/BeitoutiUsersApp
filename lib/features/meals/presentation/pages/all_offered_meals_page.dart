@@ -47,8 +47,9 @@ class _AllOfferedMealsPageState extends State<AllOfferedMealsPage> {
           ),
         );
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            title: Text('كل العروضات'),
+            title: const Text('كل العروضات'),
           ),
           body: Stack(
             children: [

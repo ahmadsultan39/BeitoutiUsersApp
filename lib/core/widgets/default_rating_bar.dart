@@ -8,11 +8,13 @@ class DefaultRatingBar extends StatelessWidget {
   final bool ignoreGestures;
   final bool withRatingCount;
   final int totalRating;
+  final Color? numberColor;
   final Function(double)? onRatingChanged;
 
   const DefaultRatingBar({
     Key? key,
     this.itemSize,
+    this.numberColor,
     this.onRatingChanged,
     this.initialRating,
     this.totalRating = 0,
@@ -49,7 +51,13 @@ class DefaultRatingBar extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              Text("($totalRating)"),
+              Text(
+                "($totalRating)",
+                style: TextStyle(
+                  color: numberColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           )
         : RatingBar(

@@ -1,5 +1,7 @@
+import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/constants.dart';
 import '../../../../core/widgets/custom_loader.dart';
@@ -51,20 +53,66 @@ class _CurrentSubscriptionOrderPageState
           },
         );
         return Scaffold(
-          appBar: AppBar(),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          appBar: AppBar(
+            title: const Text("الطلبات"),
+          ),
           body: Stack(
             children: [
               Column(
                 children: [
                   ...state.subscriptionOrders.map(
-                    (order) => GestureDetector(
-                      onTap: (){
-                        _bloc.addCancelOrderEvent(order.id);
-                      },
-                      child: Text(
-                        order.mealName +
-                            "    " +
-                            order.canBeCanceled.toString(),
+                    (order) => Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 15.w,
+                        vertical: 15.h,
+                      ),
+                      child: Container(
+                        width: 375.w,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.background,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              offset: Offset(0, 10),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  ImageChecker(
+                                    imageUrl: order.mealImage,
+                                    width: 80.w,
+                                    height: 80.h,
+                                  ),
+                                  SizedBox(width: 5.w),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(order.mealName),
+                                      Text(order.selectedDeliveryTime),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              if (order.canBeCanceled)
+                                IconButton(
+                                  icon: const Icon(Icons.delete_rounded),
+                                  onPressed: () {
+                                    _bloc.addCancelOrderEvent(order.id);
+                                  },
+                                )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),

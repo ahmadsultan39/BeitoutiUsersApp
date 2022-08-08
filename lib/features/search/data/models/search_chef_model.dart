@@ -6,7 +6,7 @@ part 'search_chef_model.g.dart';
 @JsonSerializable()
 class SearchChefModel extends SearchChef {
   static const String className = 'SearchChefModel';
-
+  static const String paginateName = 'PaginateResponseModel<SearchChefModel>';
   factory SearchChefModel.fromJson(Map<String, dynamic> json) =>
       _$SearchChefModelFromJson(json);
 

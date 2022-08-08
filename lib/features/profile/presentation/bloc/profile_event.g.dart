@@ -6,6 +6,120 @@ part of 'profile_event.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+class _$GetProfileEvent extends GetProfileEvent {
+  factory _$GetProfileEvent([void Function(GetProfileEventBuilder)? updates]) =>
+      (new GetProfileEventBuilder()..update(updates))._build();
+
+  _$GetProfileEvent._() : super._();
+
+  @override
+  GetProfileEvent rebuild(void Function(GetProfileEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetProfileEventBuilder toBuilder() =>
+      new GetProfileEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetProfileEvent;
+  }
+
+  @override
+  int get hashCode {
+    return 742353768;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetProfileEvent').toString();
+  }
+}
+
+class GetProfileEventBuilder
+    implements Builder<GetProfileEvent, GetProfileEventBuilder> {
+  _$GetProfileEvent? _$v;
+
+  GetProfileEventBuilder();
+
+  @override
+  void replace(GetProfileEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetProfileEvent;
+  }
+
+  @override
+  void update(void Function(GetProfileEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetProfileEvent build() => _build();
+
+  _$GetProfileEvent _build() {
+    final _$result = _$v ?? new _$GetProfileEvent._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$LogoutEvent extends LogoutEvent {
+  factory _$LogoutEvent([void Function(LogoutEventBuilder)? updates]) =>
+      (new LogoutEventBuilder()..update(updates))._build();
+
+  _$LogoutEvent._() : super._();
+
+  @override
+  LogoutEvent rebuild(void Function(LogoutEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  LogoutEventBuilder toBuilder() => new LogoutEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is LogoutEvent;
+  }
+
+  @override
+  int get hashCode {
+    return 944313782;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'LogoutEvent').toString();
+  }
+}
+
+class LogoutEventBuilder implements Builder<LogoutEvent, LogoutEventBuilder> {
+  _$LogoutEvent? _$v;
+
+  LogoutEventBuilder();
+
+  @override
+  void replace(LogoutEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$LogoutEvent;
+  }
+
+  @override
+  void update(void Function(LogoutEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  LogoutEvent build() => _build();
+
+  _$LogoutEvent _build() {
+    final _$result = _$v ?? new _$LogoutEvent._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

@@ -6,7 +6,7 @@ class SearchSubscription extends Equatable {
   final String name;
   final int daysNumber;
   final String startsAt;
-  final int totalCost;
+  final double totalCost;
   final double? rating;
   final int? ratesCount;
   final List<String> meals;

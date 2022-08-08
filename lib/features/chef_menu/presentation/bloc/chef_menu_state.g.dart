@@ -20,7 +20,7 @@ class _$ChefMenuState extends ChefMenuState {
   @override
   final List<ChefCategory> categories;
   @override
-  final List<ChefMeal> categoryMeals;
+  final Map<int, List<ChefMeal>> meals;
   @override
   final ChefInfo? chefInfo;
   @override
@@ -42,7 +42,7 @@ class _$ChefMenuState extends ChefMenuState {
       required this.isSubscriptionsLoading,
       required this.isSubscriptionMealsLoading,
       required this.categories,
-      required this.categoryMeals,
+      required this.meals,
       this.chefInfo,
       required this.subscriptions,
       required this.subscriptionMeals,
@@ -61,8 +61,7 @@ class _$ChefMenuState extends ChefMenuState {
         r'ChefMenuState', 'isSubscriptionMealsLoading');
     BuiltValueNullFieldError.checkNotNull(
         categories, r'ChefMenuState', 'categories');
-    BuiltValueNullFieldError.checkNotNull(
-        categoryMeals, r'ChefMenuState', 'categoryMeals');
+    BuiltValueNullFieldError.checkNotNull(meals, r'ChefMenuState', 'meals');
     BuiltValueNullFieldError.checkNotNull(
         subscriptions, r'ChefMenuState', 'subscriptions');
     BuiltValueNullFieldError.checkNotNull(
@@ -88,7 +87,7 @@ class _$ChefMenuState extends ChefMenuState {
         isSubscriptionsLoading == other.isSubscriptionsLoading &&
         isSubscriptionMealsLoading == other.isSubscriptionMealsLoading &&
         categories == other.categories &&
-        categoryMeals == other.categoryMeals &&
+        meals == other.meals &&
         chefInfo == other.chefInfo &&
         subscriptions == other.subscriptions &&
         subscriptionMeals == other.subscriptionMeals &&
@@ -119,7 +118,7 @@ class _$ChefMenuState extends ChefMenuState {
                                         isSubscriptionsLoading.hashCode),
                                     isSubscriptionMealsLoading.hashCode),
                                 categories.hashCode),
-                            categoryMeals.hashCode),
+                            meals.hashCode),
                         chefInfo.hashCode),
                     subscriptions.hashCode),
                 subscriptionMeals.hashCode),
@@ -136,7 +135,7 @@ class _$ChefMenuState extends ChefMenuState {
           ..add('isSubscriptionsLoading', isSubscriptionsLoading)
           ..add('isSubscriptionMealsLoading', isSubscriptionMealsLoading)
           ..add('categories', categories)
-          ..add('categoryMeals', categoryMeals)
+          ..add('meals', meals)
           ..add('chefInfo', chefInfo)
           ..add('subscriptions', subscriptions)
           ..add('subscriptionMeals', subscriptionMeals)
@@ -180,10 +179,9 @@ class ChefMenuStateBuilder
   set categories(List<ChefCategory>? categories) =>
       _$this._categories = categories;
 
-  List<ChefMeal>? _categoryMeals;
-  List<ChefMeal>? get categoryMeals => _$this._categoryMeals;
-  set categoryMeals(List<ChefMeal>? categoryMeals) =>
-      _$this._categoryMeals = categoryMeals;
+  Map<int, List<ChefMeal>>? _meals;
+  Map<int, List<ChefMeal>>? get meals => _$this._meals;
+  set meals(Map<int, List<ChefMeal>>? meals) => _$this._meals = meals;
 
   ChefInfo? _chefInfo;
   ChefInfo? get chefInfo => _$this._chefInfo;
@@ -218,7 +216,7 @@ class ChefMenuStateBuilder
       _isSubscriptionsLoading = $v.isSubscriptionsLoading;
       _isSubscriptionMealsLoading = $v.isSubscriptionMealsLoading;
       _categories = $v.categories;
-      _categoryMeals = $v.categoryMeals;
+      _meals = $v.meals;
       _chefInfo = $v.chefInfo;
       _subscriptions = $v.subscriptions;
       _subscriptionMeals = $v.subscriptionMeals;
@@ -253,13 +251,16 @@ class ChefMenuStateBuilder
             isChefInfoLoading: BuiltValueNullFieldError.checkNotNull(
                 isChefInfoLoading, r'ChefMenuState', 'isChefInfoLoading'),
             isSubscriptionsLoading: BuiltValueNullFieldError.checkNotNull(
-                isSubscriptionsLoading, r'ChefMenuState', 'isSubscriptionsLoading'),
+                isSubscriptionsLoading,
+                r'ChefMenuState',
+                'isSubscriptionsLoading'),
             isSubscriptionMealsLoading: BuiltValueNullFieldError.checkNotNull(
-                isSubscriptionMealsLoading, r'ChefMenuState', 'isSubscriptionMealsLoading'),
+                isSubscriptionMealsLoading,
+                r'ChefMenuState',
+                'isSubscriptionMealsLoading'),
             categories: BuiltValueNullFieldError.checkNotNull(
                 categories, r'ChefMenuState', 'categories'),
-            categoryMeals: BuiltValueNullFieldError.checkNotNull(
-                categoryMeals, r'ChefMenuState', 'categoryMeals'),
+            meals: BuiltValueNullFieldError.checkNotNull(meals, r'ChefMenuState', 'meals'),
             chefInfo: chefInfo,
             subscriptions: BuiltValueNullFieldError.checkNotNull(subscriptions, r'ChefMenuState', 'subscriptions'),
             subscriptionMeals: BuiltValueNullFieldError.checkNotNull(subscriptionMeals, r'ChefMenuState', 'subscriptionMeals'),

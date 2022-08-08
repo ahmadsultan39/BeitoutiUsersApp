@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class ChefMeal extends Equatable {
   final int id;
   final int price;
+  final int? priceAfterDiscount;
   final double? rating;
   final int ratesCount;
   final int? discountPercentage;
@@ -14,6 +15,7 @@ class ChefMeal extends Equatable {
   const ChefMeal(
       this.id,
       this.price,
+      this.priceAfterDiscount,
       this.rating,
       this.ratesCount,
       this.discountPercentage,

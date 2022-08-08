@@ -132,6 +132,7 @@ class CurrentSubscriptionsBloc
               state.rebuild(
                 (b) => b
                   ..isLoading = false
+                  ..subscriptionOrders.removeWhere((b) => b.id == event.orderId)
                   ..message = 'تم إلغاء الطلب بنجاح',
               ),
             ),

@@ -10,7 +10,7 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
   bool get isLoading;
 
   String get message;
-
+  String get query;
   bool get error;
 
   BuiltList<SearchMeal> get meals;
@@ -23,6 +23,9 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
 
   bool get isMealsLoading;
 
+  String? get mealsPriceSort;
+  String? get mealsRateSort;
+
   BuiltList<SearchSubscription> get subscriptions;
 
   int get subscriptionsPage;
@@ -32,6 +35,8 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
   int get totalSubscriptions;
 
   bool get isSubscriptionsLoading;
+
+  int? get subscriptionsDaysFilter;
 
   BuiltList<SearchChef> get chefs;
 
@@ -53,19 +58,23 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
         ..isLoading = false
         ..message = ""
         ..error = false
+        ..query = ""
         ..isMealsLoading = false
         ..isSubscriptionsLoading = false
         ..isChefsLoading = false
         ..meals.replace([])
-        ..mealsPage = 0
+        ..mealsPage = 1
         ..isMealsFinished = false
         ..totalMeals = 0
+        ..mealsPriceSort = null
+        ..mealsRateSort = null
         ..subscriptions.replace([])
-        ..subscriptionsPage = 0
+        ..subscriptionsPage = 1
         ..isSubscriptionsFinished = false
         ..totalSubscriptions = 0
+        ..subscriptionsDaysFilter = null
         ..chefs.replace([])
-        ..chefsPage = 0
+        ..chefsPage = 1
         ..isChefsFinished = false
         ..totalChefs = 0,
     );

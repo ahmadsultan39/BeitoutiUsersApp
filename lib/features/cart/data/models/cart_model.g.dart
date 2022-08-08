@@ -10,6 +10,7 @@ CartModel _$CartModelFromJson(Map<String, dynamic> json) => CartModel(
       meals: (json['meals'] as List<dynamic>)
           .map((e) => CartMealModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      paymentMethod: json['payment_method'] as String,
       chefId: json['chef_id'] as int,
       selectedDeliveryTime: json['selected_delivery_time'] as String,
       mealsCount: json['meals_count'] as int,
@@ -26,4 +27,5 @@ Map<String, dynamic> _$CartModelToJson(CartModel instance) => <String, dynamic>{
       'selected_delivery_time': instance.selectedDeliveryTime,
       'notes': instance.notes,
       'meals': instance.meals,
+      'payment_method': instance.paymentMethod,
     };

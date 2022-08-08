@@ -8,7 +8,7 @@ part 'search_meal_model.g.dart';
 @JsonSerializable()
 class SearchMealModel extends SearchMeal {
   static const String className = 'SearchMealModel';
-
+  static const String paginateName = 'PaginateResponseModel<SearchMealModel>';
   factory SearchMealModel.fromJson(Map<String, dynamic> json) =>
       _$SearchMealModelFromJson(json);
 

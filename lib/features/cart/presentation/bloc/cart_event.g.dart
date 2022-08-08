@@ -600,6 +600,62 @@ class GetCartAllMealsQuantityBuilder
   }
 }
 
+class _$DeleteCart extends DeleteCart {
+  factory _$DeleteCart([void Function(DeleteCartBuilder)? updates]) =>
+      (new DeleteCartBuilder()..update(updates))._build();
+
+  _$DeleteCart._() : super._();
+
+  @override
+  DeleteCart rebuild(void Function(DeleteCartBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  DeleteCartBuilder toBuilder() => new DeleteCartBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is DeleteCart;
+  }
+
+  @override
+  int get hashCode {
+    return 699774829;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'DeleteCart').toString();
+  }
+}
+
+class DeleteCartBuilder implements Builder<DeleteCart, DeleteCartBuilder> {
+  _$DeleteCart? _$v;
+
+  DeleteCartBuilder();
+
+  @override
+  void replace(DeleteCart other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$DeleteCart;
+  }
+
+  @override
+  void update(void Function(DeleteCartBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  DeleteCart build() => _build();
+
+  _$DeleteCart _build() {
+    final _$result = _$v ?? new _$DeleteCart._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

@@ -4,6 +4,7 @@ import 'package:beitouti_users/features/cart/presentation/pages/order_cart_page.
 
 import 'package:beitouti_users/features/chef_menu/presentation/pages/chef_menu_page.dart';
 import 'package:beitouti_users/features/chefs/presentation/pages/chefs_page.dart';
+import 'package:beitouti_users/features/favourites/presentation/pages/favourites_page.dart';
 import 'package:beitouti_users/features/home/presentation/pages/home_page.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_chef.dart';
 import 'package:beitouti_users/features/cart/presentation/pages/cart_page.dart';
@@ -130,6 +131,12 @@ class GenerateScreen {
             type: PageTransitionType.leftToRightWithFade,
           );
         }
+      case NameScreen.favouriteScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const FavouritesPage(),
+          );
+        }
       default:
         return _errorRoute();
     }
@@ -168,4 +175,5 @@ class NameScreen {
   static const String subscriptionOrdersScreen = "/subscription-orders";
   static const String profileScreen = "/profile";
   static const String orderCartScreen = "/order-cart-screen";
+  static const String favouriteScreen = "/favourite-screen";
 }

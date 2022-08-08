@@ -17,7 +17,7 @@ abstract class ChefMenuState implements Built<ChefMenuState, ChefMenuStateBuilde
   bool get isSubscriptionMealsLoading;
 
   List<ChefCategory> get categories;
-  List<ChefMeal> get categoryMeals;
+  Map<int,List<ChefMeal>> get meals;
   ChefInfo? get chefInfo;
   List<Subscription> get subscriptions;
   List<SubscriptionMeal> get subscriptionMeals;
@@ -39,7 +39,7 @@ abstract class ChefMenuState implements Built<ChefMenuState, ChefMenuStateBuilde
         ..isSubscriptionsLoading = false
         ..isSubscriptionMealsLoading = false
             ..categories = []
-            ..categoryMeals = []
+            ..meals = {}
             ..subscriptions = []
             ..subscriptionMeals = []
             ..chefInfo = null

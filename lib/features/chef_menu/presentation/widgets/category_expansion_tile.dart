@@ -60,9 +60,9 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(0),
                   itemCount:
-                      widget.bloc.state.categoryMeals.length,
+                      widget.bloc.state.meals[widget.category.id]?.length ?? 0,
                   itemBuilder: (ctx, index) => MealTile(
-                      widget.bloc.state.categoryMeals[index],
+                      widget.bloc.state.meals[widget.category.id]![index],
                       widget.bloc),
                 ),
               ),

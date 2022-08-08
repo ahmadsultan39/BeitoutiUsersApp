@@ -1,6 +1,9 @@
 import 'package:beitouti_users/core/util/constants.dart';
 import 'package:beitouti_users/core/util/generate_screen.dart';
 import 'package:beitouti_users/core/widgets/custom_loader.dart';
+import 'package:beitouti_users/core/widgets/empty_page.dart';
+import 'package:beitouti_users/features/current_subscriptions/presentation/widgets/current_subscription_item.dart';
+import 'package:beitouti_users/features/meals/presentation/widgets/all_subscription_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,24 +43,32 @@ class _CurrentSubscriptionsPageState extends State<CurrentSubscriptionsPage> {
           },
         );
         return Scaffold(
-          appBar: AppBar(),
-          body: Stack(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    NameScreen.subscriptionOrdersScreen,
-                    arguments: state.subscriptions[0].id,
-                  );
-                },
-                child: const Center(
-                  child: Text("SubscriptionOrders"),
-                ),
-              ),
-              state.isLoading ? const Loader() : Container(),
-            ],
+          backgroundColor: Theme.of(context).colorScheme.background,
+          appBar: AppBar(
+            title: const Text(
+              "اشتراكاتي",
+            ),
           ),
+          body: !state.isLoading && state.subscriptions.isEmpty
+              ? const EmptyPage(
+                  title: 'لا يوجد لديك اشتركات حالية',
+                )
+              : Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ...state.subscriptions.map(
+                            (subscription) => CurrentSubscriptionItem(
+                              subscription: subscription,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    state.isLoading ? const Loader() : Container(),
+                  ],
+                ),
         );
       },
     );

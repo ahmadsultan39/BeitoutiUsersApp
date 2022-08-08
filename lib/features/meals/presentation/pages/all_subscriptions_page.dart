@@ -1,5 +1,5 @@
 import 'package:beitouti_users/core/widgets/custom_loader.dart';
-import 'package:beitouti_users/features/meals/presentation/widgets/offered_meal.dart';
+import 'package:beitouti_users/features/meals/presentation/widgets/all_subscription_tile.dart';
 import 'package:beitouti_users/features/meals/presentation/widgets/subscribe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,8 +48,9 @@ class _AllSubscriptionsPageState extends State<AllSubscriptionsPage> {
           ),
         );
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            title: Text('كل الإشتراكات'),
+            title: const Text('كل الإشتراكات'),
           ),
           body: Stack(
             children: [
@@ -64,7 +65,7 @@ class _AllSubscriptionsPageState extends State<AllSubscriptionsPage> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.allSubscriptions.length,
-                      itemBuilder: (ctx, index) => Subscribe(
+                      itemBuilder: (ctx, index) => AllSubscriptionTile(
                         subscribe: state.allSubscriptions[index],
                       ),
                     ),

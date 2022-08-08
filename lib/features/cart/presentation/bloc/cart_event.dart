@@ -121,6 +121,20 @@ abstract class GetCartAllMealsQuantity extends CartEvent
   }
 }
 
+abstract class DeleteCart extends CartEvent
+    implements Built<DeleteCart, DeleteCartBuilder> {
+  //getter fields
+
+  DeleteCart._();
+
+  factory DeleteCart([Function(DeleteCartBuilder b) updates]) =
+      _$DeleteCart;
+
+  factory DeleteCart.initial() {
+    return DeleteCart((b) => b);
+  }
+}
+
 abstract class ClearMessage extends CartEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields
@@ -128,9 +142,10 @@ abstract class ClearMessage extends CartEvent
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-      _$ClearMessage;
+  _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);
   }
 }
+

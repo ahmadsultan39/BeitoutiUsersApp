@@ -1,15 +1,16 @@
 import 'package:beitouti_users/core/util/constants.dart';
 import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:beitouti_users/core/widgets/custom_loader.dart';
-import 'package:beitouti_users/core/widgets/rating_widget.dart';
+import 'package:beitouti_users/core/widgets/default_rating_bar.dart';
 import 'package:beitouti_users/features/meals/domain/entities/home_subscribe.dart';
+import 'package:beitouti_users/features/subscription/presentation/widgets/subscribe_dialog.dart';
+import 'package:beitouti_users/features/subscription/presentation/widgets/subscription_info_item.dart';
 import 'package:beitouti_users/features/subscription/presentation/widgets/subscription_meal_item.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 import '../../../../injection.dart';
 import '../bloc/subscription.dart';
 
@@ -56,70 +57,130 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
             title: Text(widget.subscribe.name),
           ),
           body: Stack(
+            // alignment: Alignment.center,
             children: [
               if (state.subscription != null)
                 SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.h,
+                        ),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            ImageChecker(
+                              width: 200.w,
+                              height: 200.h,
+                              imageUrl: state.subscription!.chef.profilePicture,
+                              borderColor: Colors.grey,
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black45,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: DefaultRatingBar(
+                                  numberColor:
+                                      Theme.of(context).colorScheme.tertiary,
+                                  initialRating: state.subscription!.rating,
+                                  withRatingCount: true,
+                                  totalRating: state.subscription!.ratingCount,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SubscriptionInfoItem(
+                        value: state.subscription!.chef.name,
+                        title: 'اسم الطاهي: ',
+                        icon: MdiIcons.chefHat,
+                      ),
+                      SubscriptionInfoItem(
+                        value: state.subscription!.chef.location!,
+                        title: 'الموقع: ',
+                        icon: Icons.location_on,
+                      ),
+                      SubscriptionInfoItem(
+                        value: state.subscription!.mealDeliveryTime
+                            .substring(0, 5),
+                        title: 'وقت التوصيل: ',
+                        icon: Icons.timer,
+                      ),
+                      SubscriptionInfoItem(
+                        value:
+                            state.subscription!.totalCost.round().toString() +
+                                ' ل.س',
+                        title: 'الكلفة الإجمالية: ',
+                        icon: MdiIcons.cash,
+                      ),
+                      ...state.subscriptionMeals.map(
+                        (meal) => SubscriptionMealItem(
+                          meal: meal,
+                          dayNumber: state.subscriptionMeals.indexOf(meal) + 1,
+                        ),
+                      ),
+                      // if (!state.subscription!.hasSubscribed)
+                        SizedBox(
+                          height: 100.h,
+                        ),
+                    ],
+                  ),
+                ),
+              // if (state.subscription != null &&
+              //     !state.subscription!.hasSubscribed)
+              if(state.subscription!=null)
+                Align(
+                  alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
+                      vertical: 20.h,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20.h,
+                    child: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => SubscribeDialog(
+                            onTap: (notes) {
+                              _bloc.addSubscribeEvent(
+                                subscriptionId: widget.subscribe.id,
+                                notes: notes,
+                              );
+                            },
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ImageChecker(
-                                imageUrl:
-                                    state.subscription!.chef.profilePicture,
-                                borderColor: Colors.grey,
-                              ),
-                              Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(MdiIcons.chefHat),
-                                      Text(
-                                        state.subscription!.chef.name,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.location_on),
-                                      Text(
-                                        state.subscription!.chef.location,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(Icons.timer),
-                                      Text(
-                                        state.subscription!.mealDeliveryTime
-                                            .substring(0, 5),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                        );
+                      },
+                      child: Container(
+                        width: 350.w,
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 10),
+                              blurRadius: 10,
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            "اشتراك",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.background,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemBuilder: (_, index) => SubscriptionMealItem(
-                            meal: state.subscriptionMeals[index],
-                            dayNumber: index + 1,
-                          ),
-                          itemCount: state.subscriptionMeals.length,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

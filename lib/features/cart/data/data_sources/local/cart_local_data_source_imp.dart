@@ -48,4 +48,13 @@ class CartLocalDataSourceImp extends BaseLocalDataSourceImpl
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> deleteCart() async {
+    try {
+      await cartDataBaseManager.removeCart();
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }

@@ -2,6 +2,7 @@ import 'package:beitouti_users/features/chef_menu/presentation/widgets/subscript
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../core/widgets/custom_loader.dart';
 import '../../../../injection.dart';
 import '../bloc/chef_menu.dart';
@@ -32,6 +33,14 @@ class _SubscriptionsPageState extends State<SubscriptionsPage> {
       body: BlocBuilder<ChefMenuBloc, ChefMenuState>(
         bloc: _bloc,
         builder: (context, state) {
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            message(
+              message: state.message,
+              isError: state.error,
+              context: context,
+              bloc: _bloc,
+            );
+          });
           return Stack(
             children: [
               SingleChildScrollView(

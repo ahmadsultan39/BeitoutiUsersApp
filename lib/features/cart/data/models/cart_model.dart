@@ -10,8 +10,12 @@ class CartModel extends Cart {
 
   final List<CartMealModel> meals;
 
+  @JsonKey(name: 'payment_method')
+  final String paymentMethod;
+
   const CartModel({
     required this.meals,
+    required this.paymentMethod,
     required int chefId,
     required String selectedDeliveryTime,
     required int mealsCount,
@@ -30,7 +34,6 @@ class CartModel extends Cart {
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>
       _$CartModelFromJson(json);
-
 
   Map<String, dynamic> toJson() => _$CartModelToJson(this);
 }

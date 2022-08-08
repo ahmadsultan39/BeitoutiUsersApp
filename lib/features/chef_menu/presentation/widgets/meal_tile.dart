@@ -71,9 +71,7 @@ class _MealTileState extends State<MealTile> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                  (widget.meal.price -
-                                      widget.meal.price *
-                                          widget.meal.discountPercentage!)
+                                  widget.meal.priceAfterDiscount
                                       .toString(),
                                   style: TextStyle(fontSize: 16.sp)),
                               SizedBox(

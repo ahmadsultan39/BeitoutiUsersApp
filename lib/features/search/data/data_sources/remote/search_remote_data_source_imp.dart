@@ -15,29 +15,51 @@ class SearchRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   SearchRemoteDataSourceImp({required Dio dio}) : super(dio: dio);
 
   @override
-  Future<PaginateResponseModel<SearchMealModel>> getMeals(
-      {required String token,
-        required String query,
-        required int page}) async =>
+  Future<PaginateResponseModel<SearchMealModel>> getMeals({
+    required String token,
+    required String query,
+    required int page,
+    String? priceSort,
+    String? rateSort,
+  }) async =>
       await performGetRequest<PaginateResponseModel<SearchMealModel>>(
-           Endpoints.searchMeals(query,page),
-           token,);
+        endpoint: Endpoints.searchMeals,
+        token: token,
+        params: {
+          "page": page,
+          "search": query,
+          if (rateSort != null) "rate_sort": rateSort,
+          if (priceSort != null) "price_sort": priceSort,
+        },
+      );
 
   @override
   Future<PaginateResponseModel<SearchSubscriptionModel>> getSubscriptions(
-      {required String token,
-        required String query,
-        required int page}) async =>
+          {required String token,
+          required String query,
+          required int page,
+          int? daysFilter}) async =>
       await performGetRequest<PaginateResponseModel<SearchSubscriptionModel>>(
-            Endpoints.searchSubscriptions(query,page),
-           token,);
+        endpoint: Endpoints.searchSubscriptions,
+        token: token,
+        params: {
+          "page": page,
+          "search": query,
+          if (daysFilter != null) "days": daysFilter,
+        },
+      );
 
   @override
   Future<PaginateResponseModel<SearchChefModel>> getChefs(
-      {required String token,
-        required String query,
-        required int page}) async =>
+          {required String token,
+          required String query,
+          required int page}) async =>
       await performGetRequest<PaginateResponseModel<SearchChefModel>>(
-           Endpoints.searchChefs(query,page),
-           token,);
+        endpoint: Endpoints.searchChefs,
+        token: token,
+        params: {
+          "page": page,
+          "search": query,
+        },
+      );
 }

@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../../search/presentation/pages/custom_search_delegate.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,6 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _bottomBarKey = GlobalKey<GNavState>();
+
   final List<Widget> _pages = const [
     MealsPage(),
     ChefsPage(),
@@ -41,6 +45,7 @@ class _HomePageState extends State<HomePage> {
         if (_selectedPage != 0) {
           setState(() {
             _selectedPage = 0;
+            _bottomBarKey.currentState!.selectedIndex = 0;
           });
           return false;
         }
@@ -48,38 +53,47 @@ class _HomePageState extends State<HomePage> {
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "بَيتوتيْ",
-            style: TextStyle(
-              fontSize: 21.sp,
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, NameScreen.cartScreen);
-              },
-              child: Icon(
-                MdiIcons.cartOutline,
-                size: 25.sp,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar:
+        _selectedPage == 3
+            ? null // if selected page is Profile page we need to customize app bar design
+            :
+        AppBar(
+                title: Text(
+                  "بَيتوتيْ",
+                  style: TextStyle(
+                    fontSize: 21.sp,
+                  ),
+                ),
+                actions: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, NameScreen.cartScreen);
+                    },
+                    child: Icon(
+                      MdiIcons.cartOutline,
+                      size: 25.sp,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showSearch(
+                          context: context,
+                          delegate: CustomSearchDelegate(),
+                          useRootNavigator: true);
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      // color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 12.w,
-              ),
-              child: Icon(
-                Icons.search_rounded,
-                size: 25.sp,
-              ),
-            ),
-          ],
-        ),
         body: _pages[_selectedPage],
         bottomNavigationBar: SizedBox(
           height: 65.h,
           child: GNav(
+            key: _bottomBarKey,
             onTabChange: _onTapChange,
             backgroundColor: Theme.of(context).colorScheme.primary,
             color: Colors.white,

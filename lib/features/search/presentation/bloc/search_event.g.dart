@@ -68,11 +68,17 @@ class _$GetMealsEvent extends GetMealsEvent {
   final String query;
   @override
   final int page;
+  @override
+  final String? sortPrice;
+  @override
+  final String? sortRate;
 
   factory _$GetMealsEvent([void Function(GetMealsEventBuilder)? updates]) =>
       (new GetMealsEventBuilder()..update(updates))._build();
 
-  _$GetMealsEvent._({required this.query, required this.page}) : super._() {
+  _$GetMealsEvent._(
+      {required this.query, required this.page, this.sortPrice, this.sortRate})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(query, r'GetMealsEvent', 'query');
     BuiltValueNullFieldError.checkNotNull(page, r'GetMealsEvent', 'page');
   }
@@ -87,19 +93,27 @@ class _$GetMealsEvent extends GetMealsEvent {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetMealsEvent && query == other.query && page == other.page;
+    return other is GetMealsEvent &&
+        query == other.query &&
+        page == other.page &&
+        sortPrice == other.sortPrice &&
+        sortRate == other.sortRate;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, query.hashCode), page.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, query.hashCode), page.hashCode), sortPrice.hashCode),
+        sortRate.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GetMealsEvent')
           ..add('query', query)
-          ..add('page', page))
+          ..add('page', page)
+          ..add('sortPrice', sortPrice)
+          ..add('sortRate', sortRate))
         .toString();
   }
 }
@@ -116,6 +130,14 @@ class GetMealsEventBuilder
   int? get page => _$this._page;
   set page(int? page) => _$this._page = page;
 
+  String? _sortPrice;
+  String? get sortPrice => _$this._sortPrice;
+  set sortPrice(String? sortPrice) => _$this._sortPrice = sortPrice;
+
+  String? _sortRate;
+  String? get sortRate => _$this._sortRate;
+  set sortRate(String? sortRate) => _$this._sortRate = sortRate;
+
   GetMealsEventBuilder();
 
   GetMealsEventBuilder get _$this {
@@ -123,6 +145,8 @@ class GetMealsEventBuilder
     if ($v != null) {
       _query = $v.query;
       _page = $v.page;
+      _sortPrice = $v.sortPrice;
+      _sortRate = $v.sortRate;
       _$v = null;
     }
     return this;
@@ -148,7 +172,177 @@ class GetMealsEventBuilder
             query: BuiltValueNullFieldError.checkNotNull(
                 query, r'GetMealsEvent', 'query'),
             page: BuiltValueNullFieldError.checkNotNull(
-                page, r'GetMealsEvent', 'page'));
+                page, r'GetMealsEvent', 'page'),
+            sortPrice: sortPrice,
+            sortRate: sortRate);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$SortMealsByPriceEvent extends SortMealsByPriceEvent {
+  @override
+  final String sortOrder;
+
+  factory _$SortMealsByPriceEvent(
+          [void Function(SortMealsByPriceEventBuilder)? updates]) =>
+      (new SortMealsByPriceEventBuilder()..update(updates))._build();
+
+  _$SortMealsByPriceEvent._({required this.sortOrder}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        sortOrder, r'SortMealsByPriceEvent', 'sortOrder');
+  }
+
+  @override
+  SortMealsByPriceEvent rebuild(
+          void Function(SortMealsByPriceEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  SortMealsByPriceEventBuilder toBuilder() =>
+      new SortMealsByPriceEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is SortMealsByPriceEvent && sortOrder == other.sortOrder;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, sortOrder.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'SortMealsByPriceEvent')
+          ..add('sortOrder', sortOrder))
+        .toString();
+  }
+}
+
+class SortMealsByPriceEventBuilder
+    implements Builder<SortMealsByPriceEvent, SortMealsByPriceEventBuilder> {
+  _$SortMealsByPriceEvent? _$v;
+
+  String? _sortOrder;
+  String? get sortOrder => _$this._sortOrder;
+  set sortOrder(String? sortOrder) => _$this._sortOrder = sortOrder;
+
+  SortMealsByPriceEventBuilder();
+
+  SortMealsByPriceEventBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _sortOrder = $v.sortOrder;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(SortMealsByPriceEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$SortMealsByPriceEvent;
+  }
+
+  @override
+  void update(void Function(SortMealsByPriceEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  SortMealsByPriceEvent build() => _build();
+
+  _$SortMealsByPriceEvent _build() {
+    final _$result = _$v ??
+        new _$SortMealsByPriceEvent._(
+            sortOrder: BuiltValueNullFieldError.checkNotNull(
+                sortOrder, r'SortMealsByPriceEvent', 'sortOrder'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$SortMealsByRateEvent extends SortMealsByRateEvent {
+  @override
+  final String sortOrder;
+
+  factory _$SortMealsByRateEvent(
+          [void Function(SortMealsByRateEventBuilder)? updates]) =>
+      (new SortMealsByRateEventBuilder()..update(updates))._build();
+
+  _$SortMealsByRateEvent._({required this.sortOrder}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        sortOrder, r'SortMealsByRateEvent', 'sortOrder');
+  }
+
+  @override
+  SortMealsByRateEvent rebuild(
+          void Function(SortMealsByRateEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  SortMealsByRateEventBuilder toBuilder() =>
+      new SortMealsByRateEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is SortMealsByRateEvent && sortOrder == other.sortOrder;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, sortOrder.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'SortMealsByRateEvent')
+          ..add('sortOrder', sortOrder))
+        .toString();
+  }
+}
+
+class SortMealsByRateEventBuilder
+    implements Builder<SortMealsByRateEvent, SortMealsByRateEventBuilder> {
+  _$SortMealsByRateEvent? _$v;
+
+  String? _sortOrder;
+  String? get sortOrder => _$this._sortOrder;
+  set sortOrder(String? sortOrder) => _$this._sortOrder = sortOrder;
+
+  SortMealsByRateEventBuilder();
+
+  SortMealsByRateEventBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _sortOrder = $v.sortOrder;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(SortMealsByRateEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$SortMealsByRateEvent;
+  }
+
+  @override
+  void update(void Function(SortMealsByRateEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  SortMealsByRateEvent build() => _build();
+
+  _$SortMealsByRateEvent _build() {
+    final _$result = _$v ??
+        new _$SortMealsByRateEvent._(
+            sortOrder: BuiltValueNullFieldError.checkNotNull(
+                sortOrder, r'SortMealsByRateEvent', 'sortOrder'));
     replace(_$result);
     return _$result;
   }
@@ -159,12 +353,15 @@ class _$GetSubscriptionsEvent extends GetSubscriptionsEvent {
   final String query;
   @override
   final int page;
+  @override
+  final int? filterDays;
 
   factory _$GetSubscriptionsEvent(
           [void Function(GetSubscriptionsEventBuilder)? updates]) =>
       (new GetSubscriptionsEventBuilder()..update(updates))._build();
 
-  _$GetSubscriptionsEvent._({required this.query, required this.page})
+  _$GetSubscriptionsEvent._(
+      {required this.query, required this.page, this.filterDays})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         query, r'GetSubscriptionsEvent', 'query');
@@ -186,19 +383,22 @@ class _$GetSubscriptionsEvent extends GetSubscriptionsEvent {
     if (identical(other, this)) return true;
     return other is GetSubscriptionsEvent &&
         query == other.query &&
-        page == other.page;
+        page == other.page &&
+        filterDays == other.filterDays;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, query.hashCode), page.hashCode));
+    return $jf(
+        $jc($jc($jc(0, query.hashCode), page.hashCode), filterDays.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GetSubscriptionsEvent')
           ..add('query', query)
-          ..add('page', page))
+          ..add('page', page)
+          ..add('filterDays', filterDays))
         .toString();
   }
 }
@@ -215,6 +415,10 @@ class GetSubscriptionsEventBuilder
   int? get page => _$this._page;
   set page(int? page) => _$this._page = page;
 
+  int? _filterDays;
+  int? get filterDays => _$this._filterDays;
+  set filterDays(int? filterDays) => _$this._filterDays = filterDays;
+
   GetSubscriptionsEventBuilder();
 
   GetSubscriptionsEventBuilder get _$this {
@@ -222,6 +426,7 @@ class GetSubscriptionsEventBuilder
     if ($v != null) {
       _query = $v.query;
       _page = $v.page;
+      _filterDays = $v.filterDays;
       _$v = null;
     }
     return this;
@@ -247,7 +452,95 @@ class GetSubscriptionsEventBuilder
             query: BuiltValueNullFieldError.checkNotNull(
                 query, r'GetSubscriptionsEvent', 'query'),
             page: BuiltValueNullFieldError.checkNotNull(
-                page, r'GetSubscriptionsEvent', 'page'));
+                page, r'GetSubscriptionsEvent', 'page'),
+            filterDays: filterDays);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$FilterSubscriptionsByDaysEvent extends FilterSubscriptionsByDaysEvent {
+  @override
+  final int filterDays;
+
+  factory _$FilterSubscriptionsByDaysEvent(
+          [void Function(FilterSubscriptionsByDaysEventBuilder)? updates]) =>
+      (new FilterSubscriptionsByDaysEventBuilder()..update(updates))._build();
+
+  _$FilterSubscriptionsByDaysEvent._({required this.filterDays}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        filterDays, r'FilterSubscriptionsByDaysEvent', 'filterDays');
+  }
+
+  @override
+  FilterSubscriptionsByDaysEvent rebuild(
+          void Function(FilterSubscriptionsByDaysEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  FilterSubscriptionsByDaysEventBuilder toBuilder() =>
+      new FilterSubscriptionsByDaysEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is FilterSubscriptionsByDaysEvent &&
+        filterDays == other.filterDays;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, filterDays.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'FilterSubscriptionsByDaysEvent')
+          ..add('filterDays', filterDays))
+        .toString();
+  }
+}
+
+class FilterSubscriptionsByDaysEventBuilder
+    implements
+        Builder<FilterSubscriptionsByDaysEvent,
+            FilterSubscriptionsByDaysEventBuilder> {
+  _$FilterSubscriptionsByDaysEvent? _$v;
+
+  int? _filterDays;
+  int? get filterDays => _$this._filterDays;
+  set filterDays(int? filterDays) => _$this._filterDays = filterDays;
+
+  FilterSubscriptionsByDaysEventBuilder();
+
+  FilterSubscriptionsByDaysEventBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _filterDays = $v.filterDays;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(FilterSubscriptionsByDaysEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$FilterSubscriptionsByDaysEvent;
+  }
+
+  @override
+  void update(void Function(FilterSubscriptionsByDaysEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  FilterSubscriptionsByDaysEvent build() => _build();
+
+  _$FilterSubscriptionsByDaysEvent _build() {
+    final _$result = _$v ??
+        new _$FilterSubscriptionsByDaysEvent._(
+            filterDays: BuiltValueNullFieldError.checkNotNull(
+                filterDays, r'FilterSubscriptionsByDaysEvent', 'filterDays'));
     replace(_$result);
     return _$result;
   }

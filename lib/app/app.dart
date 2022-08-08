@@ -6,10 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/util/app_localizations.dart';
 import '../core/util/generate_screen.dart';
+import '../features/auth/presentation/pages/auth_page.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   State<App> createState() => _AppState();
 }
@@ -27,6 +29,7 @@ class _AppState extends State<App> {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp(
+          navigatorKey: App.navigatorKey,
           title: 'Beitouti',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: GenerateScreen.onGenerate,

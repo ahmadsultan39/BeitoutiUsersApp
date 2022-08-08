@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:beitouti_users/core/widgets/default_rating_bar.dart';
+import 'package:beitouti_users/core/widgets/image_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/util/constants.dart';
-import '../../../../core/widgets/custom_loader.dart';
+import '../../../../core/util/generate_screen.dart';
 import '../../domain/entities/home_meal.dart';
 
 class OfferedMeal extends StatelessWidget {
@@ -15,78 +15,138 @@ class OfferedMeal extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 15.w,
+        vertical: 15.h,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 220.w,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            NameScreen.mealScreen,
+            arguments: meal.id,
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 150.w,
+              width: 375.w,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Stack(
+                children: [
+                  ImageChecker(
+                    imageUrl: meal.image,
+                    height: 150.h,
+                    width: 375.w,
+                    circle: false,
+                  ),
+                  Container(
+                    height: 150.w,
+                    width: 375.w,
+                    color: Colors.black.withOpacity(0.4),
+                  ),
+                  Positioned(
+                    top: 10.h,
+                    left: 10.w,
+                    child: Container(
+                      height: 15.w,
+                      width: 15.w,
+                      decoration: BoxDecoration(
+                        color:
+                            meal.isAvailable ? Colors.green : Colors.grey[800],
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 10.h,
+                      ),
+                      child: DefaultRatingBar(
+                        initialRating: meal.rating,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Stack(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: Endpoints.imageUrl + meal.image,
-                  placeholder: (_, __) => const Loader(),
-                  errorWidget: (_, __, ___) => const Icon(Icons.error),
-                  fit: BoxFit.cover,
-                  height: 150.w,
-                  width: 220.w,
-                ),
-                Container(
-                  height: 150.w,
-                  width: 220.w,
-                  color: Colors.black.withOpacity(0.2),
-                ),
-              ],
+            SizedBox(
+              height: 10.h,
             ),
-          ),
-          SizedBox(
-            width: 220.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 120.w,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              width: 375.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 200.w,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          meal.name,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          meal.chef.name,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15.sp,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Column(
                     children: [
                       Text(
-                        meal.name,
+                        meal.price.toString() + ' ل.س',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.sp,
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: meal.priceAfterDiscount != null
+                              ? null
+                              : FontWeight.bold,
+                          fontSize:
+                              meal.priceAfterDiscount != null ? 15.sp : 18.sp,
+                          decoration: meal.priceAfterDiscount != null
+                              ? TextDecoration.lineThrough
+                              : null,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
-                      Text(
-                        meal.chef.name,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.sp,
+                      if (meal.priceAfterDiscount != null)
+                        Text(
+                          meal.priceAfterDiscount.toString() + ' ل.س',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
                     ],
-                  ),
-                ),
-                Text(
-                  meal.price.toString() + ' ل.س',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

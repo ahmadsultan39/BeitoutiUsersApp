@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../core/widgets/custom_loader.dart';
 import '../../../../injection.dart';
 import '../bloc/chef_menu.dart';
@@ -31,6 +32,14 @@ class _ChefMenuMealsPageState extends State<ChefMenuMealsPage> {
       body: BlocBuilder<ChefMenuBloc, ChefMenuState>(
         bloc: _bloc,
         builder: (context, state) {
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            message(
+              message: state.message,
+              isError: state.error,
+              context: context,
+              bloc: _bloc,
+            );
+          });
           return Stack(
             children: [
               SingleChildScrollView(
@@ -42,7 +51,7 @@ class _ChefMenuMealsPageState extends State<ChefMenuMealsPage> {
                   ],
                 ),
               ),
-              if (state.isCategoriesLoading) const Loader()
+              if (state.isCategoriesLoading || state.isCategoryMealsLoading) const Loader()
             ],
           );
         },

@@ -4,7 +4,7 @@ class SubscriptionChef extends Equatable {
   final int id;
   final String name;
   final String profilePicture;
-  final String location;
+  final String? location;
 
   const SubscriptionChef({
     required this.id,

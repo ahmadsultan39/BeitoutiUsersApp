@@ -64,6 +64,7 @@ class _ChefMenuPageState extends State<ChefMenuPage>
         });
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Row(
               children: [
                 Column(

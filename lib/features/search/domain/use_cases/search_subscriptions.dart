@@ -16,15 +16,16 @@ class SearchSubscriptionsUseCase implements UseCase<PaginateList<SearchSubscript
 
   @override
   Future<Either<Failure, PaginateList<SearchSubscription>>> call(ParamsSearchSubscriptionsUseCase params) async {
-    return await searchRepo.getSubscriptions(params.query,params.page);
+    return await searchRepo.getSubscriptions(params.query,params.page,params.daysFilter);
   }
 }
 
 class ParamsSearchSubscriptionsUseCase extends Equatable {
   final String query;
   final int page;
+  int? daysFilter;
 
-  const ParamsSearchSubscriptionsUseCase( {required this.query,required this.page}) : super();
+   ParamsSearchSubscriptionsUseCase( {required this.query,required this.page,this.daysFilter}) : super();
 
   @override
   List<Object?> get props => [query,page];

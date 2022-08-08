@@ -36,7 +36,7 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required int page,
   }) async =>
       await performGetRequest<PaginateResponseModel<OrderModel>>(
-        Endpoints.previousOrders(page),
-        token,
+        endpoint: Endpoints.previousOrders(page),
+        token: token,
       );
 }

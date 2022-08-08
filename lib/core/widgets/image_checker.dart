@@ -8,7 +8,8 @@ class ImageChecker extends StatelessWidget {
   final String imageUrl;
   final double? height;
   final double? width;
-  final double? radius;
+  final bool circle;
+  final double borderRadius;
   final Color borderColor;
   final BoxFit? fit;
 
@@ -17,7 +18,8 @@ class ImageChecker extends StatelessWidget {
     required this.imageUrl,
     this.height,
     this.width,
-    this.radius,
+    this.borderRadius = 0,
+    this.circle = true,
     this.fit,
     this.borderColor = Colors.transparent,
   }) : super(key: key);
@@ -25,12 +27,15 @@ class ImageChecker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height ?? 150.h,
+      width: width ?? 150.w,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        shape: circle ? BoxShape.circle : BoxShape.rectangle,
         border: Border.all(
           color: borderColor,
         ),
+        borderRadius: circle ? null : BorderRadius.circular(borderRadius),
       ),
       child: imageUrl.isNotEmpty
           ? CachedNetworkImage(

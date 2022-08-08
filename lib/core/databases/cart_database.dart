@@ -76,6 +76,11 @@ class CartDataBaseManager {
     await dbClient.delete("CART", where: "id = $id");
   }
 
+  Future<void> removeCart() async {
+    var dbClient = await database;
+    await dbClient.execute("DELETE FROM CART");
+  }
+
   Future<void> updateCartItemQuantity({
     required int id,
     required int quantity,

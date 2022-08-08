@@ -2,10 +2,13 @@ library paginate_response_model;
 
 import 'package:beitouti_users/core/models/order_model.dart';
 import 'package:beitouti_users/features/meals/data/models/home_subscribe_model.dart';
+import 'package:beitouti_users/features/search/data/models/search_chef_model.dart';
+import 'package:beitouti_users/features/search/data/models/search_meal_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../../features/meals/data/models/home_meal_model.dart';
+import '../../../features/search/data/models/search_subscription_model.dart';
 import '../../entities/paginate_list.dart';
 
 part 'paginate_response_model.g.dart';
@@ -51,6 +54,21 @@ class _Converter<T> implements JsonConverter<T, Object?> {
         T.toString() == HomeSubscribeModel.className) {
       return HomeSubscribeModel.fromJson(json) as T;
     }
+    if (json is Map<String, dynamic> &&
+        T.toString() == SearchMealModel.className) {
+      return SearchMealModel.fromJson(json) as T;
+    }
+    if (json is Map<String, dynamic> &&
+        T.toString() == SearchSubscriptionModel.className) {
+      return SearchSubscriptionModel.fromJson(json) as T;
+    }
+    if (json is Map<String, dynamic> &&
+        T.toString() == SearchChefModel.className) {
+      return SearchChefModel.fromJson(json) as T;
+    }
+    // if (json is Map<String, dynamic> && T.toString() == OrderModel.className) {
+    //   return OrderModel.fromJson(json) as T;
+    // }
     else if (json is Map<String, dynamic> && T.toString() == OrderModel.className) {
       return OrderModel.fromJson(json) as T;
     }

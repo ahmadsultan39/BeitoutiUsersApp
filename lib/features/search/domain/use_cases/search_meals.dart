@@ -9,23 +9,30 @@ import '../../../../core/usecase/usecase.dart';
 import '../repositories/search_repository.dart';
 
 @lazySingleton
-class SearchMealsUseCase implements UseCase<PaginateList<SearchMeal>, ParamsSearchMealsUseCase> {
+class SearchMealsUseCase
+    implements UseCase<PaginateList<SearchMeal>, ParamsSearchMealsUseCase> {
   final SearchRepo searchRepo;
 
   SearchMealsUseCase(this.searchRepo);
 
   @override
-  Future<Either<Failure, PaginateList<SearchMeal>>> call(ParamsSearchMealsUseCase params) async {
-    return await searchRepo.getMeals(params.query,params.page);
+  Future<Either<Failure, PaginateList<SearchMeal>>> call(
+      ParamsSearchMealsUseCase params) async {
+    return await searchRepo.getMeals(
+        params.query, params.page, params.priceSort, params.rateSort);
   }
 }
 
 class ParamsSearchMealsUseCase extends Equatable {
   final String query;
   final int page;
+  String? priceSort;
+  String? rateSort;
 
-  const ParamsSearchMealsUseCase( {required this.query,required this.page}) : super();
+  ParamsSearchMealsUseCase(
+      {required this.query, required this.page, this.priceSort, this.rateSort})
+      : super();
 
   @override
-  List<Object?> get props => [query,page];
+  List<Object?> get props => [query, page];
 }

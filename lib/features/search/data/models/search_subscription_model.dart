@@ -7,6 +7,12 @@ part 'search_subscription_model.g.dart';
 
 @JsonSerializable()
 class SearchSubscriptionModel extends SearchSubscription {
+  static String className = "SearchSubscriptionModel";
+  static const String paginateName = 'PaginateResponseModel<SearchSubscriptionModel>';
+
+  factory SearchSubscriptionModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchSubscriptionModelFromJson(json);
+
   @JsonKey(name: "days_number")
   final int daysNumber;
 
@@ -14,7 +20,7 @@ class SearchSubscriptionModel extends SearchSubscription {
   final String startsAt;
 
   @JsonKey(name: "total_cost")
-  final int totalCost;
+  final double totalCost;
 
   @JsonKey(name: "rate")
   final double? rating;

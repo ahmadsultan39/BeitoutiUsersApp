@@ -63,8 +63,8 @@ class MealsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required int page,
   }) async =>
       await performGetRequest<PaginateResponseModel<HomeMealModel>>(
-        Endpoints.allOfferedMeals(page),
-        token,
+        endpoint: Endpoints.allOfferedMeals(page),
+        token: token,
       );
 
   @override
@@ -73,7 +73,7 @@ class MealsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required int page,
   }) async =>
       await performGetRequest<PaginateResponseModel<HomeSubscribeModel>>(
-        Endpoints.allSubscriptions(page),
-        token,
+        endpoint: Endpoints.allSubscriptions(page),
+        token: token,
       );
 }

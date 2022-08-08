@@ -139,7 +139,9 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
             ),
             (success) => emit(
               state.rebuild(
-                (b) => b..isLoading = false,
+                (b) => b
+                  ..isLoading = false
+                  ..message = 'تمت عملية الاشتراك بنجاح',
               ),
             ),
           );

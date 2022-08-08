@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/image_checker.dart';
-import '../../../../core/widgets/rating_widget.dart';
+import '../../../../core/widgets/default_rating_bar.dart';
 import '../../domain/entities/subscription_meal.dart';
 
 class SubscriptionMealItem extends StatelessWidget {
@@ -23,6 +23,7 @@ class SubscriptionMealItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 10.h,
+          horizontal: 20.w,
         ),
         child: Container(
           decoration: BoxDecoration(

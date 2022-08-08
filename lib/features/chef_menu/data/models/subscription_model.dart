@@ -21,7 +21,7 @@ class SubscriptionModel extends Subscription {
   @JsonKey(name: "starts_at")
   final String startDate;
   @JsonKey(name: "total_cost")
-  final int totalCost;
+  final double totalCost;
   @JsonKey(name: "rating_count")
   final int ratingCount;
   @JsonKey(name: "available_subscriptions_count")

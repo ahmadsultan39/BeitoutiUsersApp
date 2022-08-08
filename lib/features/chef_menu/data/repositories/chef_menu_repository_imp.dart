@@ -34,7 +34,7 @@ class ChefMenuRepositoryImp
       return Right(
         result,
       );
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));

@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/custom_loader.dart';
+import '../../../../core/widgets/default_rating_bar.dart';
+import '../../../../core/widgets/image_checker.dart';
 import '../../../meals/domain/entities/home_chef.dart';
 import '../bloc/search.dart';
 
@@ -102,133 +104,77 @@ class _ChefsListState extends State<ChefsList> {
                     ),
                     itemCount: widget.bloc.state.chefs.length,
                     itemBuilder: (ctx, index) {
-                      return GestureDetector(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 15.w,
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //   builder: (context) =>  ChefMenuPage(chef: HomeChef(
-                              //       id: chefs[index].id,
-                              //       name: chefs[index].name,
-                              //       profilePicture: chefs[index].profilePicture)),
-                              // ));
-                              Navigator.of(context).pushNamed(NameScreen.chefScreen,
-                                  arguments: HomeChef(
-                                      id: widget.bloc.state.chefs[index].id,
-                                      name: widget.bloc.state.chefs[index].name,
-                                      profilePicture: widget.bloc.state.chefs[index].image));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  width: 100.w,
-                                  height: 100.w,
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      CachedNetworkImage(
-                                        imageUrl: Endpoints.imageUrl +
-                                            widget.bloc.state.chefs[index].image!,
-                                        placeholder: (_, __) => const Loader(),
-                                        errorWidget: (_, __, ___) =>
-                                        const Icon(Icons.error),
-                                        fit: BoxFit.cover,
-                                        height: 150.w,
-                                        width: 220.w,
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              NameScreen.chefScreen,
+                              arguments: HomeChef(
+                                id: widget.bloc.state.chefs[index].id,
+                                name: widget.bloc.state.chefs[index].name,
+                                profilePicture: widget.bloc.state.chefs[index].image,
+                              ),
+                            );
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 150.w,
+                                height: 150.w,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    ImageChecker(
+                                      imageUrl: widget.bloc.state.chefs[index].image!,
+                                      circle: false,
+                                      height: 150.w,
+                                      width: 150.w,
+                                    ),
+                                    Container(
+                                      height: 150.w,
+                                      width: 150.w,
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                    Positioned(
+                                      bottom: 5,
+                                      child: DefaultRatingBar(
+                                        numberColor: Theme.of(context).colorScheme.tertiary,
+                                        withRatingCount: true,
+                                        totalRating: widget.bloc.state.chefs[index].ratesCount ?? 0,
+                                        initialRating: widget.bloc.state.chefs[index].rating,
                                       ),
-                                      Container(
-                                        height: 100.w,
-                                        width: 100.w,
-                                        color: Colors.black.withOpacity(0.2),
-                                      ),
-                                    ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 5.h,),
+                              SizedBox(
+                                width: 150.w,
+                                child: Center(
+                                  child: Text(
+                                    widget.bloc.state.chefs[index].name,
+                                    style: TextStyle(
+                                      color: Theme.of(context).colorScheme.secondary,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15.sp,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 100.w,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 100.w,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              widget.bloc.state.chefs[index].name,
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15.sp,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            SizedBox(
-                                              width: 30.w,
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    widget.bloc.state.chefs[index]
-                                                        .rating!
-                                                        .round()
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 12.sp,
-                                                    ),
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                  const Icon(
-                                                    Icons.star_rate_rounded,
-                                                    color: Colors.yellow,
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // Text(
-                                      //   state.nearest[index].rateCount
-                                      //       .toString()
-                                      //   style: TextStyle(
-                                      //     color: Theme.of(context)
-                                      //         .colorScheme
-                                      //         .tertiary,
-                                      //   ),
-                                      // )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        onTap: () {
-                          // Navigator.pushNamed(
-                          //     context, NameScreen.,
-                          //     arguments:
-                          //         widget.bloc.state.meals[index]);
-                        },
                       );
                     }),
                 SizedBox(

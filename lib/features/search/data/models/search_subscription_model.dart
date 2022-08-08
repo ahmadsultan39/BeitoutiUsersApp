@@ -8,10 +8,14 @@ part 'search_subscription_model.g.dart';
 @JsonSerializable()
 class SearchSubscriptionModel extends SearchSubscription {
   static String className = "SearchSubscriptionModel";
-  static const String paginateName = 'PaginateResponseModel<SearchSubscriptionModel>';
+  static const String paginateName =
+      'PaginateResponseModel<SearchSubscriptionModel>';
 
   factory SearchSubscriptionModel.fromJson(Map<String, dynamic> json) =>
       _$SearchSubscriptionModelFromJson(json);
+
+  @JsonKey(name: "is_available")
+  final bool isAvailable;
 
   @JsonKey(name: "days_number")
   final int daysNumber;
@@ -34,12 +38,13 @@ class SearchSubscriptionModel extends SearchSubscription {
       int id,
       String name,
       List<String> meals,
+      this.isAvailable,
       this.daysNumber,
       this.startsAt,
       this.totalCost,
       this.rating,
       this.ratesCount,
       this.chef)
-      : super(id, name, daysNumber, startsAt, totalCost, rating, ratesCount,
-            meals, chef);
+      : super(id, name, isAvailable, daysNumber, startsAt, totalCost, rating,
+            ratesCount, meals, chef);
 }

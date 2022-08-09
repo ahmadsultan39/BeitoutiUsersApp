@@ -105,6 +105,7 @@ class CurrentOrderItem extends StatelessWidget {
                   text: "حالة الطلب:",
                   width: 130.w,
                   value: orderStatusToMessage(order.status),
+                  valueColor: Theme.of(context).colorScheme.tertiary,
                 ),
                 RowText(
                   text: "وقت الطلب:",
@@ -113,13 +114,12 @@ class CurrentOrderItem extends StatelessWidget {
                       " " +
                       order.createdAt.substring(11, 16),
                 ),
-                if(!previous)
-                RowText(
-                  text: "الوقت المتوقع لوصول الطلب:",
-                  width: 130.w,
-                  value: order.selectedDeliveryTime,
-                ),
-
+                if (!previous)
+                  RowText(
+                    text: "الوقت المتوقع لوصول الطلب:",
+                    width: 130.w,
+                    value: order.selectedDeliveryTime,
+                  ),
               ],
             ),
           ),
@@ -133,12 +133,14 @@ class RowText extends StatelessWidget {
   final String text;
   final String value;
   final double width;
+  final Color? valueColor;
 
   const RowText({
     Key? key,
     required this.text,
     required this.width,
     required this.value,
+    this.valueColor,
   }) : super(key: key);
 
   @override
@@ -161,7 +163,7 @@ class RowText extends StatelessWidget {
           child: Text(
             value,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
+              color: valueColor ?? Theme.of(context).colorScheme.secondary,
             ),
             overflow: TextOverflow.fade,
           ),

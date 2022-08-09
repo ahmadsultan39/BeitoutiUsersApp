@@ -120,6 +120,12 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                         title: 'الكلفة الإجمالية: ',
                         icon: MdiIcons.cash,
                       ),
+                      SubscriptionInfoItem(
+                        value:
+                            state.subscription!.startsAt,
+                        title:'تاريخ بداية الاشتراك: ',
+                        icon: Icons.calendar_month_rounded,
+                      ),
                       ...state.subscriptionMeals.map(
                         (meal) => SubscriptionMealItem(
                           meal: meal,
@@ -127,15 +133,15 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                         ),
                       ),
                       // if (!state.subscription!.hasSubscribed)
-                        SizedBox(
-                          height: 100.h,
-                        ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
                     ],
                   ),
                 ),
               // if (state.subscription != null &&
               //     !state.subscription!.hasSubscribed)
-              if(state.subscription!=null)
+              if (state.subscription != null)
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(

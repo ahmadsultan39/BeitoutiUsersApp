@@ -22,7 +22,7 @@ class SubscriptionInfoItem extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
             icon,

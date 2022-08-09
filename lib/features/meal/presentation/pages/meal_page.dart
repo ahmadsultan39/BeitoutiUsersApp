@@ -237,7 +237,7 @@ class _MealPageState extends State<MealPage> {
                                                     HitTestBehavior.opaque,
                                                 child: SizedBox(
                                                   width: double.infinity,
-                                                  height: 42.h,
+                                                  height: 41.h,
                                                   child: Center(
                                                     child: Text(
                                                       "+",
@@ -264,7 +264,7 @@ class _MealPageState extends State<MealPage> {
                                                     HitTestBehavior.opaque,
                                                 child: SizedBox(
                                                   width: double.infinity,
-                                                  height: 42.h,
+                                                  height: 41.h,
                                                   child: Center(
                                                     child: Text(
                                                       "-",

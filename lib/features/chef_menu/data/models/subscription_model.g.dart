@@ -15,7 +15,7 @@ SubscriptionModel _$SubscriptionModelFromJson(Map<String, dynamic> json) =>
       json['meal_delivery_time'] as String,
       json['is_available'] as bool,
       json['starts_at'] as String,
-      json['total_cost'] as int,
+      (json['total_cost'] as num).toDouble(),
       (json['rating'] as num?)?.toDouble(),
       json['rating_count'] as int,
       json['available_subscriptions_count'] as int,

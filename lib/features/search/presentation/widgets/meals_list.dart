@@ -105,7 +105,7 @@ class _MealsListState extends State<MealsList> {
                             : state.mealsRateSort != null
                                 ? "حسب الأعلى تقييما"
                                 : null,
-                        hint: const Text("الترتيب"),
+                        hint: const Text("الترتيب",style: TextStyle(color: Colors.black)),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: [
                           "حسب الأعلى تقييما",
@@ -114,7 +114,7 @@ class _MealsListState extends State<MealsList> {
                         ].map((item) {
                           return DropdownMenuItem(
                             value: item,
-                            child: Text(item),
+                            child: Text(item,style: TextStyle(color: Colors.black),),
                           );
                         }).toList(),
                         onChanged: (String? newValue) {

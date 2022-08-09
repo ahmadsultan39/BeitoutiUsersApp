@@ -8,7 +8,7 @@ class Subscription extends Equatable {
   final String mealDeliveryTime;
   final bool isAvailable;
   final String startDate;
-  final int totalCost;
+  final double totalCost;
   final double? rating;
   final int ratingCount;
   final int availableSubscriptionsCount;

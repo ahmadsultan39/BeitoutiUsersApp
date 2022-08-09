@@ -36,7 +36,7 @@ class SearchRepoImp extends SearchRepo {
         pages: result.numPages,
         total: result.count,
       ));
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       debugPrint('Error in new search repo $e');
@@ -59,7 +59,7 @@ class SearchRepoImp extends SearchRepo {
         pages: result.numPages,
         total: result.count,
       ));
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       debugPrint('Error in new search repo $e');
@@ -81,7 +81,7 @@ class SearchRepoImp extends SearchRepo {
         pages: result.numPages,
         total: result.count,
       ));
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       debugPrint('Error in new search repo $e');

@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 class SearchSubscription extends Equatable {
   final int id;
   final String name;
+  final bool isAvailable;
   final int daysNumber;
   final String startsAt;
   final double totalCost;
@@ -12,7 +13,7 @@ class SearchSubscription extends Equatable {
   final List<String> meals;
   final SearchChef chef;
 
-  const SearchSubscription(this.id, this.name, this.daysNumber, this.startsAt,
+  const SearchSubscription(this.id, this.name,this.isAvailable, this.daysNumber, this.startsAt,
       this.totalCost, this.rating, this.ratesCount, this.meals, this.chef);
 
   @override

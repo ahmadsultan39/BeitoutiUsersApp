@@ -37,7 +37,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   void addSubscriptionsEvent(String query, int? days) {
     add(GetSubscriptionsEvent((b) => b
       ..query = query
-      ..page = state.mealsPage
+      ..page = state.subscriptionsPage
       ..filterDays = days));
   }
 
@@ -234,8 +234,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                     ..isChefsLoading = false
                     ..chefs.addAll(chefs.data)
                     ..totalChefs = chefs.total
-                    ..chefsPage = b.chefsPage! + 1
-                    ..isChefsFinished = b.chefsPage! == chefs.pages,
+                    ..isChefsFinished = b.chefsPage! == chefs.pages
+                    ..chefsPage = b.chefsPage! + 1,
                 ),
               )
             },

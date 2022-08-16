@@ -34,9 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return BlocListener<ProfileBloc, ProfileState>(
       bloc: _bloc,
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       child: BlocBuilder<ProfileBloc, ProfileState>(
         bloc: _bloc,
         builder: (context, state) {
@@ -162,15 +160,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                 actions: [
                                   TextButton(
                                     onPressed: () {
-                                      _bloc.addLogoutEvent();
-                                    },
-                                    child: const Text("نعم"),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
                                       Navigator.of(context).pop();
                                     },
                                     child: const Text("لا"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      _bloc.addLogoutEvent();
+                                    },
+                                    child: const Text("نعم"),
                                   ),
                                 ],
                               ),

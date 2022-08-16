@@ -35,13 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocListener<ProfileBloc, ProfileState>(
       bloc: _bloc,
       listener: (context, state) {
-        if (state.logoutSuccess) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            NameScreen.splashScreen,
-            (route) => false,
-          );
-        }
+
       },
       child: BlocBuilder<ProfileBloc, ProfileState>(
         bloc: _bloc,

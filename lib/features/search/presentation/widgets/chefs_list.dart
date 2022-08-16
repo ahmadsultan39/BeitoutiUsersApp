@@ -135,7 +135,7 @@ class _ChefsListState extends State<ChefsList> {
                                   alignment: Alignment.center,
                                   children: [
                                     ImageChecker(
-                                      imageUrl: widget.bloc.state.chefs[index].image!,
+                                      imageUrl: widget.bloc.state.chefs[index].image ?? "",
                                       circle: false,
                                       height: 150.w,
                                       width: 150.w,

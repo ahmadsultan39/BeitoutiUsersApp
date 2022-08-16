@@ -17,7 +17,7 @@ class ChefInfoModel extends ChefInfo {
   @JsonKey(name: "location_name")
   final String location;
   @JsonKey(name: "ratings")
-  final double rating;
+  final double? rating;
   @JsonKey(name: "rates_count")
   final int ratesCount;
   @JsonKey(name: "orders_count")
@@ -27,7 +27,7 @@ class ChefInfoModel extends ChefInfo {
   @JsonKey(name: "remaining_available_chef_meals_count")
   final int remainingAvailableMealsCount;
 
-  ChefInfoModel(
+  const ChefInfoModel(
       String name,
       this.deliveryStartTime,
       this.deliveryEndTime,

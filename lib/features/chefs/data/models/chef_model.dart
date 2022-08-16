@@ -10,17 +10,23 @@ class ChefModel extends Chef {
   @JsonKey(name: "is_available")
   final bool isAvailable;
   @JsonKey(name: "profile_picture")
-  final String profilePicture;
+  final String? profilePicture;
   @JsonKey(name: "chef_location")
   final String location;
   @JsonKey(name: "chef_rate")
-  final double rate;
+  final double? rate;
   @JsonKey(name: "chef_rate_count")
   final int rateCount;
 
-  ChefModel(int id, String name, this.isAvailable, this.profilePicture,
-      this.location, this.rate, this.rateCount)
-      : super(id, name, isAvailable, profilePicture, location, rate, rateCount);
+  const ChefModel(
+    int id,
+    String name,
+    this.isAvailable,
+    this.profilePicture,
+    this.location,
+    this.rate,
+    this.rateCount,
+  ) : super(id, name, isAvailable, profilePicture, location, rate, rateCount);
 
   factory ChefModel.fromJson(Map<String, dynamic> json) =>
       _$ChefModelFromJson(json);

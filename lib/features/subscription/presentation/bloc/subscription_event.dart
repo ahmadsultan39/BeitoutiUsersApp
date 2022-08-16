@@ -54,6 +54,20 @@ abstract class GetSubscriptionMeals extends SubscriptionEvent
   }
 }
 
+abstract class ReInitIsSubscribed extends SubscriptionEvent
+    implements Built<ReInitIsSubscribed, ReInitIsSubscribedBuilder> {
+  //getter fields
+
+  ReInitIsSubscribed._();
+
+  factory ReInitIsSubscribed([Function(ReInitIsSubscribedBuilder b) updates]) =
+      _$ReInitIsSubscribed;
+
+  factory ReInitIsSubscribed.initial() {
+    return ReInitIsSubscribed((b) => b);
+  }
+}
+
 abstract class ClearMessage extends SubscriptionEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields
@@ -61,9 +75,10 @@ abstract class ClearMessage extends SubscriptionEvent
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-      _$ClearMessage;
+  _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);
   }
 }
+

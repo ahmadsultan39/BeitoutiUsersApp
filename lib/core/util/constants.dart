@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const baseUrl = "http://fe1a-46-213-19-37.ngrok.io/api/user";
-  static const imageUrl = "http://fe1a-46-213-19-37.ngrok.io";
+  static const baseUrl = "http://935f-94-47-182-14.ngrok.io/api/user";
+  static const imageUrl = "http://935f-94-47-182-14.ngrok.io";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";

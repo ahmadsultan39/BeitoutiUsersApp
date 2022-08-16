@@ -1,7 +1,7 @@
 import 'package:beitouti_users/firebase_options.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -36,16 +36,16 @@ abstract class RegisterModule {
   asExtension: false,
 )
 Future<void> configureDependencies() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  FirebaseMessaging.onBackgroundMessage(_messageHandler);
-  NotificationInitializer.initializeNotification();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
+  // FirebaseMessaging.onBackgroundMessage(_messageHandler);
+  // NotificationInitializer.initializeNotification();
   await $initGetIt(sl);
 }
 
@@ -69,9 +69,9 @@ Dio getDio() {
   );
   return dio;
 }
-
-Future<void> _messageHandler(RemoteMessage message) async {
-  print('background message ${message.notification!.body}');
-  print('background message ${message.data['data']}');
-  NotificationInitializer.showNotification(message);
-}
+//
+// Future<void> _messageHandler(RemoteMessage message) async {
+//   print('background message ${message.notification!.body}');
+//   print('background message ${message.data['data']}');
+//   NotificationInitializer.showNotification(message);
+// }

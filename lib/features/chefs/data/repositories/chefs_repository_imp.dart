@@ -7,17 +7,13 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
-import '../../../../core/util/constants.dart';
 
 @LazySingleton(as: ChefsRepository)
-class ChefsRepositoryImp
-implements ChefsRepository {
+class ChefsRepositoryImp implements ChefsRepository {
   final ChefsRemoteDataSource _http;
   final ChefsLocalDataSource _local;
 
   ChefsRepositoryImp(this._http, this._local);
-
-
 
   @override
   Future<Either<Failure, List<Chef>>> getMostRecent() async {
@@ -31,8 +27,6 @@ implements ChefsRepository {
       );
     } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
-    } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
@@ -48,8 +42,6 @@ implements ChefsRepository {
       );
     } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
-    } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
@@ -65,8 +57,6 @@ implements ChefsRepository {
       );
     } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
-    } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
@@ -82,10 +72,6 @@ implements ChefsRepository {
       );
     } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
-    } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
-
-
 }

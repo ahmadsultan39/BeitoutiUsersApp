@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:beitouti_users/core/error/status_code_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../error/exceptions.dart';
+import '../error/status_code_handler.dart';
 import '../network/models/base_list_response_model.dart';
 import '../network/models/base_response_model.dart';
 import '../util/constants.dart';
@@ -121,7 +121,9 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
 
   @override
   Future<T> performGetRequest<T>(
-      {required String endpoint, required String token, Map<String, dynamic>? params}) async {
+      {required String endpoint,
+      required String token,
+      Map<String, dynamic>? params}) async {
     debugPrint("PerformGetRequest");
     try {
       final response = await dio.get(

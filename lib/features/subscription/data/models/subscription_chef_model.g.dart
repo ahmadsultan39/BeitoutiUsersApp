@@ -12,7 +12,7 @@ SubscriptionChefModel _$SubscriptionChefModelFromJson(
       id: json['id'] as int,
       name: json['name'] as String,
       location: json['location'] as String?,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
     );
 
 Map<String, dynamic> _$SubscriptionChefModelToJson(

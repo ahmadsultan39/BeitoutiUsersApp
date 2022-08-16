@@ -10,9 +10,9 @@ ChefModel _$ChefModelFromJson(Map<String, dynamic> json) => ChefModel(
       json['id'] as int,
       json['name'] as String,
       json['is_available'] as bool,
-      json['profile_picture'] as String,
+      json['profile_picture'] as String?,
       json['chef_location'] as String,
-      (json['chef_rate'] as num).toDouble(),
+      (json['chef_rate'] as num?)?.toDouble(),
       json['chef_rate_count'] as int,
     );
 

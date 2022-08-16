@@ -270,6 +270,66 @@ class GetSubscriptionMealsBuilder
   }
 }
 
+class _$ReInitIsSubscribed extends ReInitIsSubscribed {
+  factory _$ReInitIsSubscribed(
+          [void Function(ReInitIsSubscribedBuilder)? updates]) =>
+      (new ReInitIsSubscribedBuilder()..update(updates))._build();
+
+  _$ReInitIsSubscribed._() : super._();
+
+  @override
+  ReInitIsSubscribed rebuild(
+          void Function(ReInitIsSubscribedBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ReInitIsSubscribedBuilder toBuilder() =>
+      new ReInitIsSubscribedBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ReInitIsSubscribed;
+  }
+
+  @override
+  int get hashCode {
+    return 128003235;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'ReInitIsSubscribed').toString();
+  }
+}
+
+class ReInitIsSubscribedBuilder
+    implements Builder<ReInitIsSubscribed, ReInitIsSubscribedBuilder> {
+  _$ReInitIsSubscribed? _$v;
+
+  ReInitIsSubscribedBuilder();
+
+  @override
+  void replace(ReInitIsSubscribed other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ReInitIsSubscribed;
+  }
+
+  @override
+  void update(void Function(ReInitIsSubscribedBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ReInitIsSubscribed build() => _build();
+
+  _$ReInitIsSubscribed _build() {
+    final _$result = _$v ?? new _$ReInitIsSubscribed._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

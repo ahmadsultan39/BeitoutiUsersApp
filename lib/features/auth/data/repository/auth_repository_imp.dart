@@ -6,7 +6,7 @@ import 'package:beitouti_users/features/auth/domain/entities/accessibility_statu
 import 'package:beitouti_users/features/auth/domain/entities/register_request.dart';
 import 'package:beitouti_users/features/auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/util/enums.dart';
 import '../data_source/local/auth_local_data_source.dart';
@@ -33,7 +33,7 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Either<Failure, AccessibilityStatus>> checkCode(
       {required String phoneNumber, required String code}) async {
     try {
-      String? fcmToken =  await FirebaseMessaging.instance.getToken();
+      String? fcmToken =  "";//await FirebaseMessaging.instance.getToken();
       fcmToken = fcmToken ?? "" ;
       final accessibilityStatus = await _http.checkCodeAndAccessibility(
         phoneNumber: phoneNumber,
@@ -53,7 +53,7 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Either<Failure, void>> requestRegister(
       {required RegisterRequest request}) async {
     try {
-      String? fcmToken =  await FirebaseMessaging.instance.getToken();
+      String? fcmToken =  "";//await FirebaseMessaging.instance.getToken();
       fcmToken = fcmToken ?? "" ;
       await _http.requestRegister(
         request: RegisterRequestModel(

@@ -17,6 +17,8 @@ abstract class SubscriptionState
 
   Subscription? get subscription;
 
+  bool get isSubscribed;
+
   SubscriptionState._();
 
   factory SubscriptionState([Function(SubscriptionStateBuilder b) updates]) =
@@ -29,6 +31,7 @@ abstract class SubscriptionState
         ..message = ""
         ..error = false
         ..subscription = null
+        ..isSubscribed = false
         ..subscriptionMeals.replace([]),
     );
   }

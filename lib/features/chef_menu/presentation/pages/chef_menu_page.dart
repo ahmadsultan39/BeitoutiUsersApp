@@ -75,23 +75,15 @@ class _ChefMenuPageState extends State<ChefMenuPage>
                       height: 120.h,
                       imageUrl: widget.chef.profilePicture ?? '',
                     ),
-                    // Container(
-                    //   width: 110.w,
-                    //   margin: const EdgeInsets.symmetric(vertical: 8),
-                    //   clipBehavior: Clip.hardEdge,
-                    //   decoration: const BoxDecoration(shape: BoxShape.circle),
-                    //   child: CachedNetworkImage(
-                    //       imageUrl: Endpoints.imageUrl + widget.chef.profilePicture!),
-                    // ),
                     if (state.chefInfo != null)
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             color: Colors.yellow,
                           ),
                           Text(
-                            " ${state.chefInfo!.rating.round()} (${state.chefInfo!.ratesCount})",
+                            " ${state.chefInfo!.rating?.round() ?? 0} (${state.chefInfo!.ratesCount})",
                             style: const TextStyle(
                               fontWeight: FontWeight.normal,
                             ),
@@ -118,17 +110,18 @@ class _ChefMenuPageState extends State<ChefMenuPage>
                         ? const Loader()
                         : state.chefInfo != null
                             ? SizedBox(
-                                width: 220.w,
+                                width: 150.w,
                                 child: Column(
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(Icons.location_on_rounded),
+                                        const Icon(Icons.location_on_rounded),
                                         Text(
                                           state.chefInfo!.location,
                                           style: const TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              overflow: TextOverflow.ellipsis),
+                                            fontWeight: FontWeight.normal,
+                                            overflow: TextOverflow.fade,
+                                          ),
                                         ),
                                       ],
                                     ),

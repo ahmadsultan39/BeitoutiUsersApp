@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class SubscriptionChef extends Equatable {
   final int id;
   final String name;
-  final String profilePicture;
+  final String? profilePicture;
   final String? location;
 
   const SubscriptionChef({

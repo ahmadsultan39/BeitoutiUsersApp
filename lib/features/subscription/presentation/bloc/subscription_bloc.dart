@@ -42,6 +42,10 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     add(ClearMessage());
   }
 
+  void addReInitIsSubscribedEvent() {
+    add(ReInitIsSubscribed());
+  }
+
   @factoryMethod
   SubscriptionBloc(
     this._getSubscriptionUseCase,
@@ -59,6 +63,10 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
                 ..message = '',
             ),
           );
+        }
+        /*** ReInitIsSubscribed ***/
+        if (event is ReInitIsSubscribed) {
+          emit(state.rebuild((b) => b..isSubscribed = false));
         }
 
         /*** GetSubscription ***/
@@ -141,6 +149,7 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
               state.rebuild(
                 (b) => b
                   ..isLoading = false
+                  ..isSubscribed = true
                   ..message = 'تمت عملية الاشتراك بنجاح',
               ),
             ),

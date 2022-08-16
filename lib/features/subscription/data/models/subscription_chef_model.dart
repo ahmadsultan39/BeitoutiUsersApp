@@ -6,7 +6,7 @@ part 'subscription_chef_model.g.dart';
 @JsonSerializable()
 class SubscriptionChefModel extends SubscriptionChef {
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   const SubscriptionChefModel({
     required int id,

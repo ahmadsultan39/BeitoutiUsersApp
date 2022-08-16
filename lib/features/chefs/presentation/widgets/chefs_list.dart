@@ -83,7 +83,7 @@ class ChefsList extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             ImageChecker(
-                              imageUrl: chefs[index].profilePicture,
+                              imageUrl: chefs[index].profilePicture ?? "",
                               circle: false,
                               height: 150.w,
                               width: 150.w,

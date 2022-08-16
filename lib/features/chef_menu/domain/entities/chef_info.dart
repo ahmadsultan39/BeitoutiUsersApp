@@ -6,7 +6,7 @@ class ChefInfo extends Equatable {
   final String deliveryEndTime;
   final bool isAvailable;
   final String location;
-  final double rating;
+  final double? rating;
   final int ratesCount;
   final int ordersCount;
   final int maxMealsPerDay;

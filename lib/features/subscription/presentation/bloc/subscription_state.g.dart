@@ -17,6 +17,8 @@ class _$SubscriptionState extends SubscriptionState {
   final BuiltList<SubscriptionMeal> subscriptionMeals;
   @override
   final Subscription? subscription;
+  @override
+  final bool isSubscribed;
 
   factory _$SubscriptionState(
           [void Function(SubscriptionStateBuilder)? updates]) =>
@@ -27,7 +29,8 @@ class _$SubscriptionState extends SubscriptionState {
       required this.message,
       required this.error,
       required this.subscriptionMeals,
-      this.subscription})
+      this.subscription,
+      required this.isSubscribed})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'SubscriptionState', 'isLoading');
@@ -36,6 +39,8 @@ class _$SubscriptionState extends SubscriptionState {
     BuiltValueNullFieldError.checkNotNull(error, r'SubscriptionState', 'error');
     BuiltValueNullFieldError.checkNotNull(
         subscriptionMeals, r'SubscriptionState', 'subscriptionMeals');
+    BuiltValueNullFieldError.checkNotNull(
+        isSubscribed, r'SubscriptionState', 'isSubscribed');
   }
 
   @override
@@ -54,17 +59,20 @@ class _$SubscriptionState extends SubscriptionState {
         message == other.message &&
         error == other.error &&
         subscriptionMeals == other.subscriptionMeals &&
-        subscription == other.subscription;
+        subscription == other.subscription &&
+        isSubscribed == other.isSubscribed;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
-                error.hashCode),
-            subscriptionMeals.hashCode),
-        subscription.hashCode));
+            $jc(
+                $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
+                    error.hashCode),
+                subscriptionMeals.hashCode),
+            subscription.hashCode),
+        isSubscribed.hashCode));
   }
 
   @override
@@ -74,7 +82,8 @@ class _$SubscriptionState extends SubscriptionState {
           ..add('message', message)
           ..add('error', error)
           ..add('subscriptionMeals', subscriptionMeals)
-          ..add('subscription', subscription))
+          ..add('subscription', subscription)
+          ..add('isSubscribed', isSubscribed))
         .toString();
   }
 }
@@ -106,6 +115,10 @@ class SubscriptionStateBuilder
   set subscription(Subscription? subscription) =>
       _$this._subscription = subscription;
 
+  bool? _isSubscribed;
+  bool? get isSubscribed => _$this._isSubscribed;
+  set isSubscribed(bool? isSubscribed) => _$this._isSubscribed = isSubscribed;
+
   SubscriptionStateBuilder();
 
   SubscriptionStateBuilder get _$this {
@@ -116,6 +129,7 @@ class SubscriptionStateBuilder
       _error = $v.error;
       _subscriptionMeals = $v.subscriptionMeals.toBuilder();
       _subscription = $v.subscription;
+      _isSubscribed = $v.isSubscribed;
       _$v = null;
     }
     return this;
@@ -147,7 +161,9 @@ class SubscriptionStateBuilder
               error: BuiltValueNullFieldError.checkNotNull(
                   error, r'SubscriptionState', 'error'),
               subscriptionMeals: subscriptionMeals.build(),
-              subscription: subscription);
+              subscription: subscription,
+              isSubscribed: BuiltValueNullFieldError.checkNotNull(
+                  isSubscribed, r'SubscriptionState', 'isSubscribed'));
     } catch (_) {
       late String _$failedField;
       try {

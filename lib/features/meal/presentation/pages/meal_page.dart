@@ -152,147 +152,162 @@ class _MealPageState extends State<MealPage> {
                             ),
                             color: Theme.of(context).backgroundColor,
                           ),
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 25.w,
-                                vertical: 20.h,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  NameAndPrice(
-                                    name: state.meal!.name,
-                                    chefName: state.meal!.chef.name,
-                                    price: state.meal!.price,
-                                    priceAfterDiscount:
-                                        state.meal!.priceAfterDiscount,
+                          child: Stack(
+                            children: [
+                              SingleChildScrollView(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 25.w,
+                                    vertical: 20.h,
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          MealDetails(
-                                            icon: Icons.delivery_dining_rounded,
-                                            title: "رسوم التوصيل:",
-                                            value: state.meal!.deliveryFee
-                                                    .round()
-                                                    .toString() +
-                                                ' ل.س',
-                                          ),
-                                          MealDetails(
-                                            icon: Icons.timer_rounded,
-                                            title: "الوقت المتوقع للإعداد: ",
-                                            value: state.meal!
-                                                    .expectedPreparationTime
-                                                    .toString() +
-                                                ' ساعة',
-                                          ),
-                                          MealDetails(
-                                            icon: Icons.category_rounded,
-                                            title: "الصنف: ",
-                                            value: state.meal!.category.name,
-                                          ),
-                                          MealDetails(
-                                            icon: Icons.location_on_rounded,
-                                            title: "العنوان: ",
-                                            value: state.meal!.chef.location,
-                                          ),
-                                        ],
+                                      NameAndPrice(
+                                        name: state.meal!.name,
+                                        chefName: state.meal!.chef.name,
+                                        price: state.meal!.price,
+                                        priceAfterDiscount:
+                                            state.meal!.priceAfterDiscount,
                                       ),
-                                      Container(
-                                        height: 140.h,
-                                        width: 45.w,
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                              .withOpacity(0.9),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 5.w,
-                                            vertical: 10.h,
-                                          ),
-                                          child: Column(
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              GestureDetector(
-                                                onTap: _increaseQuantity,
-                                                behavior:
-                                                    HitTestBehavior.opaque,
-                                                child: SizedBox(
-                                                  width: double.infinity,
-                                                  height: 41.h,
-                                                  child: Center(
-                                                    child: Text(
-                                                      "+",
-                                                      style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .backgroundColor,
-                                                        fontSize: 20.sp,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                              MealDetails(
+                                                icon: Icons.delivery_dining_rounded,
+                                                title: "رسوم التوصيل:",
+                                                value: state.meal!.deliveryFee
+                                                        .round()
+                                                        .toString() +
+                                                    ' ل.س',
                                               ),
-                                              Text(
-                                                _quantity.toString(),
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .backgroundColor,
-                                                  fontSize: 20.sp,
-                                                ),
+                                              MealDetails(
+                                                icon: Icons.timer_rounded,
+                                                title: "الوقت المتوقع للإعداد: ",
+                                                value: state.meal!
+                                                        .expectedPreparationTime
+                                                        .toString() +
+                                                    ' دقيقة',
                                               ),
-                                              GestureDetector(
-                                                onTap: _decreaseQuantity,
-                                                behavior:
-                                                    HitTestBehavior.opaque,
-                                                child: SizedBox(
-                                                  width: double.infinity,
-                                                  height: 41.h,
-                                                  child: Center(
-                                                    child: Text(
-                                                      "-",
-                                                      style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .backgroundColor,
-                                                        fontSize: 20.sp,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                              MealDetails(
+                                                icon: Icons.category_rounded,
+                                                title: "الصنف: ",
+                                                value: state.meal!.category.name,
+                                              ),
+                                              MealDetails(
+                                                icon: Icons.location_on_rounded,
+                                                title: "العنوان: ",
+                                                value: state.meal!.chef.location,
                                               ),
                                             ],
                                           ),
-                                        ),
+                                          Container(
+                                            height: 140.h,
+                                            width: 45.w,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary
+                                                  .withOpacity(0.9),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 5.w,
+                                                vertical: 10.h,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: _increaseQuantity,
+                                                    behavior:
+                                                        HitTestBehavior.opaque,
+                                                    child: SizedBox(
+                                                      width: double.infinity,
+                                                      height: 41.h,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "+",
+                                                          style: TextStyle(
+                                                            color: Theme.of(context)
+                                                                .backgroundColor,
+                                                            fontSize: 20.sp,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    _quantity.toString(),
+                                                    style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .backgroundColor,
+                                                      fontSize: 20.sp,
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: _decreaseQuantity,
+                                                    behavior:
+                                                        HitTestBehavior.opaque,
+                                                    child: SizedBox(
+                                                      width: double.infinity,
+                                                      height: 41.h,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "-",
+                                                          style: TextStyle(
+                                                            color: Theme.of(context)
+                                                                .backgroundColor,
+                                                            fontSize: 20.sp,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Ingredients(
+                                        ingredients: state.meal!.ingredients,
+                                      ),
+                                      SizedBox(
+                                        height: 50.h,
                                       ),
                                     ],
                                   ),
-                                  Ingredients(
-                                    ingredients: state.meal!.ingredients,
-                                  ),
-                                  AddToCartButton(
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w,
+                                ),
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: AddToCartButton(
                                     onTap: _onSubmit,
                                     message: _addToCartErrorMessage(),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ),

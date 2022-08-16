@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../injection.dart';
 import '../bloc/profile.dart';
@@ -127,6 +128,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               context,
                               NameScreen.currentSubscriptionsScreen,
                             );
+                          },
+                        ),
+                        ProfileTile(
+                          title: 'الدعم',
+                          icon: Icons.contact_support,
+                          onTap: () async {
+                            const url = "tel:0953954152";
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(Uri.parse(url));
+                            } else {
+                              throw 'Could not launch $url';
+                            }
                           },
                         ),
                         ProfileTile(

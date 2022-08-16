@@ -1,7 +1,6 @@
 import 'package:beitouti_users/features/current_subscriptions/domain/entities/current_subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/image_checker.dart';
@@ -23,11 +22,11 @@ class CurrentSubscriptionItem extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-              Navigator.pushNamed(
-                context,
-                NameScreen.subscriptionOrdersScreen,
-                arguments: subscription.id,
-              );
+          Navigator.pushNamed(
+            context,
+            NameScreen.subscriptionOrdersScreen,
+            arguments: subscription.id,
+          );
         },
         child: Container(
           width: 375.w,
@@ -103,7 +102,7 @@ class CurrentSubscriptionItem extends StatelessWidget {
                   value: subscription.mealDeliveryTime,
                 ),
                 SubscriptionInfo(
-                  icon: MdiIcons.numeric,
+                  icon: Icons.numbers,
                   title: 'عدد الأيام:',
                   value: subscription.daysNumber.toString(),
                 ),

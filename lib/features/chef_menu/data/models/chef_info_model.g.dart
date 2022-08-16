@@ -13,7 +13,7 @@ ChefInfoModel _$ChefInfoModelFromJson(Map<String, dynamic> json) =>
       json['delivery_ends_at'] as String,
       json['is_available'] as bool,
       json['location_name'] as String,
-      (json['ratings'] as num).toDouble(),
+      (json['ratings'] as num?)?.toDouble(),
       json['rates_count'] as int,
       json['orders_count'] as int,
       json['max_meals_per_day'] as int,

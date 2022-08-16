@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 import 'profile.dart';
 
-@injectable
+@lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileInfoUseCase _getProfileInfoUseCase;
   final LogoutUseCase _logoutUseCase;

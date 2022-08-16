@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
+import '../../features/profile/presentation/bloc/profile_bloc.dart';
+import '../../injection.dart';
 import '../network/models/base_response_model.dart';
 import '../util/constants.dart';
 import 'exceptions.dart';
@@ -18,7 +20,7 @@ Exception statusCodeHandler(Response response) {
       error: errorMessage ?? ErrorMessage.error400,
     );
   } else if (response.statusCode == 401) {
-    // sl<ProfileBloc>().addLogoutEvent();
+    sl<ProfileBloc>().addLogoutEvent();
     throw UnauthorizedException(
       error: errorMessage ?? ErrorMessage.error401,
     );

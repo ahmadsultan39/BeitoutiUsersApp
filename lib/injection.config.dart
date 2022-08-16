@@ -534,7 +534,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i132.GetCurrentOrdersUseCase>(),
       get<_i136.GetPreviousOrdersUseCase>(),
       get<_i120.CancelOrderUseCase>()));
-  gh.factory<_i149.ProfileBloc>(() => _i149.ProfileBloc(
+  gh.lazySingleton<_i149.ProfileBloc>(() => _i149.ProfileBloc(
       get<_i137.GetProfileInfoUseCase>(), get<_i144.LogoutUseCase>()));
   gh.lazySingleton<_i150.SearchChefsUseCase>(
       () => _i150.SearchChefsUseCase(get<_i108.SearchRepo>()));

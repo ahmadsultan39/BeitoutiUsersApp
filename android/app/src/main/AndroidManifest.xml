@@ -4,8 +4,8 @@
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="beitouti_users"
+        android:icon="@mipmap/launcher_icon"
+        android:label="بيتوتي"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

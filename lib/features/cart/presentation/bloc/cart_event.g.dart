@@ -656,6 +656,62 @@ class DeleteCartBuilder implements Builder<DeleteCart, DeleteCartBuilder> {
   }
 }
 
+class _$ReInitState extends ReInitState {
+  factory _$ReInitState([void Function(ReInitStateBuilder)? updates]) =>
+      (new ReInitStateBuilder()..update(updates))._build();
+
+  _$ReInitState._() : super._();
+
+  @override
+  ReInitState rebuild(void Function(ReInitStateBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ReInitStateBuilder toBuilder() => new ReInitStateBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ReInitState;
+  }
+
+  @override
+  int get hashCode {
+    return 473026745;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'ReInitState').toString();
+  }
+}
+
+class ReInitStateBuilder implements Builder<ReInitState, ReInitStateBuilder> {
+  _$ReInitState? _$v;
+
+  ReInitStateBuilder();
+
+  @override
+  void replace(ReInitState other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ReInitState;
+  }
+
+  @override
+  void update(void Function(ReInitStateBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ReInitState build() => _build();
+
+  _$ReInitState _build() {
+    final _$result = _$v ?? new _$ReInitState._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

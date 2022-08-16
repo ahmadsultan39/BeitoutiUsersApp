@@ -135,6 +135,20 @@ abstract class DeleteCart extends CartEvent
   }
 }
 
+abstract class ReInitState extends CartEvent
+    implements Built<ReInitState, ReInitStateBuilder> {
+  //getter fields
+
+  ReInitState._();
+
+  factory ReInitState([Function(ReInitStateBuilder b) updates]) =
+  _$ReInitState;
+
+  factory ReInitState.initial() {
+    return ReInitState((b) => b);
+  }
+}
+
 abstract class ClearMessage extends CartEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields
@@ -148,4 +162,6 @@ abstract class ClearMessage extends CartEvent
     return ClearMessage((b) => b);
   }
 }
+
+
 

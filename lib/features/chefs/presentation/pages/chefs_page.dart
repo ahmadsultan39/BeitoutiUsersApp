@@ -38,30 +38,38 @@ class _ChefsPageState extends State<ChefsPage> {
             bloc: _bloc,
           );
         });
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              ChefsList(
-                title: "أقرب الطهاة",
-                isLoading: state.isNearestLoading,
-                chefs: state.nearest,
-              ),
-              ChefsList(
-                title: "الطهاة الأعلى تقييما",
-                isLoading: state.isTopRatedLoading,
-                chefs: state.topRated,
-              ),
-              ChefsList(
-                title: "الطهاة الأكثر طلبا",
-                isLoading: state.isTopOrderedLoading,
-                chefs: state.topOrdered,
-              ),
-              ChefsList(
-                title: "أحدث الطهاة",
-                isLoading: state.isMostRecentLoading,
-                chefs: state.mostRecent,
-              ),
-            ],
+        return RefreshIndicator(
+          onRefresh: () async {
+            _bloc.addGetMostRecentChefsEvent();
+            _bloc.addGetNearestChefsEvent();
+            _bloc.addGetTopOrderedChefsEvent();
+            _bloc.addGetTopRatedChefsEvent();
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ChefsList(
+                  title: "أقرب الطهاة",
+                  isLoading: state.isNearestLoading,
+                  chefs: state.nearest,
+                ),
+                ChefsList(
+                  title: "الطهاة الأعلى تقييما",
+                  isLoading: state.isTopRatedLoading,
+                  chefs: state.topRated,
+                ),
+                ChefsList(
+                  title: "الطهاة الأكثر طلبا",
+                  isLoading: state.isTopOrderedLoading,
+                  chefs: state.topOrdered,
+                ),
+                ChefsList(
+                  title: "أحدث الطهاة",
+                  isLoading: state.isMostRecentLoading,
+                  chefs: state.mostRecent,
+                ),
+              ],
+            ),
           ),
         );
       },

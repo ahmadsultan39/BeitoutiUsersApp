@@ -8,6 +8,7 @@ import 'package:beitouti_users/features/auth/domain/repository/auth_repository.d
 import 'package:dartz/dartz.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/util/enums.dart';
 import '../data_source/local/auth_local_data_source.dart';
 import '../data_source/remote/auth_remote_data_source.dart';
@@ -20,7 +21,9 @@ class AuthRepositoryImp implements AuthRepository {
   AuthRepositoryImp(this._local, this._http);
 
   @override
-  Future<Either<Failure, void>> sendCode({required String phoneNumber}) async {
+  Future<Either<Failure, void>> sendCode({
+    required String phoneNumber,
+  }) async {
     try {
       await _http.sendCode(phoneNumber: phoneNumber);
       return const Right(null);
@@ -30,15 +33,21 @@ class AuthRepositoryImp implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, AccessibilityStatus>> checkCode(
-      {required String phoneNumber, required String code}) async {
+  Future<Either<Failure, AccessibilityStatus>> checkCode({
+    required String phoneNumber,
+    required String code,
+  }) async {
     try {
-      String? fcmToken = await FirebaseMessaging.instance.getToken();
-      fcmToken = fcmToken ?? "" ;
+      String? fcmToken;
+      try {
+        fcmToken = await FirebaseMessaging.instance.getToken();
+      } catch (e) {
+        print('Error while getting fcm token');
+      }
       final accessibilityStatus = await _http.checkCodeAndAccessibility(
         phoneNumber: phoneNumber,
         code: code,
-        fcmToken: fcmToken,
+        fcmToken: fcmToken ?? "",
       );
       if (accessibilityStatus.status == AccessibilityStaysType.active) {
         _local.saveUser(accessibilityStatus.userModel!);
@@ -50,11 +59,16 @@ class AuthRepositoryImp implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> requestRegister(
-      {required RegisterRequest request}) async {
+  Future<Either<Failure, void>> requestRegister({
+    required RegisterRequest request,
+  }) async {
     try {
-      String? fcmToken = await FirebaseMessaging.instance.getToken();
-      fcmToken = fcmToken ?? "" ;
+      String? fcmToken;
+      try {
+        fcmToken = await FirebaseMessaging.instance.getToken();
+      } catch (e) {
+        print('Error while getting fcm token');
+      }
       await _http.requestRegister(
         request: RegisterRequestModel(
           name: request.name,
@@ -70,7 +84,7 @@ class AuthRepositoryImp implements AuthRepository {
           campusUnitNumber: request.campusUnitNumber,
           birthDate: request.birthDate,
         ),
-        fcmToken : fcmToken
+        fcmToken: fcmToken ?? "",
       );
       return const Right(null);
     } on ServerException catch (e) {

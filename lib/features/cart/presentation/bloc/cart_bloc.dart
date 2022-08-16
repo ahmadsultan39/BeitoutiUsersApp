@@ -44,12 +44,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required int currentQuantity,
   }) {
     add(IncreaseQuantity(
-          (b) =>
-      b
+      (b) => b
         ..cartItemIndex = cartItemIndex
         ..cartItemId = cartItemId
         ..currentQuantity = currentQuantity,
     ));
+  }
+
+  void addReInitStateEvent() {
+    add(ReInitState());
   }
 
   void addDecreaseQuantityEvent({
@@ -58,45 +61,54 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required int currentQuantity,
   }) {
     add(DecreaseQuantity(
-          (b) =>
-      b
+      (b) => b
         ..cartItemIndex = cartItemIndex
         ..cartItemId = cartItemId
         ..currentQuantity = currentQuantity,
     ));
   }
 
-  CartBloc(this._getCartItemsUseCase,
-      this._orderCartUseCase,
-      this._deleteCartItemUseCase,
-      this._updateCartItemQuantityUseCase, this._deleteCartUseCase,)
-      : super(CartState.initial()) {
+  CartBloc(
+    this._getCartItemsUseCase,
+    this._orderCartUseCase,
+    this._deleteCartItemUseCase,
+    this._updateCartItemQuantityUseCase,
+    this._deleteCartUseCase,
+  ) : super(CartState.initial()) {
     on<CartEvent>(
-          (event, emit) async {
+      (event, emit) async {
         /// *** ClearMessage *** ///
         if (event is ClearMessage) {
           emit(
             state.rebuild(
-                  (b) =>
-              b
+              (b) => b
                 ..error = false
                 ..message = '',
             ),
           );
         }
 
+        /// *** ReInitState *** ///
+        if (event is ReInitState) {
+          await _deleteCartUseCase(NoParams());
+          emit(CartState.initial());
+        }
+
         /// *** DeleteCart *** ///
         if (event is DeleteCart) {
           final result = await _deleteCartUseCase(NoParams());
 
-          result.fold((failure) =>
-              emit(state.rebuild((b) =>
-              b
+          result.fold(
+            (failure) => emit(state.rebuild(
+              (b) => b
                 ..error = true
-                ..message = failure.error,)), (success) =>
-              emit(state.rebuild((b) => b..allSuccess = true,)),);
+                ..message = failure.error,
+            )),
+            (success) => emit(state.rebuild(
+              (b) => b..allSuccess = true,
+            )),
+          );
         }
-
 
         /// *** DeleteCartItem *** ///
         if (event is DeleteCartItem) {
@@ -107,23 +119,20 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-                (failure) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..error = true
-                      ..isLoading = false
-                      ..message = failure.error,
-                  ),
-                ),
-                (success) {
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..error = true
+                  ..isLoading = false
+                  ..message = failure.error,
+              ),
+            ),
+            (success) {
               final deletedItem = state.cartItems
                   .firstWhere((cartItem) => cartItem.id == event.id);
               emit(
                 state.rebuild(
-                      (b) =>
-                  b
+                  (b) => b
                     ..mealsCost = state.mealsCost -
                         (deletedItem.mealCost * deletedItem.mealQuantity)
                     ..cartItems.remove(deletedItem)
@@ -142,17 +151,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           final result = await _getCartItemsUseCase(NoParams());
 
           result.fold(
-                (failure) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..error = true
-                      ..isLoading = false
-                      ..message = failure.error,
-                  ),
-                ),
-                (cartItems) {
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..error = true
+                  ..isLoading = false
+                  ..message = failure.error,
+              ),
+            ),
+            (cartItems) {
               if (cartItems.isNotEmpty) {
                 int mealsCost = 0;
                 for (var item in cartItems) {
@@ -160,10 +167,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
                 }
                 emit(
                   state.rebuild(
-                        (b) =>
-                    b
+                    (b) => b
                       ..isLoading = false
                       ..mealsCost = mealsCost
+                      ..deliveryStartsHour = int.parse(
+                          (cartItems[0].deliveryStartsAt.split(":").first))
+                      ..deliveryEndsHour = int.parse(
+                          (cartItems[0].deliveryEndsAt.split(":").first))
                       ..deliveryFee = cartItems[0].deliveryCost
                       ..cartItems.replace(cartItems),
                   ),
@@ -187,35 +197,31 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-                (failure) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..error = true
-                      ..isLoading = false
-                      ..message = failure.error,
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..error = true
+                  ..isLoading = false
+                  ..message = failure.error,
+              ),
+            ),
+            (success) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..mealsCost = state.mealsCost +
+                      state.cartItems[event.cartItemIndex].mealCost
+                  ..cartItems.update(
+                    (cartItems) {
+                      cartItems[event.cartItemIndex] =
+                          CartItemModel.cartItemWithNewQuantity(
+                        item: cartItems[event.cartItemIndex],
+                        quantity: event.currentQuantity + 1,
+                      );
+                    },
                   ),
-                ),
-                (success) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..isLoading = false
-                      ..mealsCost = state.mealsCost +
-                          state.cartItems[event.cartItemIndex].mealCost
-                      ..cartItems.update(
-                            (cartItems) {
-                          cartItems[event.cartItemIndex] =
-                              CartItemModel.cartItemWithNewQuantity(
-                                item: cartItems[event.cartItemIndex],
-                                quantity: event.currentQuantity + 1,
-                              );
-                        },
-                      ),
-                  ),
-                ),
+              ),
+            ),
           );
         }
 
@@ -229,35 +235,31 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-                (failure) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..error = true
-                      ..isLoading = false
-                      ..message = failure.error,
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..error = true
+                  ..isLoading = false
+                  ..message = failure.error,
+              ),
+            ),
+            (success) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..mealsCost = state.mealsCost -
+                      state.cartItems[event.cartItemIndex].mealCost
+                  ..cartItems.update(
+                    (cartItems) {
+                      cartItems[event.cartItemIndex] =
+                          CartItemModel.cartItemWithNewQuantity(
+                        item: cartItems[event.cartItemIndex],
+                        quantity: event.currentQuantity - 1,
+                      );
+                    },
                   ),
-                ),
-                (success) =>
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..isLoading = false
-                      ..mealsCost = state.mealsCost -
-                          state.cartItems[event.cartItemIndex].mealCost
-                      ..cartItems.update(
-                            (cartItems) {
-                          cartItems[event.cartItemIndex] =
-                              CartItemModel.cartItemWithNewQuantity(
-                                item: cartItems[event.cartItemIndex],
-                                quantity: event.currentQuantity - 1,
-                              );
-                        },
-                      ),
-                  ),
-                ),
+              ),
+            ),
           );
         }
 
@@ -270,28 +272,23 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-                  (failure) =>
-                  emit(
+              (failure) => emit(
                     state.rebuild(
-                          (b) =>
-                      b
+                      (b) => b
                         ..error = true
                         ..isLoading = false
                         ..message = failure.error,
                     ),
-                  ),
-                  (success) {
-                emit(
-                  state.rebuild(
-                        (b) =>
-                    b
-                      ..isLoading = false
-                      ..message = 'تم طلب السلة بنجاح',
-                  ),
-                );
-                addDeleteCartEvent();
-              }
-          );
+                  ), (success) {
+            emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..message = 'تم طلب السلة بنجاح',
+              ),
+            );
+            addDeleteCartEvent();
+          });
         }
       },
     );

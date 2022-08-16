@@ -146,7 +146,41 @@ class _ProfilePageState extends State<ProfilePage> {
                           title: 'تسجيل الخروج',
                           icon: Icons.logout,
                           onTap: () {
-                            _bloc.addLogoutEvent();
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.background,
+                                title: Text(
+                                  "تسجيل الخروج",
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                content: Text(
+                                  "هل أنت متأكد من أنك تريد تسجيل الخروج؟",
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      _bloc.addLogoutEvent();
+                                    },
+                                    child: const Text("نعم"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("لا"),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                         ),
                         const AllRightsReserved(),

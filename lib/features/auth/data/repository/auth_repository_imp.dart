@@ -63,24 +63,29 @@ class AuthRepositoryImp implements AuthRepository {
     required RegisterRequest request,
   }) async {
     try {
-      String? fcmToken = await FirebaseMessaging.instance.getToken();
-      fcmToken = fcmToken ?? "";
+      String? fcmToken;
+      try {
+        fcmToken = await FirebaseMessaging.instance.getToken();
+      } catch (e) {
+        print('Error while getting fcm token');
+      }
       await _http.requestRegister(
-          request: RegisterRequestModel(
-            name: request.name,
-            email: request.email,
-            location: request.location.index,
-            gender: request.gender.index,
-            phoneNumber: request.phoneNumber,
-            studySpeciality: request.studySpeciality,
-            nationalId: request.nationalId,
-            studyYear: request.studyYear,
-            campusCardId: request.campusCardId,
-            campusCardExpiryDate: request.campusCardExpiryDate,
-            campusUnitNumber: request.campusUnitNumber,
-            birthDate: request.birthDate,
-          ),
-          fcmToken: fcmToken);
+        request: RegisterRequestModel(
+          name: request.name,
+          email: request.email,
+          location: request.location.index,
+          gender: request.gender.index,
+          phoneNumber: request.phoneNumber,
+          studySpeciality: request.studySpeciality,
+          nationalId: request.nationalId,
+          studyYear: request.studyYear,
+          campusCardId: request.campusCardId,
+          campusCardExpiryDate: request.campusCardExpiryDate,
+          campusUnitNumber: request.campusUnitNumber,
+          birthDate: request.birthDate,
+        ),
+        fcmToken: fcmToken ?? "",
+      );
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));

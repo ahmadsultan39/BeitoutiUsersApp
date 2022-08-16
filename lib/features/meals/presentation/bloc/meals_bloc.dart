@@ -97,7 +97,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               state.rebuild(
                 (b) => b
                   ..isTopSubscriptionsLoading = false
-                  ..topSubscriptions.addAll(subscriptions),
+                  ..topSubscriptions.replace(subscriptions),
               ),
             ),
           );
@@ -124,7 +124,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               state.rebuild(
                 (b) => b
                   ..isOfferedMealsLoading = false
-                  ..offeredMeals.addAll(offeredMeals),
+                  ..offeredMeals.replace(offeredMeals),
               ),
             ),
           );
@@ -151,7 +151,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               state.rebuild(
                 (b) => b
                   ..isTopOrderedMealsLoading = false
-                  ..topOrderedMeals.addAll(topOrderedMeals),
+                  ..topOrderedMeals.replace(topOrderedMeals),
               ),
             ),
           );
@@ -178,7 +178,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               state.rebuild(
                 (b) => b
                   ..isTopRatedMealsLoading = false
-                  ..topRatedMeals.addAll(topRatedMeals),
+                  ..topRatedMeals.replace(topRatedMeals),
               ),
             ),
           );
@@ -205,7 +205,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               state.rebuild(
                 (b) => b
                   ..isRecentMealsLoading = false
-                  ..recentMeals.addAll(recentMeals),
+                  ..recentMeals.replace(recentMeals),
               ),
             ),
           );
@@ -235,13 +235,15 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
               },
               (offeredMeals) => {
                 emit(
-                  state.rebuild((b) => b
-                    ..allOfferedMeals.addAll(offeredMeals.data)
-                    ..isAllOfferedMealsFinished =
-                        b.allOfferedMealsPage! == offeredMeals.pages
-                    ..allOfferedMealsPage = b.allOfferedMealsPage! + 1
-                    ..isAllOfferedMealsPaginateLoading = false
-                    ..isAllOfferedMealsLoading = false),
+                  state.rebuild(
+                    (b) => b
+                      ..allOfferedMeals.addAll(offeredMeals.data)
+                      ..isAllOfferedMealsFinished =
+                          b.allOfferedMealsPage! == offeredMeals.pages
+                      ..allOfferedMealsPage = b.allOfferedMealsPage! + 1
+                      ..isAllOfferedMealsPaginateLoading = false
+                      ..isAllOfferedMealsLoading = false,
+                  ),
                 )
               },
             );

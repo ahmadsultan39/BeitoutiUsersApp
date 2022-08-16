@@ -21,6 +21,10 @@ class _$CartState extends CartState {
   final int mealsCost;
   @override
   final int deliveryFee;
+  @override
+  final int deliveryStartsHour;
+  @override
+  final int deliveryEndsHour;
 
   factory _$CartState([void Function(CartStateBuilder)? updates]) =>
       (new CartStateBuilder()..update(updates))._build();
@@ -32,7 +36,9 @@ class _$CartState extends CartState {
       required this.allSuccess,
       required this.cartItems,
       required this.mealsCost,
-      required this.deliveryFee})
+      required this.deliveryFee,
+      required this.deliveryStartsHour,
+      required this.deliveryEndsHour})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'CartState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'CartState', 'message');
@@ -43,6 +49,10 @@ class _$CartState extends CartState {
     BuiltValueNullFieldError.checkNotNull(mealsCost, r'CartState', 'mealsCost');
     BuiltValueNullFieldError.checkNotNull(
         deliveryFee, r'CartState', 'deliveryFee');
+    BuiltValueNullFieldError.checkNotNull(
+        deliveryStartsHour, r'CartState', 'deliveryStartsHour');
+    BuiltValueNullFieldError.checkNotNull(
+        deliveryEndsHour, r'CartState', 'deliveryEndsHour');
   }
 
   @override
@@ -62,7 +72,9 @@ class _$CartState extends CartState {
         allSuccess == other.allSuccess &&
         cartItems == other.cartItems &&
         mealsCost == other.mealsCost &&
-        deliveryFee == other.deliveryFee;
+        deliveryFee == other.deliveryFee &&
+        deliveryStartsHour == other.deliveryStartsHour &&
+        deliveryEndsHour == other.deliveryEndsHour;
   }
 
   @override
@@ -71,12 +83,18 @@ class _$CartState extends CartState {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
-                        error.hashCode),
-                    allSuccess.hashCode),
-                cartItems.hashCode),
-            mealsCost.hashCode),
-        deliveryFee.hashCode));
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc($jc(0, isLoading.hashCode),
+                                    message.hashCode),
+                                error.hashCode),
+                            allSuccess.hashCode),
+                        cartItems.hashCode),
+                    mealsCost.hashCode),
+                deliveryFee.hashCode),
+            deliveryStartsHour.hashCode),
+        deliveryEndsHour.hashCode));
   }
 
   @override
@@ -88,7 +106,9 @@ class _$CartState extends CartState {
           ..add('allSuccess', allSuccess)
           ..add('cartItems', cartItems)
           ..add('mealsCost', mealsCost)
-          ..add('deliveryFee', deliveryFee))
+          ..add('deliveryFee', deliveryFee)
+          ..add('deliveryStartsHour', deliveryStartsHour)
+          ..add('deliveryEndsHour', deliveryEndsHour))
         .toString();
   }
 }
@@ -126,6 +146,16 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
   int? get deliveryFee => _$this._deliveryFee;
   set deliveryFee(int? deliveryFee) => _$this._deliveryFee = deliveryFee;
 
+  int? _deliveryStartsHour;
+  int? get deliveryStartsHour => _$this._deliveryStartsHour;
+  set deliveryStartsHour(int? deliveryStartsHour) =>
+      _$this._deliveryStartsHour = deliveryStartsHour;
+
+  int? _deliveryEndsHour;
+  int? get deliveryEndsHour => _$this._deliveryEndsHour;
+  set deliveryEndsHour(int? deliveryEndsHour) =>
+      _$this._deliveryEndsHour = deliveryEndsHour;
+
   CartStateBuilder();
 
   CartStateBuilder get _$this {
@@ -138,6 +168,8 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
       _cartItems = $v.cartItems.toBuilder();
       _mealsCost = $v.mealsCost;
       _deliveryFee = $v.deliveryFee;
+      _deliveryStartsHour = $v.deliveryStartsHour;
+      _deliveryEndsHour = $v.deliveryEndsHour;
       _$v = null;
     }
     return this;
@@ -174,7 +206,11 @@ class CartStateBuilder implements Builder<CartState, CartStateBuilder> {
               mealsCost: BuiltValueNullFieldError.checkNotNull(
                   mealsCost, r'CartState', 'mealsCost'),
               deliveryFee: BuiltValueNullFieldError.checkNotNull(
-                  deliveryFee, r'CartState', 'deliveryFee'));
+                  deliveryFee, r'CartState', 'deliveryFee'),
+              deliveryStartsHour: BuiltValueNullFieldError.checkNotNull(
+                  deliveryStartsHour, r'CartState', 'deliveryStartsHour'),
+              deliveryEndsHour: BuiltValueNullFieldError.checkNotNull(
+                  deliveryEndsHour, r'CartState', 'deliveryEndsHour'));
     } catch (_) {
       late String _$failedField;
       try {

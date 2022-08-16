@@ -19,6 +19,10 @@ abstract class CartState implements Built<CartState, CartStateBuilder> {
 
   int get deliveryFee;
 
+  int get deliveryStartsHour;
+
+  int get deliveryEndsHour;
+
   CartState._();
 
   factory CartState([Function(CartStateBuilder b) updates]) = _$CartState;
@@ -31,6 +35,8 @@ abstract class CartState implements Built<CartState, CartStateBuilder> {
         ..message = ""
         ..deliveryFee = 0
         ..mealsCost = 0
+        ..deliveryStartsHour = 0
+        ..deliveryEndsHour=0
         ..cartItems.replace([])
         ..error = false,
     );

@@ -42,89 +42,95 @@ class _OrdersPageState extends State<OrdersPage> {
         );
         return Stack(
           children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  if (state.currentOrders.isNotEmpty)
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15.w,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.timer,
-                            size: 25.sp,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            'الطلبات الحالية',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.addGetCurrentOrdersEvent();
+                _bloc.addGetPreviousOrdersEvent();
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 15.h,
                     ),
-                  ...state.currentOrders
-                      .map(
-                        (order) => CurrentOrderItem(
-                          order: order,
-                          cancel: (orderId) {
-                            _bloc.addCancelOrderEvent(
-                              orderId,
-                              state.currentOrders.indexOf(order),
-                            );
-                          },
+                    if (state.currentOrders.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15.w,
                         ),
-                      )
-                      .toList(),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  if (state.previousOrders.isNotEmpty)
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15.w,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.history,
-                            size: 25.sp,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            'الطلبات السابقة',
-                            style: TextStyle(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.timer,
+                              size: 25.sp,
                               color: Theme.of(context).colorScheme.primary,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ...state.previousOrders
-                      .map(
-                        (order) => CurrentOrderItem(
-                          order: order,
-                          previous: true,
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              'الطلبات الحالية',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                      .toList(),
-                ],
+                      ),
+                    ...state.currentOrders
+                        .map(
+                          (order) => CurrentOrderItem(
+                            order: order,
+                            cancel: (orderId) {
+                              _bloc.addCancelOrderEvent(
+                                orderId,
+                                state.currentOrders.indexOf(order),
+                              );
+                            },
+                          ),
+                        )
+                        .toList(),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    if (state.previousOrders.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15.w,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.history,
+                              size: 25.sp,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              'الطلبات السابقة',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ...state.previousOrders
+                        .map(
+                          (order) => CurrentOrderItem(
+                            order: order,
+                            previous: true,
+                          ),
+                        )
+                        .toList(),
+                  ],
+                ),
               ),
             ),
             if (state.isLoading) const Loader(),

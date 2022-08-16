@@ -348,6 +348,11 @@ class _OrderPageState extends State<OrderPage> {
                         title: 'وقت التوصيل',
                         value: state.order!.selectedDeliveryTime,
                       ),
+                      OrderDetails(
+                        icon: Icons.list,
+                        title: 'اشتراك',
+                        value: state.order!.subscriptionId != null ? "نعم" : "لا",
+                      ),
                       if (state.order!.notes != null)
                         OrderDetails(
                           icon: Icons.notes,

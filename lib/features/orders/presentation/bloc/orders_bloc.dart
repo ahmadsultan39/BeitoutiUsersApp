@@ -108,7 +108,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               state.rebuild(
                 (b) => b
                   ..isLoading = false
-                  ..currentOrders.addAll(currentOrders),
+                  ..currentOrders.replace(currentOrders),
               ),
             ),
           );

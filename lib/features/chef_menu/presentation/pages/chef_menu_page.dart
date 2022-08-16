@@ -66,121 +66,124 @@ class _ChefMenuPageState extends State<ChefMenuPage>
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Row(
+            title: Column(
               children: [
-                Column(
+                Row(
                   children: [
-                    ImageChecker(
-                      width: 110.w,
-                      height: 120.h,
-                      imageUrl: widget.chef.profilePicture ?? '',
+                    Column(
+                      children: [
+                        ImageChecker(
+                          width: 110.w,
+                          height: 120.h,
+                          imageUrl: widget.chef.profilePicture ?? '',
+                        ),
+                        if (state.chefInfo != null)
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              ),
+                              Text(
+                                " ${state.chefInfo!.rating?.round() ?? 0} (${state.chefInfo!.ratesCount})",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                      ],
                     ),
-                    if (state.chefInfo != null)
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ),
-                          Text(
-                            " ${state.chefInfo!.rating?.round() ?? 0} (${state.chefInfo!.ratesCount})",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
-                SizedBox(
-                  width: 12.w,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.chef.name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18.sp),
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      state.isChefInfoLoading
-                          ? const Loader()
-                          : state.chefInfo != null
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.location_on_rounded),
-                                        Expanded(
-                                          child: Text(
-                                            state.chefInfo!.location,
+                    SizedBox(
+                      width: 12.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.chef.name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18.sp),
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        state.isChefInfoLoading
+                            ? const Loader()
+                            : state.chefInfo != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.circle,
+                                            color: state.chefInfo!.isAvailable
+                                                ? Colors.green
+                                                : Colors.red,
+                                            size: 16.sp,
+                                          ),
+                                          Text(
+                                            state.chefInfo!.isAvailable
+                                                ? " متاح"
+                                                : " مغلق",
                                             style: TextStyle(
                                               fontWeight: FontWeight.normal,
-                                              overflow: TextOverflow.fade,
                                               fontSize: 16.sp,
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.circle,
-                                          color: state.chefInfo!.isAvailable
-                                              ? Colors.green
-                                              : Colors.red,
-                                          size: 16.sp,
-                                        ),
-                                        Text(
-                                          state.chefInfo!.isAvailable
-                                              ? " متاح"
-                                              : " مغلق",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16.sp,
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.timer_rounded,
+                                            size: 16.sp,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.timer_rounded,
-                                          size: 16.sp,
-                                        ),
-                                        Text(
-                                          " ${state.chefInfo!.deliveryStartTime.substring(0, 5)} -> ${state.chefInfo!.deliveryEndTime.substring(0, 5)}",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "عدد الوجبات المتاحة : ",
-                                          style: TextStyle(
+                                          Text(
+                                            " ${state.chefInfo!.deliveryStartTime.substring(0, 5)} -> ${state.chefInfo!.deliveryEndTime.substring(0, 5)}",
+                                            style: TextStyle(
                                               fontWeight: FontWeight.normal,
-                                              fontSize: 16.sp),
-                                        ),
-                                        Text(
-                                            "${state.chefInfo!.remainingAvailableMealsCount} / ${state.chefInfo!.maxMealsPerDay}",
+                                              fontSize: 16.sp,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "عدد الوجبات المتاحة : ",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.normal,
-                                                fontSize: 16.sp)),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              : Container(),
+                                                fontSize: 16.sp),
+                                          ),
+                                          Text(
+                                              "${state.chefInfo!.remainingAvailableMealsCount} / ${state.chefInfo!.maxMealsPerDay}",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 16.sp)),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                : Container(),
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on_rounded),
+                      Text(
+                        state.chefInfo!.location,
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          // overflow: TextOverflow.fade,
+                          fontSize: 16.sp,
+                        ),
+                      ),
                     ],
                   ),
                 ),

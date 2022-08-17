@@ -4,7 +4,6 @@ import 'package:beitouti_users/features/profile/presentation/widgets/all_rights_
 import 'package:beitouti_users/features/profile/presentation/widgets/beitouti_logo.dart';
 import 'package:beitouti_users/features/profile/presentation/widgets/information_row.dart';
 import 'package:beitouti_users/features/profile/presentation/widgets/profile_tile.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

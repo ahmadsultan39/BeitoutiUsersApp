@@ -70,217 +70,221 @@ class _OrderPageState extends State<OrderPage> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (_) =>
-                          StatefulBuilder(builder: (context, setDialogState) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.background,
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                if (_reportedOn == null) {
-                                  setDialogState(() {
-                                    _isSelectedReportedOnValid = false;
-                                    _selectedReportedOnErrorMessage =
-                                        'الرجاء اختيار المبلغ عنه';
-                                  });
-                                }
-                                if (_reportTextFieldController.text.isEmpty) {
-                                  setDialogState(() {
-                                    _isReasonValid = false;
-                                    _reasonErrorMessage =
-                                        'الرجاء توضيح سبب الإبلاغ';
-                                  });
-                                } else {
-                                  _bloc.addReportOrderEvent(
-                                    reason: _reportTextFieldController.text,
-                                    reportedOn: _reportedOn == 'الطاهي'
-                                        ? "chef"
-                                        : "delivery",
-                                    orderId: state.order!.id,
-                                  );
-                                  Navigator.of(context).pop();
-                                }
-                              },
-                              child: Text(
-                                "إرسال الإبلاغ",
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.tertiary,
-                                ),
-                              ),
+                      builder: (_) => StatefulBuilder(
+                        builder: (context, setDialogState) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                          ],
-                          actionsAlignment: MainAxisAlignment.center,
-                          title: Text(
-                            "الإبلاغ عن الطلب",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              DropdownButton<String>(
-                                items: [
-                                  DropdownMenuItem(
-                                    child: Text(
-                                      "الطاهي",
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      ),
-                                    ),
-                                    value: 'الطاهي',
-                                  ),
-                                  DropdownMenuItem(
-                                    child: Text(
-                                      "عامل التوصيل",
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      ),
-                                    ),
-                                    value: 'عامل التوصيل',
-                                  ),
-                                ],
-                                onChanged: (selected) {
-                                  if (selected == null) {
+                            backgroundColor:
+                                Theme.of(context).colorScheme.background,
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  if (_reportedOn == null) {
                                     setDialogState(() {
                                       _isSelectedReportedOnValid = false;
                                       _selectedReportedOnErrorMessage =
                                           'الرجاء اختيار المبلغ عنه';
                                     });
+                                  }
+                                  if (_reportTextFieldController.text.isEmpty) {
+                                    setDialogState(() {
+                                      _isReasonValid = false;
+                                      _reasonErrorMessage =
+                                          'الرجاء توضيح سبب الإبلاغ';
+                                    });
                                   } else {
-                                    setDialogState(
-                                      () {
-                                        _isSelectedReportedOnValid = true;
-                                        _reportedOn = selected;
-                                      },
+                                    _bloc.addReportOrderEvent(
+                                      reason: _reportTextFieldController.text,
+                                      reportedOn: _reportedOn == 'الطاهي'
+                                          ? "chef"
+                                          : "delivery",
+                                      orderId: state.order!.id,
                                     );
+                                    Navigator.of(context).pop();
                                   }
                                 },
-                                value: _reportedOn,
-                                hint: Text(
-                                  "اختر المبلغ عنه",
+                                child: Text(
+                                  "إرسال الإبلاغ",
                                   style: TextStyle(
                                     color:
-                                        Theme.of(context).colorScheme.secondary,
+                                        Theme.of(context).colorScheme.tertiary,
                                   ),
                                 ),
                               ),
-                              if (!_isSelectedReportedOnValid)
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 5.h,
-                                  ),
-                                  child: Text(
-                                    _selectedReportedOnErrorMessage,
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 12.sp,
-                                    ),
-                                  ),
-                                ),
-                              SizedBox(
-                                height: 100.h,
-                                child: TextField(
-                                  controller: _reportTextFieldController,
-                                  textInputAction: TextInputAction.done,
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                  maxLines: 6,
-                                  decoration: InputDecoration(
-                                    // LABEL
-                                    labelText: 'سبب الإبلاغ',
-                                    labelStyle: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      fontSize: 12.sp,
-                                    ),
-
-                                    alignLabelWithHint: true,
-
-                                    // FILL COLOR
-                                    filled: true,
-                                    fillColor: Colors.white,
-
-                                    contentPadding: EdgeInsets.symmetric(
-                                      vertical: 10.h,
-                                      horizontal: 10.w,
-                                    ),
-
-                                    // ENABLE BORDER
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        width: 2,
+                            ],
+                            actionsAlignment: MainAxisAlignment.center,
+                            title: Text(
+                              "الإبلاغ عن الطلب",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                DropdownButton<String>(
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text(
+                                        "الطاهي",
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
                                       ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(20.0),
-                                      ),
+                                      value: 'الطاهي',
                                     ),
-
-                                    // ENABLE BORDER
-                                    disabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        width: 2,
+                                    DropdownMenuItem(
+                                      child: Text(
+                                        "عامل التوصيل",
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
                                       ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(20.0),
-                                      ),
+                                      value: 'عامل التوصيل',
                                     ),
-
-                                    // FOCUSED BORDER
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        width: 2,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(20.0),
-                                      ),
-                                    ),
-                                  ),
-                                  onChanged: (reason) {
-                                    if (reason.isNotEmpty) {
+                                  ],
+                                  onChanged: (selected) {
+                                    if (selected == null) {
+                                      setDialogState(() {
+                                        _isSelectedReportedOnValid = false;
+                                        _selectedReportedOnErrorMessage =
+                                            'الرجاء اختيار المبلغ عنه';
+                                      });
+                                    } else {
                                       setDialogState(
                                         () {
-                                          _isReasonValid = true;
+                                          _isSelectedReportedOnValid = true;
+                                          _reportedOn = selected;
                                         },
                                       );
                                     }
                                   },
-                                ),
-                              ),
-                              if (!_isReasonValid)
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 5.h,
-                                  ),
-                                  child: Text(
-                                    _reasonErrorMessage,
+                                  value: _reportedOn,
+                                  hint: Text(
+                                    "اختر المبلغ عنه",
                                     style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 12.sp,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                     ),
                                   ),
                                 ),
-                            ],
-                          ),
-                        );
-                      }),
+                                if (!_isSelectedReportedOnValid)
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 5.h,
+                                    ),
+                                    child: Text(
+                                      _selectedReportedOnErrorMessage,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 12.sp,
+                                      ),
+                                    ),
+                                  ),
+                                SizedBox(
+                                  height: 100.h,
+                                  child: TextField(
+                                    controller: _reportTextFieldController,
+                                    textInputAction: TextInputAction.done,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                    maxLines: 6,
+                                    decoration: InputDecoration(
+                                      // LABEL
+                                      labelText: 'سبب الإبلاغ',
+                                      labelStyle: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontSize: 12.sp,
+                                      ),
+
+                                      alignLabelWithHint: true,
+
+                                      // FILL COLOR
+                                      filled: true,
+                                      fillColor: Colors.white,
+
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 10.h,
+                                        horizontal: 10.w,
+                                      ),
+
+                                      // ENABLE BORDER
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(20.0),
+                                        ),
+                                      ),
+
+                                      // ENABLE BORDER
+                                      disabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(20.0),
+                                        ),
+                                      ),
+
+                                      // FOCUSED BORDER
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(20.0),
+                                        ),
+                                      ),
+                                    ),
+                                    onChanged: (reason) {
+                                      if (reason.isNotEmpty) {
+                                        setDialogState(
+                                          () {
+                                            _isReasonValid = true;
+                                          },
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                                if (!_isReasonValid)
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 5.h,
+                                    ),
+                                    child: Text(
+                                      _reasonErrorMessage,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 12.sp,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                   icon: const Text("إبلاغ"),
@@ -351,7 +355,8 @@ class _OrderPageState extends State<OrderPage> {
                       OrderDetails(
                         icon: Icons.list,
                         title: 'اشتراك',
-                        value: state.order!.subscriptionId != null ? "نعم" : "لا",
+                        value:
+                            state.order!.subscriptionId != null ? "نعم" : "لا",
                       ),
                       if (state.order!.notes != null)
                         OrderDetails(
